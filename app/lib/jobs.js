@@ -1,7 +1,10 @@
+import { cache } from "react";
+
 const API_URL = "https://taylor-workday-jobs.vercel.app/api/workday";
 const WORKDAY_BASE = "https://taylor.wd1.myworkdayjobs.com/en-US/External";
 const JOBS_PER_PAGE = 20;
 const LAST_BOARD_URL_STORAGE_KEY = "taylor-careers:last-board-url";
+const DEFAULT_SITE_URL = "https://careers.taylor.com";
 const URL_KEYS = {
   category: "tcb_category",
   state: "tcb_state",
@@ -21,12 +24,12 @@ const EMPTY_FILTERS = {
   sort: "newest",
 };
 
-export async function fetchJobs() {
+export const fetchJobs = cache(async function fetchJobs() {
   const res = await fetch(API_URL, { next: { revalidate: 300 } });
   if (!res.ok) throw new Error("Failed to fetch jobs");
   const data = await res.json();
   return Array.isArray(data) ? data : data.jobs ?? [];
-}
+});
 
 export function getFirstBatch(jobs) {
   return jobs.slice(0, JOBS_PER_PAGE);
@@ -85,6 +88,43 @@ export function buildJobPath(job) {
   if (!job?.jobRequisitionId) return null;
   const titleSlug = slugifyJobTitle(job.title || "job");
   return `/jobs/${titleSlug}-${job.jobRequisitionId.toLowerCase()}`;
+}
+
+export function getSiteUrl() {
+  return (
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    process.env.SITE_URL ||
+    DEFAULT_SITE_URL
+  ).replace(/\/+$/, "");
+}
+
+export function getListingPath(pageNumber = 1) {
+  return pageNumber > 1 ? `/page/${pageNumber}` : "/";
+}
+
+export function getListingUrl(pageNumber = 1) {
+  return `${getSiteUrl()}${getListingPath(pageNumber)}`;
+}
+
+export function getTotalPages(totalJobs = 0) {
+  return Math.max(1, Math.ceil(totalJobs / JOBS_PER_PAGE));
+}
+
+export function getVisibleCountForPage(pageNumber = 1, totalJobs = 0) {
+  return Math.min(Math.max(pageNumber, 1) * JOBS_PER_PAGE, totalJobs);
+}
+
+export function getStartIndexForPage(pageNumber = 1) {
+  return Math.max(pageNumber - 1, 0) * JOBS_PER_PAGE;
+}
+
+export function getPageFromSegments(segments) {
+  if (!segments || segments.length === 0) return 1;
+  if (segments.length === 2 && segments[0] === "page") {
+    const pageNumber = Number.parseInt(segments[1], 10);
+    return Number.isFinite(pageNumber) && pageNumber > 1 ? pageNumber : null;
+  }
+  return null;
 }
 
 function getAllValues(searchParams, key) {

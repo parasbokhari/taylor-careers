@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { Drawer } from "vaul";
 import FilterDropdown from "./FilterDropdown";
 import JobCard from "./JobCard";
@@ -161,6 +161,8 @@ const XIcon = ({ size = 10 }) => (
 export default function JobBoard({
   initialJobs = [],
   initialFilters = EMPTY_FILTERS,
+  initialVisibleCount = JOBS_PER_PAGE,
+  initialStartIndex = 0,
 }) {
   const startsFiltered = hasActiveFilters(initialFilters);
   const [jobs] = useState(initialJobs);
@@ -172,7 +174,10 @@ export default function JobBoard({
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
   const [sortOpen, setSortOpen] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(JOBS_PER_PAGE);
+  const [pageStartIndex, setPageStartIndex] = useState(initialStartIndex);
+  const [visibleCount, setVisibleCount] = useState(
+    Math.max(initialVisibleCount - initialStartIndex, JOBS_PER_PAGE),
+  );
   const [loadingMore, setLoadingMore] = useState(false);
 
   const isFirstMount = useRef(true);
@@ -222,6 +227,7 @@ export default function JobBoard({
     if (searchInput === filters.search) return;
     debounceTimer.current = setTimeout(() => {
       setFiltering(true);
+      setPageStartIndex(0);
       setVisibleCount(JOBS_PER_PAGE);
       setFilters((prev) => ({
         category: [],
@@ -237,27 +243,40 @@ export default function JobBoard({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchInput]);
 
-  const categories = [
-    ...new Set(jobs.map((j) => j.jobFamilyGroup).filter(Boolean)),
-  ].sort();
-  const jobTypes = [
-    ...new Set(jobs.map((j) => j.workerSubType).filter(Boolean)),
-  ].sort();
-  const locations = [
-    ...new Set(jobs.map((j) => j.locationsText || j.locations).filter(Boolean)),
-  ].sort();
-  const statuses = [
-    ...new Set(jobs.map((j) => j.timeType).filter(Boolean)),
-  ].sort();
-  const availableStates = [
-    ...new Set(
-      jobs
-        .map((j) => extractState(j.locationsText || j.locations || ""))
-        .filter(Boolean),
-    ),
-  ].sort();
+  const categories = useMemo(
+    () => [...new Set(jobs.map((j) => j.jobFamilyGroup).filter(Boolean))].sort(),
+    [jobs],
+  );
+  const jobTypes = useMemo(
+    () => [...new Set(jobs.map((j) => j.workerSubType).filter(Boolean))].sort(),
+    [jobs],
+  );
+  const locations = useMemo(
+    () =>
+      [
+        ...new Set(
+          jobs.map((j) => j.locationsText || j.locations).filter(Boolean),
+        ),
+      ].sort(),
+    [jobs],
+  );
+  const statuses = useMemo(
+    () => [...new Set(jobs.map((j) => j.timeType).filter(Boolean))].sort(),
+    [jobs],
+  );
+  const availableStates = useMemo(
+    () =>
+      [
+        ...new Set(
+          jobs
+            .map((j) => extractState(j.locationsText || j.locations || ""))
+            .filter(Boolean),
+        ),
+      ].sort(),
+    [jobs],
+  );
 
-  const filterDefs = [
+  const filterDefs = useMemo(() => [
     {
       key: "category",
       label: "Job Category",
@@ -289,9 +308,9 @@ export default function JobBoard({
       label: "Job Status",
       options: statuses.map((s) => ({ value: s, label: s })),
     },
-  ];
+  ], [categories, availableStates, jobTypes, locations, statuses]);
 
-  const filteredJobs = jobs.filter((job) => {
+  const filteredJobs = useMemo(() => jobs.filter((job) => {
     const jobState = extractState(job.locationsText || job.locations || "");
     const jobLocation = job.locationsText || job.locations || "";
     const searchLower = filters.search.toLowerCase();
@@ -333,20 +352,28 @@ export default function JobBoard({
       if (!terms.every((term) => blob.includes(term))) return false;
     }
     return true;
-  });
+  }), [jobs, filters]);
 
-  const sortedJobs = [...filteredJobs].sort((a, b) => {
-    const dA = postedOnToDays(a.postedOn || "");
-    const dB = postedOnToDays(b.postedOn || "");
-    return filters.sort === "oldest" ? dB - dA : dA - dB;
-  });
+  const sortedJobs = useMemo(
+    () =>
+      [...filteredJobs].sort((a, b) => {
+        const dA = postedOnToDays(a.postedOn || "");
+        const dB = postedOnToDays(b.postedOn || "");
+        return filters.sort === "oldest" ? dB - dA : dA - dB;
+      }),
+    [filteredJobs, filters.sort],
+  );
 
-  const visibleJobs = sortedJobs.slice(0, visibleCount);
-  const hasMore = visibleCount < sortedJobs.length;
-  const remainingCount = sortedJobs.length - visibleCount;
+  const visibleJobs = useMemo(
+    () => sortedJobs.slice(pageStartIndex, pageStartIndex + visibleCount),
+    [sortedJobs, pageStartIndex, visibleCount],
+  );
+  const hasMore = pageStartIndex + visibleCount < sortedJobs.length;
+  const remainingCount = sortedJobs.length - (pageStartIndex + visibleCount);
 
   const toggleFilter = useCallback((key, value) => {
     setFiltering(true);
+    setPageStartIndex(0);
     setVisibleCount(JOBS_PER_PAGE);
     setSearchInput("");
     setFilters((prev) => ({
@@ -360,6 +387,7 @@ export default function JobBoard({
 
   const clearAll = useCallback(() => {
     setFiltering(true);
+    setPageStartIndex(0);
     setVisibleCount(JOBS_PER_PAGE);
     setFilters({
       category: [],
@@ -375,6 +403,7 @@ export default function JobBoard({
 
   const removeFilter = useCallback((key, value) => {
     setFiltering(true);
+    setPageStartIndex(0);
     setVisibleCount(JOBS_PER_PAGE);
     if (key === "search") {
       setFilters((prev) => ({ ...prev, search: "" }));
@@ -391,6 +420,7 @@ export default function JobBoard({
     (e) => {
       e.preventDefault();
       setFiltering(true);
+      setPageStartIndex(0);
       setVisibleCount(JOBS_PER_PAGE);
       clearTimeout(debounceTimer.current);
       setFilters((prev) => ({
@@ -465,6 +495,7 @@ export default function JobBoard({
                             type="button"
                             onClick={() => {
                               if (!activeDrawerFilter) return;
+                              setPageStartIndex(0);
                               setVisibleCount(JOBS_PER_PAGE);
                               setFilters((p) => ({
                                 ...p,
@@ -571,9 +602,9 @@ export default function JobBoard({
               <div className="c__job-board-embed__header__row">
                 <div className="c__job-board-embed__header__col c__job-board-embed__header__col--left">
                   <div className="c__heading-wrapper">
-                    <h2 className="c__heading u__h3 u__f-700 d-block u__heading-color--primary mb-0">
+                    <h1 className="c__heading u__h3 u__f-700 d-block u__heading-color--primary mb-0">
                       Browse Open Positions
-                    </h2>
+                    </h1>
                   </div>
                 </div>
                 <div className="c__job-board-embed__header__col c__job-board-embed__header__col--right">
@@ -903,6 +934,7 @@ export default function JobBoard({
                                     key={s.value}
                                     onClick={() => {
                                       setFiltering(true);
+                                      setPageStartIndex(0);
                                       setVisibleCount(JOBS_PER_PAGE);
                                       setFilters((p) => ({
                                         ...p,

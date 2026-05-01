@@ -13,9 +13,13 @@ export async function generateMetadata({ params }) {
   const allJobs = await fetchJobs();
   const job = getJobBySlug(allJobs, id);
   if (!job) return { title: "Job Not Found | Taylor" };
+  const canonicalPath = buildJobPath(job);
   return {
     title: `${job.title} | Taylor Careers`,
     description: `${job.jobFamilyGroup ?? "Open position"} at Taylor — ${parseLocation(job)}`,
+    alternates: {
+      canonical: canonicalPath,
+    },
   };
 }
 
