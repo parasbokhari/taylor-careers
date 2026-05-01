@@ -655,7 +655,7 @@
     border: 1px solid rgba(36, 88, 241, 0.12);
     border-radius: 24px;
     background: rgba(255, 255, 255, 0.92);
-    box-shadow: 0 24px 60px rgba(26, 51, 115, 0.08);
+    // box-shadow: 0 24px 60px rgba(26, 51, 115, 0.08);
 
     @media (min-width: 900px) {
       grid-template-columns: minmax(0, 1fr) 280px;
@@ -753,7 +753,7 @@
     border: 1px solid #e8ebf0;
     border-radius: 24px;
     background: #ffffff;
-    box-shadow: 0 24px 60px rgba(26, 51, 115, 0.06);
+    // box-shadow: 0 24px 60px rgba(26, 51, 115, 0.06);
   }
 
   &__rich-text {
