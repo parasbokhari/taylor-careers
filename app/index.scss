@@ -813,7 +813,16 @@
 
   &__rich-text {
     color: #505457;
-    line-height: 1.7;
+    font-size: 1rem;
+    line-height: 1.75;
+
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
 
     h1,
     h2,
@@ -822,30 +831,104 @@
     h5,
     h6 {
       color: #25282a;
-      margin-top: 1.75rem;
-      margin-bottom: 0.75rem;
-      line-height: 1.2;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
     }
 
-    h1,
-    h2,
+    h1 {
+      font-size: 1.25rem;
+    }
+
+    h2 {
+      font-size: 1.15rem;
+    }
+
     h3 {
-      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    h4,
+    h5,
+    h6 {
+      font-size: 1rem;
     }
 
     p,
     ul,
-    ol {
+    ol,
+    blockquote,
+    table {
       margin-bottom: 1rem;
     }
 
     ul,
     ol {
-      padding-left: 1.25rem;
+      padding-left: 1.35rem;
+    }
+
+    li {
+      margin-top: 0.35rem;
+      padding-left: 0.2rem;
+    }
+
+    li::marker {
+      // color: var(--t-cp-primary-blue);
+      font-weight: 700;
+    }
+
+    strong,
+    b {
+      color: #25282a;
+      font-weight: 700;
+    }
+
+    blockquote {
+      border-left: 4px solid var(--t-cp-primary-blue);
+      color: #25282a;
+      font-style: italic;
+      padding-left: 1rem;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #e8ebf0;
+      margin: 1.5rem 0;
+    }
+
+    code {
+      background: #f4f7fd;
+      border-radius: 4px;
+      color: #25282a;
+      font-size: 0.9em;
+      padding: 0.15rem 0.3rem;
+    }
+
+    table {
+      border-collapse: collapse;
+      display: block;
+      overflow-x: auto;
+      width: 100%;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid #e8ebf0;
+      padding: 0.65rem 0.75rem;
+      text-align: left;
+    }
+
+    th {
+      color: #25282a;
+      font-weight: 700;
     }
 
     a {
       color: var(--t-cp-primary-blue);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 0.18em;
     }
   }
 }

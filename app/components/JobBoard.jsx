@@ -82,7 +82,7 @@ function pushFiltersToURL(filters) {
   if (filters.sort && filters.sort !== "newest")
     p.set(URL_KEYS.sort, filters.sort);
   const qs = p.toString();
-  window.history.pushState({}, "", qs ? `?${qs}` : window.location.pathname);
+  window.history.pushState(null, "", qs ? `?${qs}` : window.location.pathname);
 }
 
 function extractState(str = "") {

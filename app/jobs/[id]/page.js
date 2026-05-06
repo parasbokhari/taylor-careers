@@ -37,10 +37,12 @@ export default async function JobDetailPage({ params }) {
 
   const applyUrl = buildWorkdayUrl(job.externalPath);
   const location = parseLocation(job);
-  const topMeta = [job.workerSubType, job.timeType, job.postedOn].filter(Boolean);
+  const topMeta = [job.workerSubType, job.timeType, job.postedOn].filter(
+    Boolean,
+  );
 
   return (
-    <main className="c__job-detail">
+    <div className="c__job-detail">
       <div className="container">
         <div className="c__job-detail__shell">
           <BackToPositionsButton />
@@ -48,9 +50,11 @@ export default async function JobDetailPage({ params }) {
           <section className="c__job-detail__hero">
             <div className="c__job-detail__hero__content">
               {job.jobFamilyGroup && (
-                <span className="c__job-detail__eyebrow">{job.jobFamilyGroup}</span>
+                <span className="c__job-detail__eyebrow">
+                  {job.jobFamilyGroup}
+                </span>
               )}
-              <h1 className="c__job-detail__title">{job.title}</h1>
+              <h1 className="u__h1">{job.title}</h1>
               {(location || topMeta.length > 0) && (
                 <div className="c__job-detail__meta">
                   {location && (
@@ -71,7 +75,9 @@ export default async function JobDetailPage({ params }) {
               {job.jobRequisitionId && (
                 <div className="c__job-detail__stat">
                   <span className="c__job-detail__stat-label">Req ID</span>
-                  <span className="c__job-detail__stat-value">{job.jobRequisitionId}</span>
+                  <span className="c__job-detail__stat-value">
+                    {job.jobRequisitionId}
+                  </span>
                 </div>
               )}
               {applyUrl && (
@@ -83,7 +89,13 @@ export default async function JobDetailPage({ params }) {
                 >
                   <span className="c__button__content u__f-700">
                     <span>Apply on Workday</span>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
                       <path
                         d="M7 17L17 7M17 7H9M17 7V15"
                         stroke="currentColor"
@@ -113,6 +125,6 @@ export default async function JobDetailPage({ params }) {
           )}
         </div>
       </div>
-    </main>
+    </div>
   );
 }
