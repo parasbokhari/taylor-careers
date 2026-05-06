@@ -1,4 +1,6 @@
 import "./index.scss";
+import SiteFooter from "@/app/components/SiteFooter";
+import SiteHeader from "@/app/components/SiteHeader";
 import { getSiteUrl } from "@/app/lib/jobs";
 
 export const metadata = {
@@ -10,7 +12,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <SiteHeader />
+        <main id="main-content" className="overflow-hidden">
+          {children}
+        </main>
+        <SiteFooter />
+      </body>
     </html>
   );
 }
