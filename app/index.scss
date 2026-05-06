@@ -792,6 +792,16 @@
     width: 100%;
     justify-content: center;
     text-decoration: none;
+    &:focus {
+      color: var(--t-cp-base-white);
+    }
+    &:hover {
+      svg {
+        path {
+          stroke: var(--t-cp-primary-blue);
+        }
+      }
+    }
 
     .c__button__content {
       display: inline-flex;
