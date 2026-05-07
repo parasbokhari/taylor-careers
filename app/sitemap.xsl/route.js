@@ -109,7 +109,7 @@ function buildStylesheet(siteUrl) {
             <h1>XML Sitemap</h1>
             <p>
               This sitemap is used by search engines to help crawl the site more
-              efficiently. It also includes a readable view for humans.
+              efficiently.
             </p>
             <div class="meta">
               <xsl:value-of select="count(sitemap:urlset/sitemap:url)" /> URLs
