@@ -31,6 +31,13 @@ export const fetchJobs = cache(async function fetchJobs() {
   return Array.isArray(data) ? data : data.jobs ?? [];
 });
 
+export async function fetchFreshJobs() {
+  const res = await fetch(API_URL, { cache: "no-store" });
+  if (!res.ok) throw new Error("Failed to fetch jobs");
+  const data = await res.json();
+  return Array.isArray(data) ? data : data.jobs ?? [];
+}
+
 export function getFirstBatch(jobs) {
   return jobs.slice(0, JOBS_PER_PAGE);
 }

@@ -74,7 +74,9 @@
     U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+// Rollback: uncomment the remote Taylor stylesheet below and remove/comment the manual import.
 @import url("https://www.taylor.com/hubfs/hub_generated/template_assets/1/114924056500/1761336383764/template_index.min.css");
+// @import "./styles/taylor-index-manual.css";
 @import url("https://www.taylor.com/hubfs/hub_generated/template_assets/1/168109140905/1777571690993/template_global-header.min.css");
 @import url("https://www.taylor.com/hubfs/hub_generated/template_assets/1/171406981746/1777571687177/template_global-footer.min.css");
 
@@ -106,7 +108,7 @@
 }
 
 .b__site-header__global-site-header__logo-wrapper img {
-  display: block;
+  // display: block;
   height: auto;
   max-width: 150px;
 }
@@ -624,6 +626,376 @@
 
 .c__button--loading {
   border-color: transparent !important;
+}
+
+.c__skeleton-page {
+  --c-skeleton-base: #eef0f3;
+  --c-skeleton-highlight: #f8f9fb;
+  --c-skeleton-shell: #f3f4f6;
+  --c-skeleton-border: #e1e4e8;
+
+  .c__button,
+  .c__button--primary,
+  .c__filter-item,
+  .c__job-board-embed__search-form__input-wrapper,
+  .c__job-detail__meta-chip,
+  .c__job-detail__meta-chip--location {
+    background: var(--c-skeleton-shell) !important;
+    background-color: var(--c-skeleton-shell) !important;
+    border-color: var(--c-skeleton-border) !important;
+    color: transparent !important;
+  }
+
+  .c__button,
+  .c__button--primary,
+  .c__filter-item,
+  .c__job-board-embed__search-form__input-wrapper,
+  .c__job-detail__meta-chip,
+  .c__job-detail__meta-chip--location,
+  .c__skeleton-sort-box {
+    border-radius: 8px !important;
+  }
+
+  .c__button:hover,
+  .c__button--primary:hover,
+  .c__button:focus,
+  .c__button--primary:focus {
+    background: var(--c-skeleton-shell) !important;
+    background-color: var(--c-skeleton-shell) !important;
+    border-color: var(--c-skeleton-border) !important;
+    color: transparent !important;
+  }
+
+  .c__filter-item__label,
+  .c__job-card__view-link,
+  .c__job-detail__back-link {
+    color: transparent !important;
+  }
+
+  .c__skeleton-block {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    background: linear-gradient(
+      90deg,
+      var(--c-skeleton-base) 0%,
+      var(--c-skeleton-highlight) 45%,
+      var(--c-skeleton-base) 100%
+    );
+    background-size: 220% 100%;
+    animation: c__skeleton-shimmer 1.2s ease-in-out infinite;
+  }
+
+  .c__skeleton-button-shell {
+    border-radius: 999px !important;
+    pointer-events: none;
+    min-width: 138px;
+  }
+
+  .c__job-board-embed__search-form__input-wrapper {
+    border-radius: 50px !important;
+  }
+
+  .c__job-board-embed__search-form__button.c__skeleton-button-shell {
+    min-height: calc(1em + 22px);
+  }
+
+  .c__skeleton-button-shell .c__skeleton-block {
+    background: linear-gradient(
+      90deg,
+      #d9dde3 0%,
+      #eceef2 45%,
+      #d9dde3 100%
+    );
+    background-size: 220% 100%;
+  }
+
+  .c__skeleton-block--page-heading {
+    width: min(345px, 86%);
+    height: 39px;
+    border-radius: 10px;
+  }
+
+  .c__skeleton-block--search-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+  }
+
+  .c__skeleton-block--search-text {
+    position: absolute;
+    top: 50%;
+    left: 3.15rem;
+    width: min(235px, calc(100% - 4.6rem));
+    height: 17px;
+    transform: translateY(-50%);
+    @media (min-width: 576px) {
+      left: 1.45rem;
+      width: min(250px, calc(100% - 3rem));
+    }
+  }
+
+  .c__skeleton-block--button-text {
+    width: 90px;
+    height: 17px;
+  }
+
+  .c__filter-bar__filter-list--desktop {
+    .c__filter-bar__filter-list__row,
+    .c__filter-bar__filter-list__filters__row {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+    }
+  }
+
+  .c__skeleton-filter-item {
+    padding: 0;
+    pointer-events: none;
+  }
+
+  .c__skeleton-filter-item .c__filter-item__label-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 24px;
+  }
+
+  .c__skeleton-block--filter-heading {
+    width: 78px;
+    height: 19px;
+    border-radius: 6px;
+  }
+
+  .c__skeleton-block--filter-label-text {
+    width: 94px;
+    height: 17px;
+    border-radius: 6px;
+  }
+
+  .c__filter-bar__filter-list__filters__col--2 .c__skeleton-block--filter-label-text {
+    width: 52px;
+  }
+
+  .c__filter-bar__filter-list__filters__col--3 .c__skeleton-block--filter-label-text {
+    width: 68px;
+  }
+
+  .c__filter-bar__filter-list__filters__col--4 .c__skeleton-block--filter-label-text {
+    width: 70px;
+  }
+
+  .c__filter-bar__filter-list__filters__col--5 .c__skeleton-block--filter-label-text {
+    width: 82px;
+  }
+
+  .c__skeleton-block--chev {
+    width: 12px;
+    height: 7px;
+    border-radius: 2px;
+  }
+
+  .c__skeleton-job-card {
+    pointer-events: none;
+  }
+
+  .c__skeleton-block--eyebrow {
+    width: 150px;
+    height: 16px;
+    border-radius: 5px;
+  }
+
+  .c__skeleton-view-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .c__skeleton-block--view-text {
+    width: 55px;
+    height: 15px;
+    border-radius: 5px;
+  }
+
+  .c__skeleton-block--view-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+  }
+
+  .c__skeleton-block--card-title {
+    width: min(530px, 90%);
+    height: 24px;
+    border-radius: 7px;
+  }
+
+  .c__skeleton-block--description-line {
+    width: 100%;
+    height: 16px;
+    margin-bottom: 0.55rem;
+    border-radius: 5px;
+  }
+
+  .c__skeleton-block--description-line-short {
+    width: 68%;
+  }
+
+  .c__skeleton-block--meta-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
+
+  .c__skeleton-block--meta-label {
+    width: 70px;
+    height: 16px;
+    border-radius: 5px;
+  }
+
+  .c__skeleton-block--meta-label-location {
+    width: min(255px, 48vw);
+  }
+
+  .c__skeleton-block--posted {
+    width: 68px;
+    height: 15px;
+    border-radius: 5px;
+  }
+
+  .c__skeleton-block--openings-count {
+    width: 155px;
+    height: 24px;
+    border-radius: 7px;
+  }
+
+  .c__skeleton-sort-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 0;
+  }
+
+  .c__skeleton-block--sort-text {
+    width: 108px;
+    height: 17px;
+    border-radius: 5px;
+  }
+
+  .c__skeleton-back-link {
+    pointer-events: none;
+  }
+
+  .c__skeleton-block--back-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+  }
+
+  .c__skeleton-block--back-text {
+    width: 112px;
+    height: 18px;
+    border-radius: 5px;
+  }
+
+  .c__skeleton-block--detail-eyebrow {
+    width: 175px;
+    height: 14px;
+    margin-bottom: 0.75rem;
+    border-radius: 5px;
+  }
+
+  .c__skeleton-block--detail-title {
+    width: min(620px, 100%);
+    height: 58px;
+    border-radius: 12px;
+    @media (max-width: 575.98px) {
+      height: 98px;
+    }
+  }
+
+  .c__skeleton-block--detail-chip {
+    width: 96px;
+    height: 42px;
+    border-radius: 999px;
+  }
+
+  .c__skeleton-block--detail-chip-location {
+    width: 185px;
+  }
+
+  .c__skeleton-block--stat-label {
+    width: 54px;
+    height: 13px;
+    margin-bottom: 0.55rem;
+    border-radius: 5px;
+  }
+
+  .c__skeleton-block--stat-value {
+    width: 128px;
+    height: 18px;
+    border-radius: 5px;
+  }
+
+  .c__skeleton-block--apply-text {
+    width: 126px;
+    height: 17px;
+  }
+
+  .c__skeleton-block--apply-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+  }
+
+  .c__job-detail__apply-button {
+    min-height: 52px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .c__skeleton-block--section-title {
+    width: 150px;
+    height: 24px;
+    border-radius: 7px;
+  }
+
+  .c__skeleton-block--paragraph {
+    width: 100%;
+    height: 18px;
+    margin-bottom: 0.75rem;
+    border-radius: 5px;
+  }
+
+  .c__skeleton-block--paragraph-short {
+    width: 64%;
+    margin-bottom: 1.4rem;
+  }
+
+  .c__skeleton-block--paragraph-medium {
+    width: 82%;
+  }
+
+  .c__skeleton-list {
+    display: grid;
+    gap: 0.65rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .c__skeleton-block--list-item {
+    width: 86%;
+    height: 17px;
+    margin-left: 1.25rem;
+  }
+}
+
+@keyframes c__skeleton-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
