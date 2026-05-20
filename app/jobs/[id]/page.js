@@ -1,5 +1,6 @@
 import { notFound, permanentRedirect } from "next/navigation";
 import BackToPositionsButton from "@/app/components/BackToPositionsButton";
+import SimilarJobs from "@/app/components/SimilarJobs";
 import {
   fetchJobs,
   getJobBySlug,
@@ -42,7 +43,7 @@ export default async function JobDetailPage({ params }) {
   );
 
   return (
-    <div className="c__job-detail">
+    <div className="c__job-detail pb-0">
       <div className="container">
         <div className="c__job-detail__shell">
           <BackToPositionsButton />
@@ -82,13 +83,13 @@ export default async function JobDetailPage({ params }) {
               )}
               {applyUrl && (
                 <a
-                  href={applyUrl}
+                  href={applyUrl + "/apply"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="c__button c__button--primary c__button--rounded c__job-detail__apply-button"
                 >
                   <span className="c__button__content u__f-700">
-                    <span>Apply on Workday</span>
+                    <span>Apply Now</span>
                     <svg
                       width="18"
                       height="18"
@@ -125,6 +126,7 @@ export default async function JobDetailPage({ params }) {
           )}
         </div>
       </div>
+      <SimilarJobs jobs={allJobs} currentJob={job} />
     </div>
   );
 }

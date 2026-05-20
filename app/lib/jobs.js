@@ -91,6 +91,29 @@ export function slugifyJobTitle(title = "") {
     .replace(/-{2,}/g, "-");
 }
 
+export function slugifyCategory(category = "") {
+  return slugifyJobTitle(category);
+}
+
+export function getJobCategories(jobs = []) {
+  return [...new Set(jobs.map((job) => job.jobFamilyGroup).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b));
+}
+
+export function getCategoryBySlug(jobs = [], slug = "") {
+  const requestedSlug = Array.isArray(slug) ? slug[0] : slug;
+  return (
+    getJobCategories(jobs).find(
+      (category) => slugifyCategory(category) === requestedSlug,
+    ) ?? null
+  );
+}
+
+export function buildCategoryPath(category) {
+  const slug = slugifyCategory(category);
+  return slug ? `/categories/${slug}` : null;
+}
+
 export function buildJobPath(job) {
   if (!job?.jobRequisitionId) return null;
   const titleSlug = slugifyJobTitle(job.title || "job");

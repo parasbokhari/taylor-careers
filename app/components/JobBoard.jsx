@@ -71,16 +71,43 @@ const SEARCH_PILL_MAX_CHARS = 20;
 const LOCATION_LABEL_MAX_CHARS = 100;
 const JOBS_PER_PAGE = 20;
 
-function pushFiltersToURL(filters) {
+function isSameSelection(values = [], defaults = []) {
+  if (values.length !== defaults.length) return false;
+  return values.every((value) => defaults.includes(value));
+}
+
+function getUrlSyncedFilters(filters, urlFilterDefaults = EMPTY_FILTERS) {
+  return {
+    ...filters,
+    category: isSameSelection(filters.category, urlFilterDefaults.category)
+      ? []
+      : filters.category,
+    state: isSameSelection(filters.state, urlFilterDefaults.state)
+      ? []
+      : filters.state,
+    jobType: isSameSelection(filters.jobType, urlFilterDefaults.jobType)
+      ? []
+      : filters.jobType,
+    location: isSameSelection(filters.location, urlFilterDefaults.location)
+      ? []
+      : filters.location,
+    status: isSameSelection(filters.status, urlFilterDefaults.status)
+      ? []
+      : filters.status,
+  };
+}
+
+function pushFiltersToURL(filters, urlFilterDefaults) {
+  const syncedFilters = getUrlSyncedFilters(filters, urlFilterDefaults);
   const p = new URLSearchParams();
-  filters.category.forEach((v) => p.append(URL_KEYS.category, v));
-  filters.state.forEach((v) => p.append(URL_KEYS.state, v));
-  filters.jobType.forEach((v) => p.append(URL_KEYS.jobType, v));
-  filters.location.forEach((v) => p.append(URL_KEYS.location, v));
-  filters.status.forEach((v) => p.append(URL_KEYS.status, v));
-  if (filters.search) p.set(URL_KEYS.search, filters.search);
-  if (filters.sort && filters.sort !== "newest")
-    p.set(URL_KEYS.sort, filters.sort);
+  syncedFilters.category.forEach((v) => p.append(URL_KEYS.category, v));
+  syncedFilters.state.forEach((v) => p.append(URL_KEYS.state, v));
+  syncedFilters.jobType.forEach((v) => p.append(URL_KEYS.jobType, v));
+  syncedFilters.location.forEach((v) => p.append(URL_KEYS.location, v));
+  syncedFilters.status.forEach((v) => p.append(URL_KEYS.status, v));
+  if (syncedFilters.search) p.set(URL_KEYS.search, syncedFilters.search);
+  if (syncedFilters.sort && syncedFilters.sort !== "newest")
+    p.set(URL_KEYS.sort, syncedFilters.sort);
   const qs = p.toString();
   window.history.pushState(null, "", qs ? `?${qs}` : window.location.pathname);
 }
@@ -163,8 +190,11 @@ export default function JobBoard({
   initialFilters = EMPTY_FILTERS,
   initialVisibleCount = JOBS_PER_PAGE,
   initialStartIndex = 0,
+  showInitialFilterLoading = true,
+  urlFilterDefaults = EMPTY_FILTERS,
 }) {
-  const startsFiltered = hasActiveFilters(initialFilters);
+  const startsFiltered =
+    showInitialFilterLoading && hasActiveFilters(initialFilters);
   const [jobs] = useState(initialJobs);
   const [loading, setLoading] = useState(startsFiltered);
   const [filtering, setFiltering] = useState(false);
@@ -204,14 +234,14 @@ export default function JobBoard({
       isFirstMount.current = false;
       return;
     }
-    pushFiltersToURL(filters);
+    pushFiltersToURL(filters, urlFilterDefaults);
     clearTimeout(spinnerTimer.current);
     spinnerTimer.current = setTimeout(
       () => setFiltering(false),
       FILTER_SPINNER_MS,
     );
     return () => clearTimeout(spinnerTimer.current);
-  }, [filters]);
+  }, [filters, urlFilterDefaults]);
 
   useEffect(() => {
     const handler = (e) => {
