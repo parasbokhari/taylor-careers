@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
+import { useRouter } from "next/navigation";
 import { Drawer } from "vaul";
 import FilterDropdown from "./FilterDropdown";
 import JobCard from "./JobCard";
@@ -97,7 +98,33 @@ function getUrlSyncedFilters(filters, urlFilterDefaults = EMPTY_FILTERS) {
   };
 }
 
-function pushFiltersToURL(filters, urlFilterDefaults) {
+function getAllUrlValues(searchParams, key) {
+  return searchParams.getAll(key).filter(Boolean);
+}
+
+function getFiltersFromURL(searchParams, urlFilterDefaults = EMPTY_FILTERS) {
+  return {
+    category: searchParams.has(URL_KEYS.category)
+      ? getAllUrlValues(searchParams, URL_KEYS.category)
+      : urlFilterDefaults.category,
+    state: searchParams.has(URL_KEYS.state)
+      ? getAllUrlValues(searchParams, URL_KEYS.state)
+      : urlFilterDefaults.state,
+    jobType: searchParams.has(URL_KEYS.jobType)
+      ? getAllUrlValues(searchParams, URL_KEYS.jobType)
+      : urlFilterDefaults.jobType,
+    location: searchParams.has(URL_KEYS.location)
+      ? getAllUrlValues(searchParams, URL_KEYS.location)
+      : urlFilterDefaults.location,
+    status: searchParams.has(URL_KEYS.status)
+      ? getAllUrlValues(searchParams, URL_KEYS.status)
+      : urlFilterDefaults.status,
+    search: searchParams.get(URL_KEYS.search) || "",
+    sort: searchParams.get(URL_KEYS.sort) || "newest",
+  };
+}
+
+function buildFiltersUrl(filters, urlFilterDefaults) {
   const syncedFilters = getUrlSyncedFilters(filters, urlFilterDefaults);
   const p = new URLSearchParams();
   syncedFilters.category.forEach((v) => p.append(URL_KEYS.category, v));
@@ -109,7 +136,7 @@ function pushFiltersToURL(filters, urlFilterDefaults) {
   if (syncedFilters.sort && syncedFilters.sort !== "newest")
     p.set(URL_KEYS.sort, syncedFilters.sort);
   const qs = p.toString();
-  window.history.pushState(null, "", qs ? `?${qs}` : window.location.pathname);
+  return qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
 }
 
 function extractState(str = "") {
@@ -193,6 +220,7 @@ export default function JobBoard({
   showInitialFilterLoading = true,
   urlFilterDefaults = EMPTY_FILTERS,
 }) {
+  const router = useRouter();
   const startsFiltered =
     showInitialFilterLoading && hasActiveFilters(initialFilters);
   const [jobs] = useState(initialJobs);
@@ -211,6 +239,7 @@ export default function JobBoard({
   const [loadingMore, setLoadingMore] = useState(false);
 
   const isFirstMount = useRef(true);
+  const skipNextUrlSync = useRef(false);
   const spinnerTimer = useRef(null);
   const sortRef = useRef(null);
   const debounceTimer = useRef(null);
@@ -234,14 +263,46 @@ export default function JobBoard({
       isFirstMount.current = false;
       return;
     }
-    pushFiltersToURL(filters, urlFilterDefaults);
+    if (skipNextUrlSync.current) {
+      skipNextUrlSync.current = false;
+      return;
+    }
+    router.push(buildFiltersUrl(filters, urlFilterDefaults), {
+      scroll: false,
+    });
     clearTimeout(spinnerTimer.current);
     spinnerTimer.current = setTimeout(
       () => setFiltering(false),
       FILTER_SPINNER_MS,
     );
     return () => clearTimeout(spinnerTimer.current);
-  }, [filters, urlFilterDefaults]);
+  }, [filters, router, urlFilterDefaults]);
+
+  useEffect(() => {
+    const syncFiltersFromHistory = () => {
+      const nextFilters = getFiltersFromURL(
+        new URLSearchParams(window.location.search),
+        urlFilterDefaults,
+      );
+
+      skipNextUrlSync.current = true;
+      clearTimeout(debounceTimer.current);
+      clearTimeout(spinnerTimer.current);
+      setLoading(false);
+      setFiltering(false);
+      setPageStartIndex(0);
+      setVisibleCount(JOBS_PER_PAGE);
+      setSearchInput(nextFilters.search);
+      setFilters(nextFilters);
+      setSortOpen(false);
+      setDrawerOpen(false);
+    };
+
+    window.addEventListener("popstate", syncFiltersFromHistory);
+    return () => {
+      window.removeEventListener("popstate", syncFiltersFromHistory);
+    };
+  }, [urlFilterDefaults]);
 
   useEffect(() => {
     const handler = (e) => {
