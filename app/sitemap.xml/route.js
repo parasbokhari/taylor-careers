@@ -1,8 +1,10 @@
 import {
   buildCategoryPath,
   buildJobPath,
+  buildLocationPath,
   fetchFreshJobs,
   getJobCategories,
+  getJobLocations,
   getListingUrl,
   getSiteUrl,
   getTotalPages,
@@ -59,10 +61,29 @@ function buildSitemapEntries(jobs) {
       priority: 0.7,
     }));
 
+  const locationIndexEntry = {
+    url: `${siteUrl}/locations`,
+    lastModified: now,
+    changeFrequency: "daily",
+    priority: 0.8,
+  };
+
+  const locationEntries = getJobLocations(jobs)
+    .map((location) => buildLocationPath(location))
+    .filter(Boolean)
+    .map((path) => ({
+      url: `${siteUrl}${path}`,
+      lastModified: now,
+      changeFrequency: "daily",
+      priority: 0.7,
+    }));
+
   return [
     ...listingEntries,
     categoryIndexEntry,
     ...categoryEntries,
+    locationIndexEntry,
+    ...locationEntries,
     ...jobEntries,
   ];
 }

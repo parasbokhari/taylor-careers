@@ -80,6 +80,13 @@ export function parseLocation(job) {
   return raw.split(" - ")[0].trim();
 }
 
+export function getValidJobLocation(job) {
+  const location = parseLocation(job);
+  return /^[A-Za-z][A-Za-z\s.'-]+,\s*[A-Z]{2}$/.test(location)
+    ? location.replace(/\s*,\s*/, ", ")
+    : null;
+}
+
 export function slugifyJobTitle(title = "") {
   return title
     .normalize("NFKD")
@@ -112,6 +119,43 @@ export function getCategoryBySlug(jobs = [], slug = "") {
 export function buildCategoryPath(category) {
   const slug = slugifyCategory(category);
   return slug ? `/categories/${slug}` : null;
+}
+
+export function slugifyLocation(location = "") {
+  return slugifyJobTitle(location);
+}
+
+export function getJobLocations(jobs = []) {
+  return [...new Set(jobs.map((job) => getValidJobLocation(job)).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b));
+}
+
+export function getLocationBySlug(jobs = [], slug = "") {
+  const requestedSlug = Array.isArray(slug) ? slug[0] : slug;
+  return (
+    getJobLocations(jobs).find(
+      (location) => slugifyLocation(location) === requestedSlug,
+    ) ?? null
+  );
+}
+
+export function getJobsForLocation(jobs = [], location = "") {
+  return jobs.filter((job) => getValidJobLocation(job) === location);
+}
+
+export function getLocationFilterValues(jobs = [], location = "") {
+  return [
+    ...new Set(
+      getJobsForLocation(jobs, location)
+        .map((job) => job.locationsText || job.locations)
+        .filter(Boolean),
+    ),
+  ].sort((a, b) => a.localeCompare(b));
+}
+
+export function buildLocationPath(location) {
+  const slug = slugifyLocation(location);
+  return slug ? `/locations/${slug}` : null;
 }
 
 export function buildJobPath(job) {

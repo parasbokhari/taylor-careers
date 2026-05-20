@@ -1490,5 +1490,8 @@
       transform: translateY(-2px);
       text-decoration: none !important;
     }
+    &:focus {
+      text-decoration: none !important;
+    }
   }
 }
