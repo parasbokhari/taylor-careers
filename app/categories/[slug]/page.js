@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import JobBoard from "@/app/components/JobBoard";
+import { getCategoryPageContent } from "@/app/lib/categoryContent";
 import {
   EMPTY_FILTERS,
   buildCategoryPath,
@@ -33,10 +34,14 @@ export default async function CategoryPage({ params }) {
 
   if (!category) notFound();
 
+  const categoryJobs = jobs.filter((job) => job.jobFamilyGroup === category);
+  if (categoryJobs.length === 0) notFound();
+
   const categoryFilter = {
     ...EMPTY_FILTERS,
     category: [category],
   };
+  const categoryContent = getCategoryPageContent(category);
 
   return (
     <>
@@ -46,8 +51,13 @@ export default async function CategoryPage({ params }) {
             Back
           </Link>
           <h1 className="c__category-hero__title">
-            {category} Careers at Taylor
+            {categoryContent.heading}
           </h1>
+          {categoryContent.description && (
+            <p className="c__category-hero__description">
+              {categoryContent.description}
+            </p>
+          )}
         </div>
       </section>
       <JobBoard

@@ -1434,6 +1434,14 @@
     font-weight: 700;
     line-height: 1.15;
   }
+
+  &__description {
+    max-width: 680px;
+    margin: 1rem auto 0;
+    color: #505457;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
 }
 
 .c__categories-index {

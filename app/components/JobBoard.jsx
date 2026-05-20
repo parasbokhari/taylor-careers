@@ -221,6 +221,11 @@ export default function JobBoard({
   urlFilterDefaults = EMPTY_FILTERS,
 }) {
   const router = useRouter();
+  const urlFilterDefaultsKey = JSON.stringify(urlFilterDefaults);
+  const stableUrlFilterDefaults = useMemo(
+    () => JSON.parse(urlFilterDefaultsKey),
+    [urlFilterDefaultsKey],
+  );
   const startsFiltered =
     showInitialFilterLoading && hasActiveFilters(initialFilters);
   const [jobs] = useState(initialJobs);
@@ -267,22 +272,26 @@ export default function JobBoard({
       skipNextUrlSync.current = false;
       return;
     }
-    router.push(buildFiltersUrl(filters, urlFilterDefaults), {
-      scroll: false,
-    });
+    const nextUrl = buildFiltersUrl(filters, stableUrlFilterDefaults);
+    const currentUrl = `${window.location.pathname}${window.location.search}`;
+    if (nextUrl !== currentUrl) {
+      router.push(nextUrl, {
+        scroll: false,
+      });
+    }
     clearTimeout(spinnerTimer.current);
     spinnerTimer.current = setTimeout(
       () => setFiltering(false),
       FILTER_SPINNER_MS,
     );
     return () => clearTimeout(spinnerTimer.current);
-  }, [filters, router, urlFilterDefaults]);
+  }, [filters, router, stableUrlFilterDefaults]);
 
   useEffect(() => {
     const syncFiltersFromHistory = () => {
       const nextFilters = getFiltersFromURL(
         new URLSearchParams(window.location.search),
-        urlFilterDefaults,
+        stableUrlFilterDefaults,
       );
 
       skipNextUrlSync.current = true;
@@ -302,7 +311,7 @@ export default function JobBoard({
     return () => {
       window.removeEventListener("popstate", syncFiltersFromHistory);
     };
-  }, [urlFilterDefaults]);
+  }, [stableUrlFilterDefaults]);
 
   useEffect(() => {
     const handler = (e) => {
