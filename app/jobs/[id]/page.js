@@ -7,21 +7,36 @@ import {
   buildWorkdayUrl,
   parseLocation,
   buildJobPath,
+  excerptDescription,
 } from "@/app/lib/jobs";
+import { buildSeoMetadata } from "@/app/lib/seo";
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
   const allJobs = await fetchJobs();
   const job = getJobBySlug(allJobs, id);
-  if (!job) return { title: "Job Not Found | Taylor" };
+  if (!job) {
+    return buildSeoMetadata({
+      title: "Job Not Found | Taylor",
+      description: "The requested Taylor Careers job could not be found.",
+      path: `/jobs/${id}`,
+      robots: { index: false, follow: false },
+    });
+  }
   const canonicalPath = buildJobPath(job);
-  return {
+  const location = parseLocation(job);
+  const fallbackDescription = `${job.jobFamilyGroup ?? "Open position"} at Taylor${
+    location ? ` - ${location}` : ""
+  }.`;
+
+  return buildSeoMetadata({
     title: `${job.title} | Taylor Careers`,
-    description: `${job.jobFamilyGroup ?? "Open position"} at Taylor — ${parseLocation(job)}`,
-    alternates: {
-      canonical: canonicalPath,
-    },
-  };
+    description: job.jobDescription
+      ? excerptDescription(job.jobDescription, 155)
+      : fallbackDescription,
+    path: canonicalPath,
+    type: "article",
+  });
 }
 
 export default async function JobDetailPage({ params }) {

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
-import { useRouter } from "next/navigation";
 import { Drawer } from "vaul";
 import FilterDropdown from "./FilterDropdown";
 import JobCard from "./JobCard";
@@ -10,6 +9,7 @@ import {
   LAST_BOARD_URL_STORAGE_KEY,
   URL_KEYS,
   hasActiveFilters,
+  postedOnToDays,
 } from "@/app/lib/jobs";
 
 const US_STATES = {
@@ -158,19 +158,6 @@ function truncate(str, max) {
   return str.length > max ? str.substring(0, max) + "…" : str;
 }
 
-function postedOnToDays(str = "") {
-  const s = str.toLowerCase();
-  if (s.includes("today")) return 0;
-  if (s.includes("yesterday")) return 1;
-  const days = s.match(/(\d+)\s+day/);
-  if (days) return parseInt(days[1], 10);
-  const weeks = s.match(/(\d+)\s+week/);
-  if (weeks) return parseInt(weeks[1], 10) * 7;
-  const mos = s.match(/(\d+)\s+month/);
-  if (mos) return parseInt(mos[1], 10) * 30;
-  return 9999;
-}
-
 const ChevronDown = ({ stroke = "#2458F1" }) => (
   <svg width={12} height={7} viewBox="0 0 12 7" fill="none">
     <path
@@ -220,7 +207,6 @@ export default function JobBoard({
   showInitialFilterLoading = true,
   urlFilterDefaults = EMPTY_FILTERS,
 }) {
-  const router = useRouter();
   const urlFilterDefaultsKey = JSON.stringify(urlFilterDefaults);
   const stableUrlFilterDefaults = useMemo(
     () => JSON.parse(urlFilterDefaultsKey),
@@ -275,9 +261,7 @@ export default function JobBoard({
     const nextUrl = buildFiltersUrl(filters, stableUrlFilterDefaults);
     const currentUrl = `${window.location.pathname}${window.location.search}`;
     if (nextUrl !== currentUrl) {
-      router.push(nextUrl, {
-        scroll: false,
-      });
+      window.history.pushState(null, "", nextUrl);
     }
     clearTimeout(spinnerTimer.current);
     spinnerTimer.current = setTimeout(
@@ -285,7 +269,7 @@ export default function JobBoard({
       FILTER_SPINNER_MS,
     );
     return () => clearTimeout(spinnerTimer.current);
-  }, [filters, router, stableUrlFilterDefaults]);
+  }, [filters, stableUrlFilterDefaults]);
 
   useEffect(() => {
     const syncFiltersFromHistory = () => {

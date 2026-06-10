@@ -1,22 +1,54 @@
-import { slugifyCategory } from "@/app/lib/jobs";
+import categoryPages from "@/app/data/categoryPages.json";
+import { URL_KEYS } from "@/app/lib/jobs";
 
-const DEFAULT_CATEGORY_PAGE_CONTENT = {
-  heading: null,
-  description: null,
-};
+export function getCategoryPages() {
+  return categoryPages;
+}
 
-const CATEGORY_PAGE_CONTENT = {
-  internship: {
-    heading: "Internships at Taylor",
-  },
-};
+export function getCategoryPageBySlug(slug = "") {
+  const requestedSlug = Array.isArray(slug) ? slug[0] : slug;
+  return categoryPages.find((page) => page.slug === requestedSlug) ?? null;
+}
 
-export function getCategoryPageContent(category) {
-  const customContent = CATEGORY_PAGE_CONTENT[slugifyCategory(category)] || {};
+export function getCategoryPageByCategory(category = "") {
+  return categoryPages.find((page) => page.category === category) ?? null;
+}
 
-  return {
-    ...DEFAULT_CATEGORY_PAGE_CONTENT,
-    heading: `${category} Careers at Taylor`,
-    ...customContent,
-  };
+export function getCategoryPageParams() {
+  return categoryPages.map((page) => ({ slug: page.slug }));
+}
+
+export function getCategoryWorkdayNames(categoryPage) {
+  return categoryPage?.workday_internal_names?.length
+    ? categoryPage.workday_internal_names
+    : [categoryPage.category];
+}
+
+export function buildCategorySearchResultsPath(categoryPage) {
+  const params = new URLSearchParams();
+
+  getCategoryWorkdayNames(categoryPage).forEach((category) => {
+    params.append(URL_KEYS.category, category);
+  });
+
+  const query = params.toString();
+  return query ? `/search-results?${query}` : "/search-results";
+}
+
+function getDeterministicScore(seed, value) {
+  return `${seed}:${value}`.split("").reduce((score, char) => {
+    return (score * 31 + char.charCodeAt(0)) % 1000003;
+  }, 7);
+}
+
+export function getRelatedCategoryPages(slug = "", count = 4) {
+  return categoryPages
+    .filter((page) => page.slug !== slug)
+    .map((page) => ({
+      page,
+      score: getDeterministicScore(slug, page.slug),
+    }))
+    .sort((a, b) => a.score - b.score)
+    .slice(0, count)
+    .map(({ page }) => page);
 }

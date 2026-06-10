@@ -1,10 +1,7 @@
+import { getCategoryPages } from "@/app/lib/categoryContent";
 import {
-  buildCategoryPath,
   buildJobPath,
-  buildLocationPath,
   fetchFreshJobs,
-  getJobCategories,
-  getJobLocations,
   getListingUrl,
   getSiteUrl,
   getTotalPages,
@@ -51,26 +48,8 @@ function buildSitemapEntries(jobs) {
     priority: 0.8,
   };
 
-  const categoryEntries = getJobCategories(jobs)
-    .map((category) => buildCategoryPath(category))
-    .filter(Boolean)
-    .map((path) => ({
-      url: `${siteUrl}${path}`,
-      lastModified: now,
-      changeFrequency: "daily",
-      priority: 0.7,
-    }));
-
-  const locationIndexEntry = {
-    url: `${siteUrl}/locations`,
-    lastModified: now,
-    changeFrequency: "daily",
-    priority: 0.8,
-  };
-
-  const locationEntries = getJobLocations(jobs)
-    .map((location) => buildLocationPath(location))
-    .filter(Boolean)
+  const categoryEntries = getCategoryPages()
+    .map((category) => `/categories/${category.slug}`)
     .map((path) => ({
       url: `${siteUrl}${path}`,
       lastModified: now,
@@ -82,8 +61,6 @@ function buildSitemapEntries(jobs) {
     ...listingEntries,
     categoryIndexEntry,
     ...categoryEntries,
-    locationIndexEntry,
-    ...locationEntries,
     ...jobEntries,
   ];
 }

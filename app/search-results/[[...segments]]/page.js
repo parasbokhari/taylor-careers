@@ -11,11 +11,12 @@ import {
   getVisibleCountForPage,
   hasActiveFilters,
 } from "@/app/lib/jobs";
+import { buildSeoMetadata } from "@/app/lib/seo";
 
 function getMetaTitle(pageNumber) {
   return pageNumber > 1
-    ? `Careers Page ${pageNumber} | Taylor`
-    : "Careers | Taylor";
+    ? `Careers Search Results Page ${pageNumber} | Taylor`
+    : "Careers Search Results | Taylor";
 }
 
 function getMetaDescription(pageNumber) {
@@ -26,10 +27,8 @@ function getMetaDescription(pageNumber) {
 
 function getPaginationLinks(pageNumber, totalPages) {
   return {
-    prev:
-      pageNumber > 1 ? getListingUrl(pageNumber - 1) : null,
-    next:
-      pageNumber < totalPages ? getListingUrl(pageNumber + 1) : null,
+    prev: pageNumber > 1 ? getListingUrl(pageNumber - 1) : null,
+    next: pageNumber < totalPages ? getListingUrl(pageNumber + 1) : null,
   };
 }
 
@@ -39,32 +38,48 @@ export async function generateMetadata({ params, searchParams }) {
   const pageNumber = getPageFromSegments(resolvedParams?.segments);
 
   if (pageNumber === null) {
-    return { title: "Page Not Found | Taylor" };
+    return buildSeoMetadata({
+      title: "Page Not Found | Taylor",
+      description: "The requested Taylor Careers page could not be found.",
+      path: "/search-results",
+      robots: { index: false, follow: false },
+    });
   }
 
   const jobs = await fetchJobs();
   const totalPages = getTotalPages(jobs.length);
 
   if (pageNumber > totalPages) {
-    return { title: "Page Not Found | Taylor" };
+    return buildSeoMetadata({
+      title: "Page Not Found | Taylor",
+      description: "The requested Taylor Careers page could not be found.",
+      path: "/search-results",
+      robots: { index: false, follow: false },
+    });
   }
 
   const filters = getFiltersFromSearchParams(resolvedSearchParams);
   const canonicalPagePath = getListingPath(pageNumber);
   const pagination = getPaginationLinks(pageNumber, totalPages);
+  const hasFilters = hasActiveFilters(filters);
 
   return {
+    ...buildSeoMetadata({
+      title: getMetaTitle(pageNumber),
+      description: getMetaDescription(pageNumber),
+      path: canonicalPagePath,
+      robots: hasFilters
+        ? { index: false, follow: true }
+        : { index: true, follow: true },
+    }),
     title: getMetaTitle(pageNumber),
     description: getMetaDescription(pageNumber),
-    alternates: {
-      canonical: canonicalPagePath,
-    },
     pagination: {
       previous: pagination.prev || undefined,
       next: pagination.next || undefined,
     },
     other: {
-      "filters:active": hasActiveFilters(filters) ? "true" : "false",
+      "filters:active": hasFilters ? "true" : "false",
     },
   };
 }

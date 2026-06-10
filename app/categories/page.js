@@ -1,45 +1,36 @@
-import Link from "next/link";
-import {
-  buildCategoryPath,
-  fetchJobs,
-  getJobCategories,
-} from "@/app/lib/jobs";
+import CategoryBadge from "@/app/components/CategoryBadge";
+import { getCategoryPages } from "@/app/lib/categoryContent";
+import { buildSeoMetadata } from "@/app/lib/seo";
 
-export const metadata = {
+export const metadata = buildSeoMetadata({
   title: "Job Categories | Taylor Careers",
   description: "Browse Taylor careers by job category.",
-  alternates: {
-    canonical: "/categories",
-  },
-};
+  path: "/categories",
+});
 
-export default async function CategoriesPage() {
-  const jobs = await fetchJobs();
-  const categories = getJobCategories(jobs);
+export default function CategoriesPage() {
+  const categories = getCategoryPages();
 
   return (
-    <section className="c__categories-index">
+    <section className="b__size-md b__u-careers__category-list">
       <div className="container">
-        <div className="c__categories-index__header">
-          <h1 className="c__heading u__h3 u__f-700 d-block u__heading-color--primary mb-0">
-            Job Categories
+        <div className="c__heading-wrapper mb-4 text-center">
+          <h1 className="c__heading u__h2 u__f-700 d-block u__heading-color--primary mb-0">
+            Browse Jobs by Categories
           </h1>
         </div>
-        <div className="c__categories-index__grid">
-          {categories.map((category) => {
-            const path = buildCategoryPath(category);
-            if (!path) return null;
-
-            return (
-              <Link
-                className="c__categories-index__link"
-                href={path}
-                key={category}
-              >
-                {category}
-              </Link>
-            );
-          })}
+      </div>
+      <div className="container mt-4 pt-4">
+        <div className="b__u-careers__category-list__content-wrapper">
+          <div className="b__u-careers__category-list__grid">
+            {categories.map((category) => (
+              <CategoryBadge
+                category={category}
+                href={`/categories/${category.slug}`}
+                key={category.slug}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

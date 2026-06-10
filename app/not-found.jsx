@@ -1,6 +1,11 @@
-export const metadata = {
+import { buildSeoMetadata } from "@/app/lib/seo";
+
+export const metadata = buildSeoMetadata({
   title: "Page Not Found | Taylor",
-};
+  description: "The requested Taylor Careers page could not be found.",
+  path: "/404",
+  robots: { index: false, follow: false },
+});
 
 export default function NotFound() {
   return (

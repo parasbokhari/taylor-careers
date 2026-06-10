@@ -80,11 +80,23 @@ export function parseLocation(job) {
   return raw.split(" - ")[0].trim();
 }
 
-export function getValidJobLocation(job) {
-  const location = parseLocation(job);
-  return /^[A-Za-z][A-Za-z\s.'-]+,\s*[A-Z]{2}$/.test(location)
-    ? location.replace(/\s*,\s*/, ", ")
-    : null;
+export function postedOnToDays(str = "") {
+  const s = str.toLowerCase();
+  if (s.includes("today")) return 0;
+  if (s.includes("yesterday")) return 1;
+  const days = s.match(/(\d+)\s+day/);
+  if (days) return Number.parseInt(days[1], 10);
+  const weeks = s.match(/(\d+)\s+week/);
+  if (weeks) return Number.parseInt(weeks[1], 10) * 7;
+  const months = s.match(/(\d+)\s+month/);
+  if (months) return Number.parseInt(months[1], 10) * 30;
+  return 9999;
+}
+
+export function sortJobsByNewest(jobs = []) {
+  return [...jobs].sort((a, b) => {
+    return postedOnToDays(a.postedOn || "") - postedOnToDays(b.postedOn || "");
+  });
 }
 
 export function slugifyJobTitle(title = "") {
@@ -121,43 +133,6 @@ export function buildCategoryPath(category) {
   return slug ? `/categories/${slug}` : null;
 }
 
-export function slugifyLocation(location = "") {
-  return slugifyJobTitle(location);
-}
-
-export function getJobLocations(jobs = []) {
-  return [...new Set(jobs.map((job) => getValidJobLocation(job)).filter(Boolean))]
-    .sort((a, b) => a.localeCompare(b));
-}
-
-export function getLocationBySlug(jobs = [], slug = "") {
-  const requestedSlug = Array.isArray(slug) ? slug[0] : slug;
-  return (
-    getJobLocations(jobs).find(
-      (location) => slugifyLocation(location) === requestedSlug,
-    ) ?? null
-  );
-}
-
-export function getJobsForLocation(jobs = [], location = "") {
-  return jobs.filter((job) => getValidJobLocation(job) === location);
-}
-
-export function getLocationFilterValues(jobs = [], location = "") {
-  return [
-    ...new Set(
-      getJobsForLocation(jobs, location)
-        .map((job) => job.locationsText || job.locations)
-        .filter(Boolean),
-    ),
-  ].sort((a, b) => a.localeCompare(b));
-}
-
-export function buildLocationPath(location) {
-  const slug = slugifyLocation(location);
-  return slug ? `/locations/${slug}` : null;
-}
-
 export function buildJobPath(job) {
   if (!job?.jobRequisitionId) return null;
   const titleSlug = slugifyJobTitle(job.title || "job");
@@ -173,7 +148,7 @@ export function getSiteUrl() {
 }
 
 export function getListingPath(pageNumber = 1) {
-  return pageNumber > 1 ? `/page/${pageNumber}` : "/";
+  return pageNumber > 1 ? `/search-results/page/${pageNumber}` : "/search-results";
 }
 
 export function getListingUrl(pageNumber = 1) {

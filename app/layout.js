@@ -2,10 +2,14 @@ import "./index.scss";
 import SiteFooter from "@/app/components/SiteFooter";
 import SiteHeader from "@/app/components/SiteHeader";
 import { getSiteUrl } from "@/app/lib/jobs";
+import { buildSeoMetadata } from "@/app/lib/seo";
 
 export const metadata = {
-  title: "Careers | Taylor",
-  description: "Explore open positions at Taylor.",
+  ...buildSeoMetadata({
+    title: "Careers | Taylor",
+    description: "Explore careers and open positions at Taylor.",
+    path: "/",
+  }),
   metadataBase: new URL(getSiteUrl()),
 };
 

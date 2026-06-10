@@ -1,0 +1,158 @@
+[
+  {
+    "slug": "manufacturing-and-production",
+    "category": "Manufacturing & Production",
+    "workday_internal_names": ["Operations", "Real Estate & Facilities"],
+    "icon_raw": "https://39614771.fs1.hubspotusercontent-na2.net/hubfs/39614771/tool-02.svg",
+    "icon_badge": "https://39614771.fs1.hubspotusercontent-na2.net/hubfs/39614771/Featured%20icon-3.svg",
+    "heading": "Manufacturing & Production Jobs",
+    "description": "Taylor offers a range of manufacturing and production jobs, including press operation, finishing, and packaging roles supporting large-scale print operations.",
+    "featured_image": "https://www-taylor-com.sandbox.hs-sites.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/5-Explore%20Roles/Technology-Roles.webp",
+    "meta_title": "Manufacturing & Production Jobs | Taylor Careers",
+    "meta_description": "Explore Manufacturing & Production jobs at Taylor.",
+    "faqs": [
+      {
+        "question": "Lorem ipsum dolor sit amet consectetur adipiscing elit?",
+        "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae augue sed nisl fermentum facilisis. Donec suscipit, velit a gravida suscipit, mauris sem porta mi, non congue justo massa sed neque.</p><p>Praesent luctus, nibh sed posuere faucibus, lectus eros volutpat lacus, vitae tincidunt massa justo nec erat. Sed non arcu nec ipsum tristique consequat. Curabitur at velit ac sem luctus finibus.</p><p>Aliquam erat volutpat. Suspendisse potenti. Morbi pharetra, massa sed luctus tincidunt, felis justo dapibus velit, vitae ullamcorper lectus ipsum at mauris.</p>"
+      },
+      {
+        "question": "Lorem ipsum dolor sit amet consectetur adipiscing elit?",
+        "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae augue sed nisl fermentum facilisis. Donec suscipit, velit a gravida suscipit, mauris sem porta mi, non congue justo massa sed neque.</p><p>Praesent luctus, nibh sed posuere faucibus, lectus eros volutpat lacus, vitae tincidunt massa justo nec erat. Sed non arcu nec ipsum tristique consequat. Curabitur at velit ac sem luctus finibus.</p><p>Aliquam erat volutpat. Suspendisse potenti. Morbi pharetra, massa sed luctus tincidunt, felis justo dapibus velit, vitae ullamcorper lectus ipsum at mauris.</p>"
+      },
+      {
+        "question": "Lorem ipsum dolor sit amet consectetur adipiscing elit?",
+        "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae augue sed nisl fermentum facilisis. Donec suscipit, velit a gravida suscipit, mauris sem porta mi, non congue justo massa sed neque.</p><p>Praesent luctus, nibh sed posuere faucibus, lectus eros volutpat lacus, vitae tincidunt massa justo nec erat. Sed non arcu nec ipsum tristique consequat. Curabitur at velit ac sem luctus finibus.</p><p>Aliquam erat volutpat. Suspendisse potenti. Morbi pharetra, massa sed luctus tincidunt, felis justo dapibus velit, vitae ullamcorper lectus ipsum at mauris.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "technology-and-it",
+    "category": "Technology & IT",
+    "workday_internal_names": ["IT"],
+    "icon_raw": "https://39614771.fs1.hubspotusercontent-na2.net/hubfs/39614771/code-02.svg",
+    "icon_badge": "",
+    "heading": "Technology & IT Careers at Taylor",
+    "description": "",
+    "featured_image": "",
+    "meta_title": "Technology & IT Jobs | Taylor Careers",
+    "meta_description": "Explore Technology & IT jobs at Taylor.",
+    "faqs": []
+  },
+  {
+    "slug": "sales",
+    "category": "Sales",
+    "workday_internal_names": ["Sales & Sales Support"],
+    "icon_raw": "https://39614771.fs1.hubspotusercontent-na2.net/hubfs/39614771/tag-01.svg",
+    "icon_badge": "",
+    "heading": "Sales Careers at Taylor",
+    "description": "",
+    "featured_image": "",
+    "meta_title": "Sales Jobs | Taylor Careers",
+    "meta_description": "Explore Sales jobs at Taylor.",
+    "faqs": []
+  },
+  {
+    "slug": "engineering",
+    "category": "Engineering",
+    "workday_internal_names": ["Engineering"],
+    "icon_raw": "https://39614771.fs1.hubspotusercontent-na2.net/hubfs/39614771/settings-01.svg",
+    "icon_badge": "",
+    "heading": "Engineering Careers at Taylor",
+    "description": "",
+    "featured_image": "",
+    "meta_title": "Engineering Jobs | Taylor Careers",
+    "meta_description": "Explore Engineering jobs at Taylor.",
+    "faqs": []
+  },
+  {
+    "slug": "human-resources",
+    "category": "Human Resources",
+    "workday_internal_names": ["Human Resources"],
+    "icon_raw": "https://39614771.fs1.hubspotusercontent-na2.net/hubfs/39614771/users-01.svg",
+    "icon_badge": "",
+    "heading": "Human Resources Careers at Taylor",
+    "description": "",
+    "featured_image": "",
+    "meta_title": "Human Resources Jobs | Taylor Careers",
+    "meta_description": "Explore Human Resources jobs at Taylor.",
+    "faqs": []
+  },
+  {
+    "slug": "supply-chain-and-logistics",
+    "category": "Supply Chain & Logistics",
+    "workday_internal_names": ["Supply Chain Management"],
+    "icon_raw": "https://39614771.fs1.hubspotusercontent-na2.net/hubfs/39614771/truck-02.svg",
+    "icon_badge": "",
+    "heading": "Supply Chain & Logistics Careers at Taylor",
+    "description": "",
+    "featured_image": "",
+    "meta_title": "Supply Chain & Logistics Jobs | Taylor Careers",
+    "meta_description": "Explore Supply Chain & Logistics jobs at Taylor.",
+    "faqs": []
+  },
+  {
+    "slug": "finance-and-accounting",
+    "category": "Finance & Accounting",
+    "workday_internal_names": ["Finance"],
+    "icon_raw": "https://39614771.fs1.hubspotusercontent-na2.net/hubfs/39614771/bank-note-01.svg",
+    "icon_badge": "",
+    "heading": "Finance & Accounting Careers at Taylor",
+    "description": "",
+    "featured_image": "",
+    "meta_title": "Finance & Accounting Jobs | Taylor Careers",
+    "meta_description": "Explore Finance & Accounting jobs at Taylor.",
+    "faqs": []
+  },
+  {
+    "slug": "customer-service",
+    "category": "Customer Service",
+    "workday_internal_names": ["Customer Service"],
+    "icon_raw": "https://39614771.fs1.hubspotusercontent-na2.net/hubfs/39614771/message-chat-circle.svg",
+    "icon_badge": "",
+    "heading": "Customer Service Careers at Taylor",
+    "description": "",
+    "featured_image": "",
+    "meta_title": "Customer Service Jobs | Taylor Careers",
+    "meta_description": "Explore Customer Service jobs at Taylor.",
+    "faqs": []
+  },
+  {
+    "slug": "business-operations",
+    "category": "Business Operations",
+    "workday_internal_names": ["Administrative Services"],
+    "icon_raw": "https://39614771.fs1.hubspotusercontent-na2.net/hubfs/39614771/briefcase-01.svg",
+    "icon_badge": "",
+    "heading": "Business Operations Careers at Taylor",
+    "description": "",
+    "featured_image": "",
+    "meta_title": "Business Operations Jobs | Taylor Careers",
+    "meta_description": "Explore Business Operations jobs at Taylor.",
+    "faqs": []
+  },
+  {
+    "slug": "marketing-and-creative",
+    "category": "Marketing & Creative",
+    "workday_internal_names": ["Marketing & Creative"],
+    "icon_raw": "https://39614771.fs1.hubspotusercontent-na2.net/hubfs/39614771/announcement-02.svg",
+    "icon_badge": "",
+    "heading": "Marketing & Creative Careers at Taylor",
+    "description": "",
+    "featured_image": "",
+    "meta_title": "Marketing & Creative Jobs | Taylor Careers",
+    "meta_description": "Explore Marketing & Creative jobs at Taylor.",
+    "faqs": []
+  },
+  {
+    "slug": "internships",
+    "category": "Internships",
+    "workday_internal_names": ["Internships"],
+    "icon_raw": "https://39614771.fs1.hubspotusercontent-na2.net/hubfs/39614771/lightbulb-05.svg",
+    "icon_badge": "",
+    "heading": "Internships at Taylor",
+    "description": "",
+    "featured_image": "",
+    "meta_title": "Internships | Taylor Careers",
+    "meta_description": "Explore internship opportunities at Taylor.",
+    "faqs": []
+  }
+]

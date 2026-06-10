@@ -18,7 +18,7 @@ export default function BackToPositionsButton() {
           router.push(storedBoardUrl);
           return;
         }
-        router.push("/");
+        router.push("/search-results");
       }}
     >
       <svg
