@@ -64,6 +64,8 @@ function switchMenusOnHover(canvas, element) {
     return;
   }
 
+  resetNestedMenuState(currentMegaBoard);
+
   currentMegaBoard
     .querySelectorAll(
       ".b__site-header__global-site-header__child-navigation-item",
@@ -98,6 +100,29 @@ function switchMenusOnHover(canvas, element) {
   setVisible(canvas.querySelector(`#${CSS.escape(`${target}--featured`)}`), true, true);
 }
 
+function resetNestedMenuState(parent) {
+  parent
+    .querySelectorAll(
+      ".b__site-header__global-site-header__grand-child-navigation-item__tab-switcher",
+    )
+    .forEach((item) => {
+      item.classList.remove(
+        "b__site-header__global-site-header__grand-child-navigation-item__tab-switcher--active",
+      );
+      item.setAttribute("aria-expanded", "false");
+    });
+
+  parent
+    .querySelectorAll(
+      ".b__site-header__global-site-header__mega-board__inner-col--center",
+    )
+    .forEach((item) => setVisible(item, false));
+
+  parent.classList.remove(
+    "b__site-header__global-site-header__mega-board--variant-two-levels--third-level-expanded",
+  );
+}
+
 function switchNestedMenusOnHover(canvas, element) {
   const target = element.getAttribute("data-target")?.trim();
   const parent = element.closest(
@@ -108,16 +133,7 @@ function switchNestedMenusOnHover(canvas, element) {
     return;
   }
 
-  canvas
-    .querySelectorAll(
-      ".b__site-header__global-site-header__grand-child-navigation-item__tab-switcher",
-    )
-    .forEach((item) => {
-      item.classList.remove(
-        "b__site-header__global-site-header__grand-child-navigation-item__tab-switcher--active",
-      );
-      item.setAttribute("aria-expanded", "false");
-    });
+  resetNestedMenuState(canvas);
 
   element.classList.add(
     "b__site-header__global-site-header__grand-child-navigation-item__tab-switcher--active",
@@ -144,6 +160,7 @@ function closeDesktopSubmenus(canvas) {
     .forEach((item) => {
       item.classList.remove("u__open-submenu");
       item.querySelector(":scope > a")?.setAttribute("aria-expanded", "false");
+      resetNestedMenuState(item);
     });
 }
 
@@ -272,14 +289,7 @@ export default function SiteHeaderClient() {
             "b__site-header__global-site-header__mega-board--variant-two-levels--third-level-expanded",
           )
         ) {
-          parent.classList.remove(
-            "b__site-header__global-site-header__mega-board--variant-two-levels--third-level-expanded",
-          );
-          parent
-            .querySelectorAll(
-              ".b__site-header__global-site-header__mega-board__inner-col--center",
-            )
-            .forEach((item) => setVisible(item, false));
+          resetNestedMenuState(parent);
         }
       }
 

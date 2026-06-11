@@ -2,6 +2,20 @@ const SITE_NAME = "Taylor Careers";
 const DEFAULT_TITLE = "Taylor Careers";
 const DEFAULT_DESCRIPTION = "Explore careers and open positions at Taylor.";
 const DEFAULT_OG_IMAGE = "/opengraph-image";
+const TEMPORARY_SITEWIDE_NOINDEX = true;
+const DEFAULT_ROBOTS = {
+  index: true,
+  follow: true,
+};
+
+function getRobotsConfig(robots = DEFAULT_ROBOTS) {
+  return TEMPORARY_SITEWIDE_NOINDEX
+    ? {
+        ...robots,
+        index: false,
+      }
+    : robots;
+}
 
 export function buildSeoMetadata({
   title = DEFAULT_TITLE,
@@ -46,10 +60,6 @@ export function buildSeoMetadata({
       description,
       images: image ? [image] : undefined,
     },
-    robots:
-      robots || {
-        index: true,
-        follow: true,
-      },
+    robots: getRobotsConfig(robots),
   };
 }

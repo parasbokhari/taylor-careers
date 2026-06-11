@@ -70,9 +70,6 @@ export async function generateMetadata({ params, searchParams }) {
       title: getMetaTitle(pageNumber),
       description: getMetaDescription(pageNumber),
       path: canonicalPagePath,
-      robots: hasFilters
-        ? { index: false, follow: true }
-        : { index: true, follow: true },
     }),
     title: getMetaTitle(pageNumber),
     description: getMetaDescription(pageNumber),
