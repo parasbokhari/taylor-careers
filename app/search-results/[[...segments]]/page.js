@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
 import JobBoard from "@/app/components/JobBoard";
+import { getBreadcrumbsForPath } from "@/app/lib/breadcrumbs";
 import {
   fetchJobs,
   getFiltersFromSearchParams,
@@ -105,11 +107,14 @@ export default async function ListingPage({ params, searchParams }) {
   const initialStartIndex = getStartIndexForPage(pageNumber);
 
   return (
-    <JobBoard
-      initialJobs={jobs}
-      initialFilters={initialFilters}
-      initialVisibleCount={initialVisibleCount}
-      initialStartIndex={initialStartIndex}
-    />
+    <>
+      <Breadcrumbs items={getBreadcrumbsForPath("/search-results")} />
+      <JobBoard
+        initialJobs={jobs}
+        initialFilters={initialFilters}
+        initialVisibleCount={initialVisibleCount}
+        initialStartIndex={initialStartIndex}
+      />
+    </>
   );
 }

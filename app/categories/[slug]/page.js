@@ -1,8 +1,11 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
 import CategoryBadge from "@/app/components/CategoryBadge";
 import FaqAccordion from "@/app/components/FaqAccordion";
 import JobCard from "@/app/components/JobCard";
+import { getCategoryPageBreadcrumbs } from "@/app/lib/breadcrumbs";
 import {
   buildCategorySearchResultsPath,
   getCategoryPageBySlug,
@@ -12,6 +15,9 @@ import {
 } from "@/app/lib/categoryContent";
 import { fetchJobs, sortJobsByNewest } from "@/app/lib/jobs";
 import { buildSeoMetadata } from "@/app/lib/seo";
+
+const CATEGORY_IMAGE_BLUR_DATA_URL =
+  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIHZpZXdCb3g9JzAgMCAxMjAwIDgwMCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9J2cnIHgxPScwJyB5MT0nMCcgeDI9JzEnIHkyPScxJz48c3RvcCBzdG9wLWNvbG9yPScjZTVlZmZmJy8+PHN0b3Agb2Zmc2V0PScxJyBzdG9wLWNvbG9yPScjZmZmZmZmJy8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9JzEyMDAnIGhlaWdodD0nODAwJyBmaWxsPSd1cmwoI2cpJy8+PC9zdmc+";
 
 export const dynamicParams = false;
 
@@ -63,6 +69,7 @@ export default async function CategoryPage({ params }) {
 
   return (
     <>
+      <Breadcrumbs items={getCategoryPageBreadcrumbs(categoryPage)} />
       <section className="b__size-md b__u-careers__category-hero">
         <div className="container">
           <div className="b__u-careers__category-hero__content-wrapper">
@@ -79,7 +86,7 @@ export default async function CategoryPage({ params }) {
                     ) : null}
                   </figure>
                 </div>
-                <div className="c__heading-wrapper mb-4">
+                <div className="c__heading-wrapper mb-3">
                   <h1 className="c__heading u__h2 u__f-700 d-block u__heading-color--primary mb-0">
                     {categoryPage.heading}
                   </h1>
@@ -106,10 +113,15 @@ export default async function CategoryPage({ params }) {
                 <div className="col-lg-6">
                   <div className="c__image-wrapper">
                     <figure className="m-0 d-inline">
-                      <img
+                      <Image
                         src={categoryPage.featured_image}
                         alt=""
+                        width={900}
+                        height={700}
+                        sizes="(min-width: 992px) 450px, 100vw"
                         loading="lazy"
+                        placeholder="blur"
+                        blurDataURL={CATEGORY_IMAGE_BLUR_DATA_URL}
                       />
                     </figure>
                   </div>
@@ -199,6 +211,60 @@ export default async function CategoryPage({ params }) {
           </div>
         </section>
       ) : null}
+
+      <section className="b__size-md pt-3 b__cta__strip-var-05">
+        <div className="container">
+          <div
+            style={{ background: " var(--t-cp-primary-blue)" }}
+            className="mx-auto b__cta__strip-var-05__wrapper"
+          >
+            <div className="b__cta__strip-var-05__content-wrapper text-center u__text-inverted">
+              <div className="c__heading-wrapper mb-3">
+                <span className="c__heading u__h2 u__f-700 mb-2 d-block">
+                  Big Ideas Happen Here
+                </span>
+              </div>
+
+              <div className="c__subheading-wrapper mb-4">
+                <span className="c__heading u__h5 u__f-400 mb-2 d-block">
+                  Discover a place where collaboration builds{" "}
+                  <br className="u__show-after-992" />
+                  community and values drive vision.
+                </span>
+              </div>
+
+              <div className="b__cta__strip-var-05__button-wrapper mt-4 pt-2">
+                <Link className="c__button__anchor-element" href="/">
+                  <span className="c__button c__button--with-icon c__button--inverted c__button--cta--var-02 c__button--rounded">
+                    <div className="c__button__content u__f-700">
+                      <span>Careers</span>
+                      <div className="c__button__icon">
+                        <figure className="m-0">
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M4.16699 10.0003H15.8337M10.0003 15.8337L15.8337 10.0003L10.0003 4.16699"
+                              stroke="#2458F1"
+                              strokeWidth="1.66667"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </figure>
+                      </div>
+                    </div>
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
