@@ -127,7 +127,7 @@ export default function SimilarJobs({ jobs = [], currentJob }) {
           <Link href="/" className="c__button__anchor-element">
             <span className="c__button c__button--primary c__similar-jobs__browse-button">
               <span className="c__button__content u__f-700">
-                Browse Open Positions
+                Browse Open Jobs
               </span>
             </span>
           </Link>

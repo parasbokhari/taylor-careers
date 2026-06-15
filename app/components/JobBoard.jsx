@@ -328,7 +328,8 @@ export default function JobBoard({
   }, [searchInput]);
 
   const categories = useMemo(
-    () => [...new Set(jobs.map((j) => j.jobFamilyGroup).filter(Boolean))].sort(),
+    () =>
+      [...new Set(jobs.map((j) => j.jobFamilyGroup).filter(Boolean))].sort(),
     [jobs],
   );
   const jobTypes = useMemo(
@@ -360,83 +361,94 @@ export default function JobBoard({
     [jobs],
   );
 
-  const filterDefs = useMemo(() => [
-    {
-      key: "category",
-      label: "Job Category",
-      options: categories.map((c) => ({ value: c, label: c })),
-    },
-    {
-      key: "state",
-      label: "State",
-      options: availableStates.map((s) => ({
-        value: s,
-        label: US_STATES[s] || s,
-      })),
-    },
-    {
-      key: "jobType",
-      label: "Job Type",
-      options: jobTypes.map((t) => ({ value: t, label: t })),
-    },
-    {
-      key: "location",
-      label: "Locations",
-      options: locations.map((l) => ({
-        value: l,
-        label: truncate(l, LOCATION_LABEL_MAX_CHARS),
-      })),
-    },
-    {
-      key: "status",
-      label: "Job Status",
-      options: statuses.map((s) => ({ value: s, label: s })),
-    },
-  ], [categories, availableStates, jobTypes, locations, statuses]);
+  const filterDefs = useMemo(
+    () => [
+      {
+        key: "category",
+        label: "Job Category",
+        options: categories.map((c) => ({ value: c, label: c })),
+      },
+      {
+        key: "state",
+        label: "State",
+        options: availableStates.map((s) => ({
+          value: s,
+          label: US_STATES[s] || s,
+        })),
+      },
+      {
+        key: "jobType",
+        label: "Job Type",
+        options: jobTypes.map((t) => ({ value: t, label: t })),
+      },
+      {
+        key: "location",
+        label: "Locations",
+        options: locations.map((l) => ({
+          value: l,
+          label: truncate(l, LOCATION_LABEL_MAX_CHARS),
+        })),
+      },
+      {
+        key: "status",
+        label: "Job Status",
+        options: statuses.map((s) => ({ value: s, label: s })),
+      },
+    ],
+    [categories, availableStates, jobTypes, locations, statuses],
+  );
 
-  const filteredJobs = useMemo(() => jobs.filter((job) => {
-    const jobState = extractState(job.locationsText || job.locations || "");
-    const jobLocation = job.locationsText || job.locations || "";
-    const searchLower = filters.search.toLowerCase();
+  const filteredJobs = useMemo(
+    () =>
+      jobs.filter((job) => {
+        const jobState = extractState(job.locationsText || job.locations || "");
+        const jobLocation = job.locationsText || job.locations || "";
+        const searchLower = filters.search.toLowerCase();
 
-    if (
-      filters.category.length &&
-      !filters.category.includes(job.jobFamilyGroup)
-    )
-      return false;
-    if (filters.state.length && !filters.state.includes(jobState)) return false;
-    if (filters.jobType.length && !filters.jobType.includes(job.workerSubType))
-      return false;
-    if (filters.location.length && !filters.location.includes(jobLocation))
-      return false;
-    if (filters.status.length && !filters.status.includes(job.timeType))
-      return false;
-    if (searchLower) {
-      const fullStateName = jobState ? US_STATES[jobState] || "" : "";
-      const cityPart = jobLocation.split(",")[0] || "";
-      const companyPart = jobLocation.includes(" - ")
-        ? jobLocation.split(" - ").slice(1).join(" ")
-        : "";
-      const blob = [
-        job.title,
-        job.jobFamilyGroup,
-        job.workerSubType,
-        job.timeType,
-        jobLocation,
-        cityPart,
-        fullStateName,
-        jobState,
-        companyPart,
-        job.jobRequisitionId || "",
-        stripHtml(job.jobDescription || ""),
-      ]
-        .join(" ")
-        .toLowerCase();
-      const terms = searchLower.trim().split(/\s+/);
-      if (!terms.every((term) => blob.includes(term))) return false;
-    }
-    return true;
-  }), [jobs, filters]);
+        if (
+          filters.category.length &&
+          !filters.category.includes(job.jobFamilyGroup)
+        )
+          return false;
+        if (filters.state.length && !filters.state.includes(jobState))
+          return false;
+        if (
+          filters.jobType.length &&
+          !filters.jobType.includes(job.workerSubType)
+        )
+          return false;
+        if (filters.location.length && !filters.location.includes(jobLocation))
+          return false;
+        if (filters.status.length && !filters.status.includes(job.timeType))
+          return false;
+        if (searchLower) {
+          const fullStateName = jobState ? US_STATES[jobState] || "" : "";
+          const cityPart = jobLocation.split(",")[0] || "";
+          const companyPart = jobLocation.includes(" - ")
+            ? jobLocation.split(" - ").slice(1).join(" ")
+            : "";
+          const blob = [
+            job.title,
+            job.jobFamilyGroup,
+            job.workerSubType,
+            job.timeType,
+            jobLocation,
+            cityPart,
+            fullStateName,
+            jobState,
+            companyPart,
+            job.jobRequisitionId || "",
+            stripHtml(job.jobDescription || ""),
+          ]
+            .join(" ")
+            .toLowerCase();
+          const terms = searchLower.trim().split(/\s+/);
+          if (!terms.every((term) => blob.includes(term))) return false;
+        }
+        return true;
+      }),
+    [jobs, filters],
+  );
 
   const sortedJobs = useMemo(
     () =>
@@ -687,7 +699,7 @@ export default function JobBoard({
                 <div className="c__job-board-embed__header__col c__job-board-embed__header__col--left">
                   <div className="c__heading-wrapper">
                     <h1 className="c__heading u__h3 u__f-700 d-block u__heading-color--primary mb-0">
-                      Browse Open Positions
+                      Search Results
                     </h1>
                   </div>
                 </div>

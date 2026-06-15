@@ -121,15 +121,6 @@ function SkeletonBoardHeader() {
   );
 }
 
-function SkeletonJobDetailStat() {
-  return (
-    <div className="c__job-detail__stat">
-      <SkeletonBlock className="c__skeleton-block--stat-label" />
-      <SkeletonBlock className="c__skeleton-block--stat-value" />
-    </div>
-  );
-}
-
 function SkeletonParagraphSet() {
   return (
     <>
@@ -236,39 +227,46 @@ export function JobBoardLoadingSkeleton() {
 export function JobDetailLoadingSkeleton() {
   return (
     <div
-      className="c__job-detail c__skeleton-page"
+      className="b__u-careers__job-detail c__skeleton-page"
       aria-label="Loading job details"
     >
       <div className="container">
-        <div className="c__job-detail__shell">
-          <div className="c__job-detail__back-link c__skeleton-back-link">
+        <div className="b__u-careers__job-detail__shell">
+          <div className="b__u-careers__job-detail__back-link c__skeleton-back-link">
             <SkeletonBlock className="c__skeleton-block--back-icon" />
             <SkeletonBlock className="c__skeleton-block--back-text" />
           </div>
 
-          <section className="c__job-detail__hero">
-            <div className="c__job-detail__hero__content">
+          <section className="b__u-careers__job-detail__hero">
+            <div className="b__u-careers__job-detail__hero__content">
               <SkeletonBlock className="c__skeleton-block--detail-eyebrow" />
               <SkeletonBlock className="c__skeleton-block--detail-title" />
-              <div className="c__job-detail__meta">
+              <div className="b__u-careers__job-detail__meta">
                 <SkeletonBlock className="c__skeleton-block--detail-chip c__skeleton-block--detail-chip-location" />
+                <SkeletonBlock className="c__skeleton-block--detail-chip" />
                 <SkeletonBlock className="c__skeleton-block--detail-chip" />
                 <SkeletonBlock className="c__skeleton-block--detail-chip" />
               </div>
             </div>
-            <aside className="c__job-detail__hero__aside">
-              <SkeletonJobDetailStat />
-              <div className="c__button c__button--primary c__button--rounded c__job-detail__apply-button c__skeleton-button-shell">
-                <span className="c__button__content u__f-700" />
+            <aside className="b__u-careers__job-detail__hero__aside">
+              <div className="c__button__anchor-element b__u-careers__job-detail__apply-link">
+                <span className="c__button c__button--primary c__button--size-xxlarge c__button--type-squarish u__f-700 c__skeleton-button-shell">
+                  <span className="c__button__content u__f-700" />
+                </span>
+              </div>
+              <div className="c__button__anchor-element b__u-careers__job-detail__about-link">
+                <span className="c__button c__button--ghost c__button--size-xxlarge c__button--type-squarish u__f-700 c__skeleton-button-shell">
+                  <SkeletonBlock className="c__skeleton-block--apply-text" />
+                </span>
               </div>
             </aside>
           </section>
 
-          <section className="c__job-detail__content-card">
+          <section className="b__u-careers__job-detail__content-card">
             <div className="c__heading-wrapper mb-3">
               <SkeletonBlock className="c__skeleton-block--section-title" />
             </div>
-            <div className="c__job-detail__rich-text">
+            <div className="b__u-careers__job-detail__richtext">
               <SkeletonParagraphSet />
             </div>
           </section>
