@@ -1688,3 +1688,42 @@
     }
   }
 }
+
+:where(
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    [role="button"],
+    [tabindex]:not([tabindex="-1"])
+  ):focus:not(:focus-visible) {
+  outline: none;
+}
+
+:where(
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    [role="button"],
+    [tabindex]:not([tabindex="-1"])
+  ):focus-visible {
+  outline: 3px solid var(--t-cp-primary-blue, #2458f1);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 2px var(--t-cp-base-white, #ffffff);
+}
+
+.c__button__anchor-element:focus-visible {
+  outline: none;
+  box-shadow: none;
+
+  > .c__button {
+    outline: 3px solid var(--t-cp-primary-blue, #2458f1);
+    outline-offset: 4px;
+    box-shadow: 0 0 0 2px var(--t-cp-base-white, #ffffff);
+  }
+}

@@ -79,8 +79,8 @@
   --t-anchor-color: var(--t-cp-primary-blue);
   --t-anchor-hover-color: var(--t-cp-primary-blue-300);
   --t-blockquote-border-color: var(--t-cp-primary-purple);
-  --t-font-family-heading: "Lato", sans-serif;
-  --t-font-family-body: "Lato", sans-serif;
+  --t-font-family-heading: var(--font-lato);
+  --t-font-family-body: var(--font-lato);
   // Font Sizes
   --t-font-size-d1-sm: 3rem;
   --t-font-size-d2-sm: 2.5rem;

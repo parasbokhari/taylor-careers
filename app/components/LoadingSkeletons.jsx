@@ -176,78 +176,78 @@ export function JobBoardLoadingSkeleton() {
             className="c__job-board-embed c__skeleton-page"
             aria-label="Loading jobs"
           >
-          <div className="c__job-board-embed__header">
-            <div className="c__job-board-embed__header__row">
-              <div className="c__job-board-embed__header__col c__job-board-embed__header__col--left">
-                <div className="c__heading-wrapper">
-                  <SkeletonBlock className="c__skeleton-block--page-heading" />
+            <div className="c__job-board-embed__header">
+              <div className="c__job-board-embed__header__row">
+                <div className="c__job-board-embed__header__col c__job-board-embed__header__col--left">
+                  <div className="c__heading-wrapper">
+                    <SkeletonBlock className="c__skeleton-block--page-heading" />
+                  </div>
+                </div>
+                <div className="c__job-board-embed__header__col c__job-board-embed__header__col--right">
+                  <SkeletonSearchForm />
                 </div>
               </div>
-              <div className="c__job-board-embed__header__col c__job-board-embed__header__col--right">
-                <SkeletonSearchForm />
-              </div>
             </div>
-          </div>
 
-          <div className="c__job-board-embed__filter-bar mt-4 pt-1 pt-sm-2 pt-md-3 pt-lg-4">
-            <div className="c__filter-bar__row">
-              <div className="c__filter-bar__col c__filter-bar__col--left">
-                <div className="c__filter-bar__filter-list c__filter-bar__filter-list--mobile u__hide-after-992">
-                  <div className="c__filter-bar__filter-list__row">
-                    <div className="c__filter-bar__filter-list__col c__filter-bar__filter-list__col--left">
-                      <div className="c__filter-bar__filter-list__label-wrapper">
-                        <SkeletonBlock className="c__skeleton-block--filter-heading" />
+            <div className="c__job-board-embed__filter-bar mt-4 pt-1 pt-sm-2 pt-md-3 pt-lg-4">
+              <div className="c__filter-bar__row">
+                <div className="c__filter-bar__col c__filter-bar__col--left">
+                  <div className="c__filter-bar__filter-list c__filter-bar__filter-list--mobile u__hide-after-992">
+                    <div className="c__filter-bar__filter-list__row">
+                      <div className="c__filter-bar__filter-list__col c__filter-bar__filter-list__col--left">
+                        <div className="c__filter-bar__filter-list__label-wrapper">
+                          <SkeletonBlock className="c__skeleton-block--filter-heading" />
+                        </div>
+                      </div>
+                      <div className="c__filter-bar__filter-list__col c__filter-bar__filter-list__col--right">
+                        <div className="c__filter-bar__filter-list__filters">
+                          <div className="c__filter-bar__filter-list__filters__row">
+                            <SkeletonFilterItem modifier="c__filter-bar__filter-list__filters__col--1" />
+                            <SkeletonFilterItem modifier="c__filter-bar__filter-list__filters__col--2" />
+                            <SkeletonFilterItem modifier="c__filter-bar__filter-list__filters__col--3" />
+                            <SkeletonFilterItem modifier="c__filter-bar__filter-list__filters__col--4" />
+                            <SkeletonFilterItem modifier="c__filter-bar__filter-list__filters__col--5" />
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className="c__filter-bar__filter-list__col c__filter-bar__filter-list__col--right">
-                      <div className="c__filter-bar__filter-list__filters">
-                        <div className="c__filter-bar__filter-list__filters__row">
-                          <SkeletonFilterItem modifier="c__filter-bar__filter-list__filters__col--1" />
-                          <SkeletonFilterItem modifier="c__filter-bar__filter-list__filters__col--2" />
-                          <SkeletonFilterItem modifier="c__filter-bar__filter-list__filters__col--3" />
-                          <SkeletonFilterItem modifier="c__filter-bar__filter-list__filters__col--4" />
-                          <SkeletonFilterItem modifier="c__filter-bar__filter-list__filters__col--5" />
+                  </div>
+
+                  <div className="c__filter-bar__filter-list c__filter-bar__filter-list--desktop u__show-after-992">
+                    <div className="c__filter-bar__filter-list__row">
+                      <div className="c__filter-bar__filter-list__col c__filter-bar__filter-list__col--left">
+                        <div className="c__filter-bar__filter-list__label-wrapper">
+                          <SkeletonBlock className="c__skeleton-block--filter-heading" />
+                        </div>
+                      </div>
+                      <div className="c__filter-bar__filter-list__col c__filter-bar__filter-list__col--right">
+                        <div className="c__filter-bar__filter-list__filters">
+                          <div className="c__filter-bar__filter-list__filters__row">
+                            <SkeletonFilterItem modifier="c__filter-bar__filter-list__filters__col--1" />
+                            <SkeletonFilterItem modifier="c__filter-bar__filter-list__filters__col--2" />
+                            <SkeletonFilterItem modifier="c__filter-bar__filter-list__filters__col--3" />
+                            <SkeletonFilterItem modifier="c__filter-bar__filter-list__filters__col--4" />
+                            <SkeletonFilterItem modifier="c__filter-bar__filter-list__filters__col--5" />
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <div className="c__filter-bar__col c__filter-bar__col--right u__show-after-992" />
+              </div>
+            </div>
 
-                <div className="c__filter-bar__filter-list c__filter-bar__filter-list--desktop u__show-after-992">
-                  <div className="c__filter-bar__filter-list__row">
-                    <div className="c__filter-bar__filter-list__col c__filter-bar__filter-list__col--left">
-                      <div className="c__filter-bar__filter-list__label-wrapper">
-                        <SkeletonBlock className="c__skeleton-block--filter-heading" />
-                      </div>
-                    </div>
-                    <div className="c__filter-bar__filter-list__col c__filter-bar__filter-list__col--right">
-                      <div className="c__filter-bar__filter-list__filters">
-                        <div className="c__filter-bar__filter-list__filters__row">
-                          <SkeletonFilterItem modifier="c__filter-bar__filter-list__filters__col--1" />
-                          <SkeletonFilterItem modifier="c__filter-bar__filter-list__filters__col--2" />
-                          <SkeletonFilterItem modifier="c__filter-bar__filter-list__filters__col--3" />
-                          <SkeletonFilterItem modifier="c__filter-bar__filter-list__filters__col--4" />
-                          <SkeletonFilterItem modifier="c__filter-bar__filter-list__filters__col--5" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+            <div className="c__job-board-embed__body">
+              <div className="c__job-board-embed__board mt-4 pt-4">
+                <SkeletonBoardHeader />
+                <div className="c__job-board-embed__board__body mt-4">
+                  <SkeletonJobCard />
+                  <SkeletonJobCard />
+                  <SkeletonJobCard />
                 </div>
               </div>
-              <div className="c__filter-bar__col c__filter-bar__col--right u__show-after-992" />
             </div>
-          </div>
-
-          <div className="c__job-board-embed__body">
-            <div className="c__job-board-embed__board mt-4 pt-4">
-              <SkeletonBoardHeader />
-              <div className="c__job-board-embed__board__body mt-4">
-                <SkeletonJobCard />
-                <SkeletonJobCard />
-                <SkeletonJobCard />
-              </div>
-            </div>
-          </div>
           </div>
         </div>
       </section>
@@ -279,7 +279,7 @@ export function JobDetailLoadingSkeleton() {
                 <SkeletonBlock className="c__skeleton-block--detail-chip" />
               </div>
             </div>
-            <aside className="b__u-careers__job-detail__hero__aside">
+            {/* <aside className="b__u-careers__job-detail__hero__aside">
               <div className="c__button__anchor-element b__u-careers__job-detail__apply-link">
                 <span className="c__button c__button--primary c__button--type-squarish u__f-700 w-100 text-center c__skeleton-button-shell c__skeleton-button-shell--job-detail">
                   <span className="c__button__content u__f-700" />
@@ -290,7 +290,7 @@ export function JobDetailLoadingSkeleton() {
                   <span className="c__button__content u__f-700" />
                 </span>
               </div>
-            </aside>
+            </aside> */}
           </section>
 
           <section className="b__u-careers__job-detail__content-card">

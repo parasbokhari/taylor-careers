@@ -233,6 +233,7 @@ export default function JobBoard({
   const skipNextUrlSync = useRef(false);
   const spinnerTimer = useRef(null);
   const sortRef = useRef(null);
+  const sortButtonRef = useRef(null);
   const debounceTimer = useRef(null);
 
   useEffect(() => {
@@ -305,6 +306,13 @@ export default function JobBoard({
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, []);
+
+  const handleSortKeyDown = (event) => {
+    if (event.key !== "Escape" || !sortOpen) return;
+    event.preventDefault();
+    setSortOpen(false);
+    sortButtonRef.current?.focus();
+  };
 
   useEffect(() => {
     clearTimeout(debounceTimer.current);
@@ -975,13 +983,17 @@ export default function JobBoard({
                           <div
                             ref={sortRef}
                             className="c__job-board-embed__board__header__sort-box"
+                            onKeyDown={handleSortKeyDown}
                             style={{
                               position: "relative",
                               display: "inline-block",
                             }}
                           >
                             <button
+                              ref={sortButtonRef}
                               type="button"
+                              aria-expanded={sortOpen}
+                              aria-haspopup="listbox"
                               onClick={() => setSortOpen((v) => !v)}
                               style={{
                                 background: "none",
@@ -1009,6 +1021,8 @@ export default function JobBoard({
                             </button>
                             {sortOpen && (
                               <div
+                                role="listbox"
+                                aria-label="Sort jobs"
                                 style={{
                                   position: "absolute",
                                   right: 0,
@@ -1026,8 +1040,11 @@ export default function JobBoard({
                                   { value: "newest", label: "Newest" },
                                   { value: "oldest", label: "Oldest" },
                                 ].map((s) => (
-                                  <div
+                                  <button
                                     key={s.value}
+                                    type="button"
+                                    role="option"
+                                    aria-selected={filters.sort === s.value}
                                     onClick={() => {
                                       setFiltering(true);
                                       setPageStartIndex(0);
@@ -1039,7 +1056,10 @@ export default function JobBoard({
                                       setSortOpen(false);
                                     }}
                                     style={{
+                                      display: "block",
+                                      width: "100%",
                                       padding: "10px 16px",
+                                      border: 0,
                                       cursor: "pointer",
                                       fontSize: "14px",
                                       fontWeight:
@@ -1055,6 +1075,7 @@ export default function JobBoard({
                                           ? "#F4F7FF"
                                           : "transparent",
                                       transition: "background 0.15s",
+                                      textAlign: "left",
                                     }}
                                     onMouseEnter={(e) => {
                                       if (filters.sort !== s.value)
@@ -1069,7 +1090,7 @@ export default function JobBoard({
                                     }}
                                   >
                                     {s.label}
-                                  </div>
+                                  </button>
                                 ))}
                               </div>
                             )}

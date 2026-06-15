@@ -52,6 +52,8 @@ export default function JobCard({ job }) {
           href={jobUrl}
           className="u__full-cover-anchor"
           onClick={rememberBoardUrl}
+          tabIndex={-1}
+          aria-hidden="true"
         >
           <span className="visually-hidden">View Job</span>
         </Link>
