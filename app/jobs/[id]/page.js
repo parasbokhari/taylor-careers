@@ -1,5 +1,6 @@
 import { notFound, permanentRedirect } from "next/navigation";
 import BackToPositionsButton from "@/app/components/BackToPositionsButton";
+import { JobDetailLoadingSkeleton } from "@/app/components/LoadingSkeletons";
 import SimilarJobs from "@/app/components/SimilarJobs";
 import { Tooltip } from "@/app/components/ui/tooltip";
 import {
@@ -14,6 +15,10 @@ import { formatRichTextHtml } from "@/app/lib/richText";
 import { buildSeoMetadata } from "@/app/lib/seo";
 
 const ABOUT_TAYLOR_URL = "https://www.taylor.com/about-us";
+
+function shouldLoadSkeleton(searchParams) {
+  return searchParams?.load_skeleton === "true";
+}
 
 function cleanLocationLabel(value = "") {
   return value
@@ -156,8 +161,14 @@ export async function generateMetadata({ params }) {
   });
 }
 
-export default async function JobDetailPage({ params }) {
+export default async function JobDetailPage({ params, searchParams }) {
   const { id } = await params;
+  const resolvedSearchParams = await searchParams;
+
+  if (shouldLoadSkeleton(resolvedSearchParams)) {
+    return <JobDetailLoadingSkeleton />;
+  }
+
   const allJobs = await fetchJobs();
   const job = getJobBySlug(allJobs, id);
 

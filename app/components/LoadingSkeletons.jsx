@@ -7,14 +7,10 @@ function SkeletonBlock({ className = "" }) {
 function SkeletonFilterItem({ modifier = "" }) {
   return (
     <div className={`c__filter-bar__filter-list__filters__col ${modifier}`}>
-      <div className="c__filter-item c__skeleton-filter-item">
-        <div className="c__filter-item__label-wrapper">
-          <SkeletonBlock className="c__skeleton-block--filter-label-text" />
-          <div className="c__filter-item__figure-wrapper">
-            <SkeletonBlock className="c__skeleton-block--chev" />
-          </div>
-        </div>
-      </div>
+      <div
+        className="c__filter-item c__skeleton-filter-item c__skeleton-block"
+        aria-hidden="true"
+      />
     </div>
   );
 }
@@ -26,7 +22,6 @@ function SkeletonSearchForm() {
         <div className="c__job-board-embed__search-form__figure-wrapper">
           <SkeletonBlock className="c__skeleton-block--search-icon" />
         </div>
-        <SkeletonBlock className="c__skeleton-block--search-text" />
       </div>
       <span className="c__job-board-embed__search-form__button-wrapper">
         <div className="c__job-board-embed__search-form__button c__button c__button--primary c__button--rounded u__f-700 c__skeleton-button-shell">
@@ -34,6 +29,39 @@ function SkeletonSearchForm() {
         </div>
       </span>
     </form>
+  );
+}
+
+function SkeletonBreadcrumbs() {
+  return (
+    <div className="module_171642753114233 b__site-header__global-breadcrumbs b__site-header__global-site-header--compatible c__skeleton-page">
+      <div className="container b__site-header__global-site-header__container">
+        <nav
+          aria-label="Loading breadcrumb"
+          className="c__breadcrumbs c__breadcrumbs--var-header"
+        >
+          <ul className="c__breadcrumbs__list">
+            <li className="c__breadcrumbs__item">
+              <div className="c__breadcrumbs__item__row">
+                <div className="c__breadcrumbs__item__column c__breadcrumbs__item__column-left">
+                  <SkeletonBlock className="c__skeleton-block--breadcrumb-link" />
+                </div>
+                <div className="c__breadcrumbs__item__column c__breadcrumbs__item__column-right">
+                  <SkeletonBlock className="c__skeleton-block--breadcrumb-separator" />
+                </div>
+              </div>
+            </li>
+            <li className="c__breadcrumbs__item c__breadcrumbs__item--active">
+              <div className="c__breadcrumbs__item__row">
+                <div className="c__breadcrumbs__item__column c__breadcrumbs__item__column-left">
+                  <SkeletonBlock className="c__skeleton-block--breadcrumb-current" />
+                </div>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
   );
 }
 
@@ -140,12 +168,14 @@ function SkeletonParagraphSet() {
 
 export function JobBoardLoadingSkeleton() {
   return (
-    <section className="b__size-md">
-      <div className="container">
-        <div
-          className="c__job-board-embed c__skeleton-page"
-          aria-label="Loading jobs"
-        >
+    <>
+      <SkeletonBreadcrumbs />
+      <section className="b__size-md">
+        <div className="container">
+          <div
+            className="c__job-board-embed c__skeleton-page"
+            aria-label="Loading jobs"
+          >
           <div className="c__job-board-embed__header">
             <div className="c__job-board-embed__header__row">
               <div className="c__job-board-embed__header__col c__job-board-embed__header__col--left">
@@ -218,9 +248,10 @@ export function JobBoardLoadingSkeleton() {
               </div>
             </div>
           </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 
@@ -250,13 +281,13 @@ export function JobDetailLoadingSkeleton() {
             </div>
             <aside className="b__u-careers__job-detail__hero__aside">
               <div className="c__button__anchor-element b__u-careers__job-detail__apply-link">
-                <span className="c__button c__button--primary c__button--size-xxlarge c__button--type-squarish u__f-700 c__skeleton-button-shell">
+                <span className="c__button c__button--primary c__button--type-squarish u__f-700 w-100 text-center c__skeleton-button-shell c__skeleton-button-shell--job-detail">
                   <span className="c__button__content u__f-700" />
                 </span>
               </div>
               <div className="c__button__anchor-element b__u-careers__job-detail__about-link">
-                <span className="c__button c__button--ghost c__button--size-xxlarge c__button--type-squarish u__f-700 c__skeleton-button-shell">
-                  <SkeletonBlock className="c__skeleton-block--apply-text" />
+                <span className="c__button c__button--with-icon c__button--ghost c__button--ghost--bg-blue-25 c__button--type-squarish u__f-700 w-100 c__skeleton-button-shell c__skeleton-button-shell--job-detail">
+                  <span className="c__button__content u__f-700" />
                 </span>
               </div>
             </aside>

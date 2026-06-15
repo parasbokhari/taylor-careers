@@ -116,7 +116,7 @@ export default function SimilarJobs({ jobs = [], currentJob }) {
                   )}
                 </div>
                 <Link href={jobPath} className="c__similar-jobs__link">
-                  <span>View job</span>
+                  <span>View Job</span>
                   <ArrowIcon />
                 </Link>
               </article>

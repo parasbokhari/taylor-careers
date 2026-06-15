@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Breadcrumbs from "@/app/components/Breadcrumbs";
 import JobBoard from "@/app/components/JobBoard";
+import { JobBoardLoadingSkeleton } from "@/app/components/LoadingSkeletons";
 import { getBreadcrumbsForPath } from "@/app/lib/breadcrumbs";
 import {
   fetchJobs,
@@ -32,6 +33,10 @@ function getPaginationLinks(pageNumber, totalPages) {
     prev: pageNumber > 1 ? getListingUrl(pageNumber - 1) : null,
     next: pageNumber < totalPages ? getListingUrl(pageNumber + 1) : null,
   };
+}
+
+function shouldLoadSkeleton(searchParams) {
+  return searchParams?.load_skeleton === "true";
 }
 
 export async function generateMetadata({ params, searchParams }) {
@@ -86,6 +91,11 @@ export async function generateMetadata({ params, searchParams }) {
 export default async function ListingPage({ params, searchParams }) {
   const resolvedParams = await params;
   const resolvedSearchParams = await searchParams;
+
+  if (shouldLoadSkeleton(resolvedSearchParams)) {
+    return <JobBoardLoadingSkeleton />;
+  }
+
   const pageNumber = getPageFromSegments(resolvedParams?.segments);
 
   if (pageNumber === null) {
