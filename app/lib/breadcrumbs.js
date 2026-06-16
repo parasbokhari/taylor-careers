@@ -43,3 +43,15 @@ export function getCategoryPageBreadcrumbs(categoryPage) {
     },
   ];
 }
+
+export function getHomePageBreadcrumbs() {
+  return [
+    {
+      label: BREADCRUMB_ROUTE_LABELS["/"],
+      href: "/",
+    },
+    {
+      label: "Browse Jobs",
+    },
+  ];
+}
