@@ -136,7 +136,7 @@ export function buildCategoryPath(category) {
 export function buildJobPath(job) {
   if (!job?.jobRequisitionId) return null;
   const titleSlug = slugifyJobTitle(job.title || "job");
-  return `/jobs/${titleSlug}-${job.jobRequisitionId.toLowerCase()}`;
+  return `/job/${titleSlug}-${job.jobRequisitionId.toLowerCase()}`;
 }
 
 export function getSiteUrl() {

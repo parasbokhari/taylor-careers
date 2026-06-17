@@ -141,7 +141,7 @@ export async function generateMetadata({ params }) {
     return buildSeoMetadata({
       title: "Job Not Found | Taylor",
       description: "The requested Taylor Careers job could not be found.",
-      path: `/jobs/${id}`,
+      path: `/job/${id}`,
       robots: { index: false, follow: false },
     });
   }
@@ -175,7 +175,7 @@ export default async function JobDetailPage({ params, searchParams }) {
   if (!job) notFound();
 
   const canonicalPath = buildJobPath(job);
-  if (canonicalPath && canonicalPath !== `/jobs/${id}`) {
+  if (canonicalPath && canonicalPath !== `/job/${id}`) {
     permanentRedirect(canonicalPath);
   }
 
