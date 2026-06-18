@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/app/components/CustomLink";
 import { buildJobPath, parseLocation } from "@/app/lib/jobs";
 
 function LocationIcon() {

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/app/components/CustomLink";
 import Image from "next/image";
 
 function ChevronRight() {

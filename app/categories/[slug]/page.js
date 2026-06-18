@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/app/components/CustomLink";
 import Breadcrumbs from "@/app/components/Breadcrumbs";
 import CategoryBadge from "@/app/components/CategoryBadge";
 import FaqAccordion from "@/app/components/FaqAccordion";

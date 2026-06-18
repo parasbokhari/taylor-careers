@@ -1,4 +1,5 @@
-import Link from "next/link";
+import Image from "next/image";
+import Link from "@/app/components/CustomLink";
 import Breadcrumbs from "@/app/components/Breadcrumbs";
 import CategoryBadge from "@/app/components/CategoryBadge";
 import JobCard from "@/app/components/JobCard";
@@ -12,6 +13,9 @@ export const metadata = buildSeoMetadata({
   description: "Explore careers at Taylor.",
   path: "/",
 });
+
+const IMAGE_BLUR_DATA_URL =
+  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iOSIgdmlld0JveD0iMCAwIDE2IDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGZpbHRlciBpZD0iYiI+PGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iMiIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxNiIgaGVpZ2h0PSI5IiBmaWxsPSIjRTlFRkZGIi8+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjkiIGZpbGw9IiNGRkZGRkYiIG9wYWNpdHk9Ii41IiBmaWx0ZXI9InVybCgjYikiLz48L3N2Zz4=";
 
 const INDEX_OUTRO_CARDS = [
   {
@@ -230,10 +234,16 @@ export default async function HomePage() {
             </div>
             <div className="c__image-wrapper">
               <figure className="m-0 d-inline">
-                <img
+                <Image
                   src="https://39614771.fs1.hubspotusercontent-na2.net/hubfs/39614771/iStock-1082467788%201.jpg"
                   alt=""
+                  width={4864}
+                  height={1272}
                   loading="lazy"
+                  placeholder="blur"
+                  blurDataURL={IMAGE_BLUR_DATA_URL}
+                  sizes="(max-width: 1216px) 100vw, 1216px"
+                  unoptimized
                 />
               </figure>
             </div>
@@ -346,10 +356,16 @@ export default async function HomePage() {
         <div className="container mt-4 pt-4">
           <div className="c__image-wrapper">
             <figure className="m-0 d-inline">
-              <img
+              <Image
                 src="https://39614771.fs1.hubspotusercontent-na2.net/hubfs/39614771/Image-2.jpg"
                 alt=""
+                width={3648}
+                height={648}
                 loading="lazy"
+                placeholder="blur"
+                blurDataURL={IMAGE_BLUR_DATA_URL}
+                sizes="(max-width: 1320px) 100vw, 1320px"
+                unoptimized
               />
             </figure>
           </div>

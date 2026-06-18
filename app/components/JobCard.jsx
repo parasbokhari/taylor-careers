@@ -1,6 +1,6 @@
 'use client';
 
-import Link from "next/link";
+import Link from "@/app/components/CustomLink";
 import { buildJobPath, LAST_BOARD_URL_STORAGE_KEY } from "@/app/lib/jobs";
 
 const EXCERPT_LENGTH = 120;

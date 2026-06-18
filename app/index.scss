@@ -521,12 +521,14 @@
 
         img {
           width: 100%;
+          height: auto;
           aspect-ratio: 16 / 9;
           border-radius: 20px;
           object-fit: cover;
 
           @media (min-width: 768px) {
             aspect-ratio: unset;
+            height: auto;
           }
         }
       }
@@ -554,11 +556,13 @@
       .c__image-wrapper {
         img {
           width: 100%;
+          height: auto;
           aspect-ratio: 16 / 9;
           border-radius: 20px;
           object-fit: cover;
           @media (min-width: 768px) {
             aspect-ratio: unset;
+            height: auto;
           }
         }
       }

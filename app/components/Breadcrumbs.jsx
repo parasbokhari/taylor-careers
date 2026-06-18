@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/app/components/CustomLink";
 
 function BreadcrumbSeparator({ id }) {
   const clipPathId = `breadcrumb-separator-clip-${id}`;

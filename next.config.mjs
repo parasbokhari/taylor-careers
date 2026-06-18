@@ -23,6 +23,13 @@ const nextConfig = {
         pathname: "/hubfs/**",
         search: "",
       },
+      {
+        protocol: "https",
+        hostname: "39614771.fs1.hubspotusercontent-na2.net",
+        port: "",
+        pathname: "/hubfs/**",
+        search: "",
+      },
     ],
   },
 };
