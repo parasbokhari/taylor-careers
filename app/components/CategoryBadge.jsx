@@ -23,7 +23,11 @@ function ChevronRight() {
   );
 }
 
-export default function CategoryBadge({ category, href }) {
+export default function CategoryBadge({
+  category,
+  headingTag: HeadingTag = "h3",
+  href,
+}) {
   return (
     <Link className="c__u-careers__category-badge" href={href}>
       <span className="c__u-careers__category-badge__icon" aria-hidden="true">
@@ -38,9 +42,9 @@ export default function CategoryBadge({ category, href }) {
           />
         ) : null}
       </span>
-      <span className="c__u-careers__category-badge__label u__h6 u__f-700">
+      <HeadingTag className="c__u-careers__category-badge__label u__h6 u__f-700 mb-0">
         {category.category}
-      </span>
+      </HeadingTag>
       <ChevronRight />
     </Link>
   );

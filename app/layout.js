@@ -1,4 +1,6 @@
 import "./index.scss";
+import { Suspense } from "react";
+import HeadingTagDebugger from "@/app/components/HeadingTagDebugger";
 import SiteFooter from "@/app/components/SiteFooter";
 import SiteHeader from "@/app/components/SiteHeader";
 import { getSiteUrl } from "@/app/lib/jobs";
@@ -25,6 +27,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={lato.variable}>
       <body>
+        <Suspense fallback={null}>
+          <HeadingTagDebugger />
+        </Suspense>
         <SiteHeader />
         <main id="main-content" className="overflow-hidden">
           {children}

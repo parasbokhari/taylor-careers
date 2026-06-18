@@ -30,6 +30,7 @@ export default function CategoriesPage() {
               {categories.map((category) => (
                 <CategoryBadge
                   category={category}
+                  headingTag="h2"
                   href={`/categories/${category.slug}`}
                   key={category.slug}
                 />

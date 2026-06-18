@@ -17,7 +17,7 @@ function decodeHtmlEntities(text = "") {
     .replace(/&gt;/gi, ">");
 }
 
-export default function JobCard({ job }) {
+export default function JobCard({ job, headingTag: HeadingTag = "h3" }) {
   const rawLocation = job.locationsText || job.locations || "";
   const displayLocation = rawLocation.split(" - ")[0].trim() || rawLocation;
 
@@ -101,9 +101,9 @@ export default function JobCard({ job }) {
 
       <div className="c__job-board-embed__job-card__body mb-3">
         <div className="c__heading-wrapper mb-2">
-          <h3 className="c__heading u__h5 u__f-700 d-block u__heading-color--primary mb-0">
+          <HeadingTag className="c__heading u__h5 u__f-700 d-block u__heading-color--primary mb-0">
             {job.title}
-          </h3>
+          </HeadingTag>
         </div>
         {excerpt && (
           <div className="c__description-wrapper">

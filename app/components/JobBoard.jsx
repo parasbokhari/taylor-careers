@@ -1148,6 +1148,7 @@ export default function JobBoard({
                       <JobCard
                         key={job.jobRequisitionId || job.externalPath}
                         job={job}
+                        headingTag="h2"
                       />
                     ))}
 
