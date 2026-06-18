@@ -22,15 +22,12 @@ export default function NotFound() {
               </h2>
               <p className="u__h5 b__error__404__description">
                 Looks like the page you are looking for is out of print!
-                Don&apos;t worry, we can get you where you need to go. Here are a
-                couple options to make sure you arrive where you want to be.
+                Don&apos;t worry, we can get you where you need to go. Here are
+                a couple options to make sure you arrive where you want to be.
               </p>
               <div className="c__button-wrapper c__button-wrapper--flex mt-4 pt-2">
                 <div className="c__button-wrapper--flex__column c__button-wrapper--flex__column--left">
-                  <a
-                    className="c__button__anchor-element"
-                    href="https://www.taylor.com/"
-                  >
+                  <a className="c__button__anchor-element" href="/">
                     <span className="c__button c__button--primary c__button--type-squarish c__button--size-xxxlarge">
                       <span className="c__button__content u__f-700">
                         <span>Go Home</span>

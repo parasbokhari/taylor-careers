@@ -747,10 +747,30 @@ export default function JobBoard({
                     </div>
                     <span className="c__job-board-embed__search-form__button-wrapper">
                       <button
-                        className="c__job-board-embed__search-form__button c__button c__button--primary c__button--rounded u__f-700"
+                        className="c__job-board-embed__search-form__button c__button c__button--with-icon c__button--primary c__button--rounded u__f-700"
                         type="submit"
                       >
                         <div className="c__button__content u__f-700">
+                          <div
+                            className="c__button__icon d-flex ms-0"
+                            style={{ marginRight: "0.5rem" }}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="17"
+                              height="17"
+                              fill="none"
+                              viewBox="0 0 17 17"
+                            >
+                              <path
+                                stroke="#fff"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="1.667"
+                                d="m15.833 15.834-3.625-3.625M14.166 7.5a6.667 6.667 0 1 1-13.333 0 6.667 6.667 0 0 1 13.333 0"
+                              ></path>
+                            </svg>
+                          </div>
                           <span>Search Jobs</span>
                         </div>
                       </button>

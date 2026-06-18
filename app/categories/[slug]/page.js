@@ -193,7 +193,7 @@ export default async function CategoryPage({ params }) {
         </div>
       </section>
       {categoryPage.faqs.length > 0 ? (
-        <section className="b__size-md b__faq__faqs-with-content u__remove-padding-top-till-md">
+        <section className="b__size-md b__faq__faqs-with-content">
           <div className="container">
             <div className="b__faq__faqs-with-content__content-wrapper text-center">
               <div className="c__heading-wrapper mb-4">
