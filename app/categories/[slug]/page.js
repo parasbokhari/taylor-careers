@@ -44,12 +44,13 @@ export async function generateMetadata({ params }) {
     categoryPage.meta_description ||
     categoryPage.description ||
     `Explore ${categoryPage.category} jobs at Taylor.`;
+  const featuredImage = categoryPage.featured_image?.trim() || undefined;
 
   return buildSeoMetadata({
     title,
     description,
     path: `/categories/${categoryPage.slug}`,
-    image: categoryPage.featured_image || undefined,
+    image: featuredImage,
   });
 }
 
