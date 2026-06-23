@@ -30,6 +30,13 @@ const nextConfig = {
         pathname: "/hubfs/**",
         search: "",
       },
+      {
+        protocol: "https",
+        hostname: "www.taylor.com",
+        port: "",
+        pathname: "/hubfs/**",
+        search: "",
+      },
     ],
   },
 };

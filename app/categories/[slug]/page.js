@@ -67,6 +67,7 @@ export default async function CategoryPage({ params }) {
   const featuredJobs = categoryJobs.slice(0, 4);
   const relatedCategories = getRelatedCategoryPages(categoryPage.slug, 4);
   const searchResultsPath = buildCategorySearchResultsPath(categoryPage);
+  const hasCategoryJobs = categoryJobs.length > 0;
 
   return (
     <>
@@ -158,20 +159,22 @@ export default async function CategoryPage({ params }) {
             )}
           </div>
         </div>
-        <div className="container mt-4 pt-4">
-          <div className="c__button-wrapper mt-0 text-center">
-            <Link
-              className="c__button__anchor-element"
-              href={searchResultsPath}
-            >
-              <span className="c__button c__button--primary c__button--size-xlarge c__button--type-squarish u__f-700">
-                <div className="c__button__content u__f-700">
-                  <span>View All</span>
-                </div>
-              </span>
-            </Link>
+        {hasCategoryJobs ? (
+          <div className="container mt-4 pt-4">
+            <div className="c__button-wrapper mt-0 text-center">
+              <Link
+                className="c__button__anchor-element"
+                href={searchResultsPath}
+              >
+                <span className="c__button c__button--primary c__button--size-xlarge c__button--type-squarish u__f-700">
+                  <div className="c__button__content u__f-700">
+                    <span>View All</span>
+                  </div>
+                </span>
+              </Link>
+            </div>
           </div>
-        </div>
+        ) : null}
       </section>
       <section className="b__size-md b__u-careers__related-categories pt-2">
         <div className="container">
