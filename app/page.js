@@ -401,7 +401,7 @@ export default async function HomePage() {
           <div className="c__image-wrapper">
             <figure className="m-0 d-inline">
               <Image
-                src="https://39614771.fs1.hubspotusercontent-na2.net/hubfs/39614771/Image-2.jpg"
+                src="https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Subdomain/Careers-Featured-Image.webp"
                 alt=""
                 width={3648}
                 height={648}
