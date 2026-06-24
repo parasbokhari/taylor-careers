@@ -24,11 +24,18 @@ function buildSitemapEntries(jobs) {
   const siteUrl = getSiteUrl();
   const totalPages = getTotalPages(jobs.length);
 
+  const homeEntry = {
+    url: `${siteUrl}/`,
+    lastModified: now,
+    changeFrequency: "daily",
+    priority: 1,
+  };
+
   const listingEntries = Array.from({ length: totalPages }, (_, index) => ({
     url: getListingUrl(index + 1),
     lastModified: now,
     changeFrequency: "daily",
-    priority: index === 0 ? 1 : 0.8,
+    priority: index === 0 ? 0.9 : 0.8,
   }));
 
   const jobEntries = jobs
@@ -58,6 +65,7 @@ function buildSitemapEntries(jobs) {
     }));
 
   return [
+    homeEntry,
     ...listingEntries,
     categoryIndexEntry,
     ...categoryEntries,
