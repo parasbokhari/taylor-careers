@@ -1,4 +1,5 @@
 import { buildSeoMetadata } from "@/app/lib/seo";
+import Link from "@/app/components/CustomLink";
 
 export const metadata = buildSeoMetadata({
   title: "Page Not Found | Taylor",
@@ -27,13 +28,13 @@ export default function NotFound() {
               </p>
               <div className="c__button-wrapper c__button-wrapper--flex mt-4 pt-2">
                 <div className="c__button-wrapper--flex__column c__button-wrapper--flex__column--left">
-                  <a className="c__button__anchor-element" href="/">
+                  <Link className="c__button__anchor-element" href="/">
                     <span className="c__button c__button--primary c__button--type-squarish c__button--size-xxxlarge">
                       <span className="c__button__content u__f-700">
                         <span>Go Home</span>
                       </span>
                     </span>
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="c__button-wrapper--flex__column c__button-wrapper--flex__column--right">

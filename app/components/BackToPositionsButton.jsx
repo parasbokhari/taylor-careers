@@ -1,25 +1,24 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import Link from "@/app/components/CustomLink";
 import { LAST_BOARD_URL_STORAGE_KEY } from "@/app/lib/jobs";
 
 export default function BackToPositionsButton() {
-  const router = useRouter();
+  const useStoredBoardUrl = (event) => {
+    const storedBoardUrl = window.sessionStorage.getItem(
+      LAST_BOARD_URL_STORAGE_KEY,
+    );
+
+    if (storedBoardUrl) {
+      event.currentTarget.href = storedBoardUrl;
+    }
+  };
 
   return (
-    <button
-      type="button"
+    <Link
       className="b__u-careers__job-detail__back-link"
-      onClick={() => {
-        const storedBoardUrl = window.sessionStorage.getItem(
-          LAST_BOARD_URL_STORAGE_KEY,
-        );
-        if (storedBoardUrl) {
-          router.push(storedBoardUrl);
-          return;
-        }
-        router.push("/search-results");
-      }}
+      href="/search-results"
+      onClick={useStoredBoardUrl}
     >
       <svg
         width={15}
@@ -37,6 +36,6 @@ export default function BackToPositionsButton() {
         />
       </svg>
       <span>Back to All Jobs</span>
-    </button>
+    </Link>
   );
 }
