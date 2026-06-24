@@ -15,7 +15,7 @@ export const metadata = buildSeoMetadata({
 });
 
 const IMAGE_BLUR_DATA_URL =
-  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iOSIgdmlld0JveD0iMCAwIDE2IDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGZpbHRlciBpZD0iYiI+PGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iMiIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxNiIgaGVpZ2h0PSI5IiBmaWxsPSIjRTlFRkZGIi8+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjkiIGZpbGw9IiNGRkZGRkYiIG9wYWNpdHk9Ii41IiBmaWx0ZXI9InVybCgjYikiLz48L3N2Zz4=";
+  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIHZpZXdCb3g9JzAgMCAxMjAwIDgwMCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9J2cnIHgxPScwJyB5MT0nMCcgeDI9JzEnIHkyPScxJz48c3RvcCBzdG9wLWNvbG9yPScjZTVlZmZmJy8+PHN0b3Agb2Zmc2V0PScxJyBzdG9wLWNvbG9yPScjZmZmZmZmJy8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9JzEyMDAnIGhlaWdodD0nODAwJyBmaWxsPSd1cmwoI2cpJy8+PC9zdmc+";
 
 const INDEX_OUTRO_CARDS = [
   {
@@ -232,20 +232,64 @@ export default async function HomePage() {
                 </Link>
               </div>
             </div>
-            <div className="c__image-wrapper">
-              <figure className="m-0 d-inline">
-                <Image
-                  src="https://39614771.fs1.hubspotusercontent-na2.net/hubfs/39614771/iStock-1082467788%201.jpg"
-                  alt=""
-                  width={4864}
-                  height={1272}
-                  loading="lazy"
-                  placeholder="blur"
-                  blurDataURL={IMAGE_BLUR_DATA_URL}
-                  sizes="(max-width: 1216px) 100vw, 1216px"
-                  unoptimized
-                />
-              </figure>
+          </div>
+        </div>
+        <div className="container b__u-careers__index-hero__images-container">
+          <div className="b__u-careers__index-hero__images-wrapper">
+            <div className="row">
+              <div className="col-lg-4">
+                <div className="c__image-wrapper">
+                  <figure className="m-0 d-inline">
+                    <Image
+                      src="https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Subdomain/no-border-radius/Careers-Subdomain-Hero-1.webp"
+                      alt=""
+                      width={4864}
+                      height={1272}
+                      loading="lazy"
+                      placeholder="blur"
+                      blurDataURL={IMAGE_BLUR_DATA_URL}
+                      sizes="(max-width: 1216px) 100vw, 1216px"
+                      unoptimized
+                    />
+                  </figure>
+                </div>
+              </div>
+
+              <div className="col-lg-4">
+                <div className="c__image-wrapper">
+                  <figure className="m-0 d-inline">
+                    <Image
+                      src="https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Subdomain/no-border-radius/Careers-Subdomain-Hero-2.webp"
+                      alt=""
+                      width={4864}
+                      height={1272}
+                      loading="lazy"
+                      placeholder="blur"
+                      blurDataURL={IMAGE_BLUR_DATA_URL}
+                      sizes="(max-width: 1216px) 100vw, 1216px"
+                      unoptimized
+                    />
+                  </figure>
+                </div>
+              </div>
+
+              <div className="col-lg-4">
+                <div className="c__image-wrapper">
+                  <figure className="m-0 d-inline">
+                    <Image
+                      src="https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Subdomain/no-border-radius/Careers-Subdomain-Hero-3.webp"
+                      alt=""
+                      width={4864}
+                      height={1272}
+                      loading="lazy"
+                      placeholder="blur"
+                      blurDataURL={IMAGE_BLUR_DATA_URL}
+                      sizes="(max-width: 1216px) 100vw, 1216px"
+                      unoptimized
+                    />
+                  </figure>
+                </div>
+              </div>
             </div>
           </div>
         </div>

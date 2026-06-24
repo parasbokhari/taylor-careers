@@ -68,6 +68,10 @@ export default async function CategoryPage({ params }) {
   const relatedCategories = getRelatedCategoryPages(categoryPage.slug, 4);
   const searchResultsPath = buildCategorySearchResultsPath(categoryPage);
   const hasCategoryJobs = categoryJobs.length > 0;
+  const viewAllJobsPath = hasCategoryJobs
+    ? searchResultsPath
+    : "/search-results";
+  const categoryTitle = categoryPage.heading || categoryPage.category;
 
   return (
     <>
@@ -80,10 +84,13 @@ export default async function CategoryPage({ params }) {
                 <div className="c__icon-wrapper mb-4">
                   <figure className="m-0 d-inline">
                     {categoryPage.icon_badge ? (
-                      <img
+                      <Image
                         src={categoryPage.icon_badge}
-                        alt=""
+                        alt={`${categoryTitle} icon`}
+                        width={48}
+                        height={48}
                         loading="lazy"
+                        unoptimized
                       />
                     ) : null}
                   </figure>
@@ -101,7 +108,7 @@ export default async function CategoryPage({ params }) {
                 <div className="c__button-wrapper mt-4">
                   <Link
                     className="c__button__anchor-element"
-                    href={searchResultsPath}
+                    href={viewAllJobsPath}
                   >
                     <span className="c__button c__button--primary c__button--size-xlarge c__button--type-squarish u__f-700">
                       <div className="c__button__content u__f-700">
@@ -117,7 +124,7 @@ export default async function CategoryPage({ params }) {
                     <figure className="m-0 d-inline">
                       <Image
                         src={categoryPage.featured_image}
-                        alt=""
+                        alt={`${categoryTitle} jobs at Taylor`}
                         width={900}
                         height={700}
                         sizes="(min-width: 992px) 450px, 100vw"
