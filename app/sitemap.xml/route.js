@@ -35,7 +35,7 @@ function buildSitemapEntries(jobs) {
     url: getListingUrl(index + 1),
     lastModified: now,
     changeFrequency: "daily",
-    priority: index === 0 ? 0.9 : 0.8,
+    priority: 0.8,
   }));
 
   const jobEntries = jobs
@@ -45,7 +45,7 @@ function buildSitemapEntries(jobs) {
       url: `${siteUrl}${path}`,
       lastModified: now,
       changeFrequency: "daily",
-      priority: 0.7,
+      priority: 0.8,
     }));
 
   const categoryIndexEntry = {
@@ -61,7 +61,7 @@ function buildSitemapEntries(jobs) {
       url: `${siteUrl}${path}`,
       lastModified: now,
       changeFrequency: "daily",
-      priority: 0.7,
+      priority: 0.8,
     }));
 
   return [
