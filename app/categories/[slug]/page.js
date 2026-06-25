@@ -187,7 +187,7 @@ export default async function CategoryPage({ params }) {
         <div className="container">
           <div className="c__heading-wrapper mb-4 text-center">
             <h2 className="c__heading u__h3 u__f-700 d-block u__heading-color--primary mb-0">
-              Similar Job Categories
+              Similar Taylor Job Categories
             </h2>
           </div>
         </div>
@@ -223,7 +223,9 @@ export default async function CategoryPage({ params }) {
         </section>
       ) : null}
 
-      <section className="b__size-md pt-3 b__cta__strip-var-05">
+      <section
+        className={`b__size-md${categoryPage.faqs.length > 0 ? " pt-3" : ""} b__cta__strip-var-05`}
+      >
         <div className="container">
           <div
             style={{ background: " var(--t-cp-primary-blue)" }}

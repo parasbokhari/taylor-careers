@@ -60,6 +60,13 @@
         "type": "string",
         "minLength": 1
       },
+      "similar_categories": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
       "faqs": {
         "type": "array",
         "items": {

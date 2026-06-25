@@ -14,6 +14,18 @@ export function getCategoryPageByCategory(category = "") {
   return categoryPages.find((page) => page.category === category) ?? null;
 }
 
+function getCategoryPageByRelatedName(name = "") {
+  return (
+    categoryPages.find((page) => {
+      return (
+        page.category === name ||
+        page.slug === name ||
+        page.workday_internal_names?.includes(name)
+      );
+    }) ?? null
+  );
+}
+
 export function getCategoryPageParams() {
   return categoryPages.map((page) => ({ slug: page.slug }));
 }
@@ -42,6 +54,17 @@ function getDeterministicScore(seed, value) {
 }
 
 export function getRelatedCategoryPages(slug = "", count = 4) {
+  const categoryPage = getCategoryPageBySlug(slug);
+  const specifiedRelatedCategories =
+    categoryPage?.similar_categories
+      ?.map((name) => getCategoryPageByRelatedName(name))
+      .filter(Boolean)
+      .filter((page) => page.slug !== slug) ?? [];
+
+  if (specifiedRelatedCategories.length > 0) {
+    return specifiedRelatedCategories.slice(0, count);
+  }
+
   return categoryPages
     .filter((page) => page.slug !== slug)
     .map((page) => ({

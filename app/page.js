@@ -9,8 +9,9 @@ import { fetchJobs, sortJobsByNewest } from "@/app/lib/jobs";
 import { buildSeoMetadata } from "@/app/lib/seo";
 
 export const metadata = buildSeoMetadata({
-  title: "Taylor Careers",
-  description: "Explore careers at Taylor.",
+  title: "Search Jobs at Taylor | Open Jobs with Taylor | Taylor",
+  description:
+    "Search Taylor careers for opportunities in print operations, customer service, IT, HR, finance, marketing and more. Explore benefits and career paths today.",
   path: "/",
 });
 
@@ -144,10 +145,11 @@ export default async function HomePage() {
             </div>
             <div className="c__description-wrapper text-center">
               <p className="mb-0 u__h6">
-                With locations throughout the United States and multiple
-                countries, Taylor offers a wide range of opportunities with
-                roles in manufacturing and production, printing, sales,
-                marketing and creative, and corporate and support functions.
+                Taylor offers a wide range of opportunities designed to match
+                different skills, goals and career stages. You can explore open
+                positions, learn more about each department and find jobs near
+                you that offer competitive pay, strong benefits and real
+                opportunities for advancement.
               </p>
             </div>
           </div>
@@ -356,11 +358,10 @@ export default async function HomePage() {
             </div>
             <div className="c__description-wrapper">
               <p className="mb-0 u__h6">
-                At Taylor, we&apos;re dedicated to making our workplace as
-                dynamic and enjoyable as our team. Explore exciting career
-                opportunities and see how we&apos;re dedicated to helping each
-                team member thrive. Visit our Careers page to learn more and
-                join the fun at Taylor!
+                Each position at Taylor is part of a workplace built on
+                collaboration, stability and growth. If you are ready to apply
+                for a role where your work matters, Taylor makes it easy to
+                search jobs and start your next chapter.
               </p>
             </div>
 
