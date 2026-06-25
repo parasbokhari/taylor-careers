@@ -104,7 +104,13 @@
     "description": "Taylor offers a wide range of supply chain and logistics jobs in the sourcing, procurement, inventory control and logistics coordination fields in support of supporting large-scale print operations.",
     "featured_image": "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Categories/Supply-Chain-Logistics-Jobs-Image.webp",
     "meta_title": "Supply Chain & Logistics | Search Jobs at Taylor | Taylor",
-    "meta_description": "Explore supply chain and logistics roles. Discover careers with strong benefits, growth paths and a collaborative workplace where your work and well-being matter.",
+    "meta_description": "Explore supply and logistics roles. Discover careers with strong benefits, growth paths and a collaborative workplace where your work and well-being matter.",
+    "similar_categories": [
+      "Technology & IT",
+      "Engineering",
+      "Business Operations",
+      "Finance & Accounting"
+    ],
     "faqs": []
   },
   {
@@ -135,8 +141,14 @@
     "heading": "Customer Service Jobs",
     "description": "Taylor offers a wide range of customer service roles responsible for being the primary point of customer contact, managing client product, order and inventory needs in support of large-scale print operations.",
     "featured_image": "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Categories/Customer-Service-Jobs-Image.webp",
-    "meta_title": "Customer Service | Search Jobs at Taylor | Taylor",
-    "meta_description": "Explore customer service roles. Discover careers with strong benefits, growth paths and a collaborative workplace where your work and well-being matter.",
+    "meta_title": "Customer Service Positions | Search Jobs at Taylor | Taylor",
+    "meta_description": "Explore roles in customer service. Discover careers with strong benefits, growth paths and a collaborative workplace where your work and well-being matter.",
+    "similar_categories": [
+      "Business Operations",
+      "Marketing & Creative",
+      "Supply Chain & Logistics",
+      "Engineering"
+    ],
     "faqs": []
   },
   {
@@ -169,6 +181,12 @@
     "featured_image": "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Categories/Marketing-Creative-Jobs-Image.webp",
     "meta_title": "Marketing & Creative | Search Jobs at Taylor | Taylor",
     "meta_description": "Explore marketing and creative roles. Discover careers with strong benefits, growth paths and a collaborative workplace where your work and well-being matter.",
+    "similar_categories": [
+      "Technology & IT",
+      "Supply Chain & Logistics",
+      "Engineering",
+      "Business Operations"
+    ],
     "faqs": []
   },
   {
@@ -177,11 +195,17 @@
     "workday_internal_names": ["Internships"],
     "icon_raw": "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Subdomain/Internships-Blue-Icon.svg",
     "icon_badge": "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Categories/Internships-Circle-Icon.svg",
-    "heading": "Internships at Taylor",
+    "heading": "Internship Positions",
     "description": "Taylor offers a wide range of internship positions that span departments such as technology, engineering, marketing, sales, operations, and more. If you’re ready to gain practical skills, explore different career paths and begin making a difference right away, Taylor’s internship program is the perfect place to start.",
     "featured_image": "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Categories/Internships-Jobs-Image.webp",
     "meta_title": "Internship Opportunities | Search Jobs at Taylor | Taylor",
     "meta_description": "Explore internship roles. Discover careers with strong benefits, growth paths and a collaborative workplace where your work and well-being matter.",
+    "similar_categories": [
+      "Technology & IT",
+      "Sales",
+      "Engineering",
+      "Marketing & Creative"
+    ],
     "faqs": []
   }
 ]
