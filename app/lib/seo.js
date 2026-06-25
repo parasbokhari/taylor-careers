@@ -2,7 +2,7 @@ const SITE_NAME = "Taylor Careers";
 const DEFAULT_TITLE = "Taylor Careers";
 const DEFAULT_DESCRIPTION = "Explore careers and open positions at Taylor.";
 const DEFAULT_OG_IMAGE =
-  "https://www.taylor.com/hubfs/_Taylor.com%20-%20All%20file%20connected%20%20to%20main%20site%20and%20blogs/dev/Taylor%20About%20-%20Featured%20Image.jpg";
+  "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Careers%20Main/featured-image-careers.jpg";
 const TEMPORARY_SITEWIDE_NOINDEX = true;
 const DEFAULT_ROBOTS = {
   index: true,
