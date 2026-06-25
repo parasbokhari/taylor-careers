@@ -11,20 +11,7 @@
     "meta_title": "Manufacturing & Production | Search Jobs at Taylor | Taylor",
     "meta_description": "Explore manufacturing and production jobs. Discover careers with strong benefits, growth paths and a workplace where your work and well-being matter.",
     "similar_categories": ["Technology & IT", "Supply Chain & Logistics", "Engineering", "Business Operations"],
-    "faqs": [
-      {
-        "question": "Lorem ipsum dolor sit amet consectetur adipiscing elit?",
-        "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae augue sed nisl fermentum facilisis. Donec suscipit, velit a gravida suscipit, mauris sem porta mi, non congue justo massa sed neque.</p><p>Praesent luctus, nibh sed posuere faucibus, lectus eros volutpat lacus, vitae tincidunt massa justo nec erat. Sed non arcu nec ipsum tristique consequat. Curabitur at velit ac sem luctus finibus.</p><p>Aliquam erat volutpat. Suspendisse potenti. Morbi pharetra, massa sed luctus tincidunt, felis justo dapibus velit, vitae ullamcorper lectus ipsum at mauris.</p>"
-      },
-      {
-        "question": "Lorem ipsum dolor sit amet consectetur adipiscing elit?",
-        "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae augue sed nisl fermentum facilisis. Donec suscipit, velit a gravida suscipit, mauris sem porta mi, non congue justo massa sed neque.</p><p>Praesent luctus, nibh sed posuere faucibus, lectus eros volutpat lacus, vitae tincidunt massa justo nec erat. Sed non arcu nec ipsum tristique consequat. Curabitur at velit ac sem luctus finibus.</p><p>Aliquam erat volutpat. Suspendisse potenti. Morbi pharetra, massa sed luctus tincidunt, felis justo dapibus velit, vitae ullamcorper lectus ipsum at mauris.</p>"
-      },
-      {
-        "question": "Lorem ipsum dolor sit amet consectetur adipiscing elit?",
-        "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae augue sed nisl fermentum facilisis. Donec suscipit, velit a gravida suscipit, mauris sem porta mi, non congue justo massa sed neque.</p><p>Praesent luctus, nibh sed posuere faucibus, lectus eros volutpat lacus, vitae tincidunt massa justo nec erat. Sed non arcu nec ipsum tristique consequat. Curabitur at velit ac sem luctus finibus.</p><p>Aliquam erat volutpat. Suspendisse potenti. Morbi pharetra, massa sed luctus tincidunt, felis justo dapibus velit, vitae ullamcorper lectus ipsum at mauris.</p>"
-      }
-    ]
+    "faqs": []
   },
   {
     "slug": "technology-and-it",
@@ -88,11 +75,11 @@
     "workday_internal_names": ["Supply Chain Management"],
     "icon_raw": "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Subdomain/Supply-Chain-Logistics-Blue-Icon.svg",
     "icon_badge": "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Categories/Supply-Chain-Logistics-Circle-Icon.svg",
-    "heading": "Supply Chain & Logistics Careers at Taylor",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur elit.",
+    "heading": "Supply Chain & Logistics Jobs",
+    "description": "Taylor offers a range of supply chain and logistics jobs focused on planning, sourcing, inventory, distribution and the movement of materials that keep operations running smoothly.",
     "featured_image": "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Categories/Supply-Chain-Logistics-Jobs-Image.webp",
-    "meta_title": "Supply Chain & Logistics Jobs | Taylor Careers",
-    "meta_description": "Explore Supply Chain & Logistics jobs at Taylor.",
+    "meta_title": "Supply Chain & Logistics | Search Jobs at Taylor | Taylor",
+    "meta_description": "Explore supply chain and logistics roles. Discover careers with strong benefits, growth paths and a collaborative workplace where your work and well-being matter.",
     "faqs": []
   },
   {
@@ -115,11 +102,11 @@
     "workday_internal_names": ["Customer Service"],
     "icon_raw": "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Subdomain/Customer-Service-Blue-Icon.svg",
     "icon_badge": "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Categories/Customer-Service-Circle-Icon.svg",
-    "heading": "Customer Service Careers at Taylor",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur elit.",
+    "heading": "Customer Service Jobs",
+    "description": "Taylor offers a range of customer service jobs focused on supporting client needs, coordinating requests and helping customers move work forward with confidence.",
     "featured_image": "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Categories/Customer-Service-Jobs-Image.webp",
-    "meta_title": "Customer Service Jobs | Taylor Careers",
-    "meta_description": "Explore Customer Service jobs at Taylor.",
+    "meta_title": "Customer Service | Search Jobs at Taylor | Taylor",
+    "meta_description": "Explore customer service roles. Discover careers with strong benefits, growth paths and a collaborative workplace where your work and well-being matter.",
     "faqs": []
   },
   {
@@ -142,11 +129,11 @@
     "workday_internal_names": ["Marketing & Creative"],
     "icon_raw": "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Subdomain/Marketing-Creative-Blue-Icon.svg",
     "icon_badge": "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Categories/Marketing-Creative-Circle-Icon.svg",
-    "heading": "Marketing & Creative Careers at Taylor",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur elit.",
+    "heading": "Marketing & Creative Jobs",
+    "description": "Taylor offers a range of marketing and creative jobs focused on brand storytelling, campaign support, design and communications that help connect people with meaningful solutions.",
     "featured_image": "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Categories/Marketing-Creative-Jobs-Image.webp",
-    "meta_title": "Marketing & Creative Jobs | Taylor Careers",
-    "meta_description": "Explore Marketing & Creative jobs at Taylor.",
+    "meta_title": "Marketing & Creative | Search Jobs at Taylor | Taylor",
+    "meta_description": "Explore marketing and creative roles. Discover careers with strong benefits, growth paths and a collaborative workplace where your work and well-being matter.",
     "faqs": []
   },
   {
@@ -156,10 +143,10 @@
     "icon_raw": "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Subdomain/Internships-Blue-Icon.svg",
     "icon_badge": "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Categories/Internships-Circle-Icon.svg",
     "heading": "Internships at Taylor",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur elit.",
+    "description": "Taylor offers internship opportunities for students and early-career talent to gain hands-on experience, build practical skills and contribute to meaningful work across the company.",
     "featured_image": "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Categories/Internships-Jobs-Image.webp",
     "meta_title": "Internships | Taylor Careers",
-    "meta_description": "Explore internship opportunities at Taylor.",
+    "meta_description": "Explore internship opportunities at Taylor. Discover early-career roles with hands-on experience, growth paths and a collaborative workplace.",
     "faqs": []
   }
 ]
