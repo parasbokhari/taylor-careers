@@ -301,7 +301,7 @@ export default async function HomePage() {
         <div className="container">
           <div className="c__heading-wrapper mb-4 text-center">
             <h2 className="c__heading u__h3 u__f-700 d-block u__heading-color--primary mb-0">
-              Browse Job by Categories
+              Browse by Job Category
             </h2>
           </div>
         </div>
