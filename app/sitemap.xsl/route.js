@@ -149,7 +149,14 @@ function buildStylesheet(siteUrl) {
           </div>
 
           <div class="footer">
-            Generated automatically by Taylor Careers.
+            <xsl:value-of select="count(sitemap:urlset/sitemap:url[contains(sitemap:loc, '/categories')])" />
+            category pages ·
+            <xsl:text> </xsl:text>
+            <xsl:value-of select="count(sitemap:urlset/sitemap:url[contains(sitemap:loc, '/job/')])" />
+            individual job pages ·
+            <xsl:text> </xsl:text>
+            <xsl:value-of select="count(sitemap:urlset/sitemap:url)" />
+            total URLs
           </div>
         </div>
       </body>
