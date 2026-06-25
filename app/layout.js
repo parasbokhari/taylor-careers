@@ -1,12 +1,11 @@
 import "./index.scss";
 import { Suspense } from "react";
 import HeadingTagDebugger from "@/app/components/HeadingTagDebugger";
-import OliviaChatLoader from "@/app/components/OliviaChatLoader";
+import PixelLoaders from "@/app/components/PixelLoaders";
 import SiteFooter from "@/app/components/SiteFooter";
 import SiteHeader from "@/app/components/SiteHeader";
 import { getSiteUrl } from "@/app/lib/jobs";
 import { buildSeoMetadata } from "@/app/lib/seo";
-import { GoogleTagManager } from "@next/third-parties/google";
 import { Lato } from "next/font/google";
 
 const lato = Lato({
@@ -28,7 +27,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={lato.variable}>
-      <GoogleTagManager gtmId="GTM-TG7GLGCX" />
       <body>
         <Suspense fallback={null}>
           <HeadingTagDebugger />
@@ -38,7 +36,9 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <SiteFooter />
-        <OliviaChatLoader />
+        <Suspense fallback={null}>
+          <PixelLoaders />
+        </Suspense>
       </body>
     </html>
   );

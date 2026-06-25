@@ -474,7 +474,7 @@
           display: block !important;
         }
 
-        .c__button--ghost {
+        .c__button__anchor-element:has(.c__button--ghost) {
           @media (max-width: 575px) {
             display: none !important;
           }
