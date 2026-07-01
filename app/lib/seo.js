@@ -14,6 +14,7 @@ function getRobotsConfig(robots = DEFAULT_ROBOTS) {
     ? {
         ...robots,
         index: false,
+        follow: false,
       }
     : robots;
 }
