@@ -1,8 +1,10 @@
 import { notFound, permanentRedirect } from "next/navigation";
 import BackToPositionsButton from "@/app/components/BackToPositionsButton";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
 import { JobDetailLoadingSkeleton } from "@/app/components/LoadingSkeletons";
 import SimilarJobs from "@/app/components/SimilarJobs";
 import { Tooltip } from "@/app/components/ui/tooltip";
+import { getJobPageBreadcrumbs } from "@/app/lib/breadcrumbs";
 import {
   fetchJobs,
   getJobBySlug,
@@ -200,6 +202,7 @@ export default async function JobDetailPage({ params, searchParams }) {
 
   return (
     <>
+      <Breadcrumbs items={getJobPageBreadcrumbs(job)} />
       <section className="b__u-careers__job-detail">
         <div className="container">
           <div className="b__u-careers__job-detail__shell">

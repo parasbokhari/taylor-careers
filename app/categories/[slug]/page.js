@@ -112,7 +112,7 @@ export default async function CategoryPage({ params }) {
                   >
                     <span className="c__button c__button--primary c__button--size-xlarge c__button--type-squarish u__f-700">
                       <div className="c__button__content u__f-700">
-                        <span>View All Open Jobs</span>
+                        <span>View All Jobs</span>
                       </div>
                     </span>
                   </Link>

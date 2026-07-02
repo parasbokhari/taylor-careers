@@ -11,7 +11,7 @@
     "meta_title": "Manufacturing & Production | Search Jobs at Taylor | Taylor",
     "meta_description": "Explore manufacturing and production jobs. Discover careers with strong benefits, growth paths and a workplace where your work and well-being matter.",
     "similar_categories": [
-      "Technology & IT",
+      "Technology",
       "Supply Chain & Logistics",
       "Engineering",
       "Business Operations"
@@ -19,12 +19,12 @@
     "faqs": []
   },
   {
-    "slug": "technology-and-it",
-    "category": "Technology & IT",
+    "slug": "technology",
+    "category": "Technology",
     "workday_internal_names": ["IT"],
     "icon_raw": "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Subdomain/Technology-IT-Blue-Icon.svg",
     "icon_badge": "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Categories/Technology-IT-Circle-Icon.svg",
-    "heading": "Technology & IT Jobs",
+    "heading": "Technology Jobs",
     "description": "Taylor offers a range of technology and IT jobs that provide opportunities to work on impactful projects, including developing custom applications and managing enterprise resource planning systems, that drive meaningful change throughout the company.",
     "featured_image": "https://www.taylor.com/hubfs/__Taylor.com%20-%20All%20files%20connected%20to%20main%20site%20and%20blogs/03%20Careers%20Center/NEW%20Careers%202026/Browse%20Jobs/Categories/Technology-IT-Jobs-Image.webp",
     "meta_title": "Technology & IT | Search IT Jobs at Taylor | Taylor",
@@ -68,7 +68,7 @@
     "meta_title": "Engineering | Search Engineering Jobs at Taylor | Taylor",
     "meta_description": "Explore engineering roles. Discover careers with strong benefits, growth paths and a collaborative workplace where your work and well-being matter.",
     "similar_categories": [
-      "Technology & IT",
+      "Technology",
       "Supply Chain & Logistics",
       "Manufacturing & Production",
       "Business Operations"
@@ -90,7 +90,7 @@
       "Business Operations",
       "Customer Service",
       "Supply Chain & Logistics",
-      "Technology & IT"
+      "Technology"
     ],
     "faqs": []
   },
@@ -106,7 +106,7 @@
     "meta_title": "Supply Chain & Logistics | Search Jobs at Taylor | Taylor",
     "meta_description": "Explore supply and logistics roles. Discover careers with strong benefits, growth paths and a collaborative workplace where your work and well-being matter.",
     "similar_categories": [
-      "Technology & IT",
+      "Technology",
       "Engineering",
       "Business Operations",
       "Finance & Accounting"
@@ -125,7 +125,7 @@
     "meta_title": "Finance & Accounting | Search Jobs at Taylor | Taylor",
     "meta_description": "Explore finance and accounting roles. Discover careers with strong benefits, growth paths and a collaborative workplace where your work and well-being matter.",
     "similar_categories": [
-      "Technology & IT",
+      "Technology",
       "Supply Chain & Logistics",
       "Sales & Sales Support",
       "Business Operations"
@@ -163,7 +163,7 @@
     "meta_title": "Business Operations | Search Jobs at Taylor | Taylor",
     "meta_description": "Explore business operations roles. Discover careers with strong benefits, growth paths and a collaborative workplace where your work and well-being matter.",
     "similar_categories": [
-      "Technology & IT",
+      "Technology",
       "Supply Chain & Logistics",
       "Finance & Accounting",
       "Sales & Sales Support"
@@ -182,7 +182,7 @@
     "meta_title": "Marketing & Creative | Search Jobs at Taylor | Taylor",
     "meta_description": "Explore marketing and creative roles. Discover careers with strong benefits, growth paths and a collaborative workplace where your work and well-being matter.",
     "similar_categories": [
-      "Technology & IT",
+      "Technology",
       "Supply Chain & Logistics",
       "Engineering",
       "Business Operations"
@@ -201,7 +201,7 @@
     "meta_title": "Internship Opportunities | Search Jobs at Taylor | Taylor",
     "meta_description": "Explore internship roles. Discover careers with strong benefits, growth paths and a collaborative workplace where your work and well-being matter.",
     "similar_categories": [
-      "Technology & IT",
+      "Technology",
       "Sales",
       "Engineering",
       "Marketing & Creative"

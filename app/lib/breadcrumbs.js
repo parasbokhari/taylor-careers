@@ -1,8 +1,20 @@
 export const BREADCRUMB_ROUTE_LABELS = {
-  "/": "Careers",
-  "/categories": "Browse Jobs by Categories",
+  "/": "Browse Taylor Jobs",
+  "/categories": "Browse Jobs by Category",
   "/search-results": "Search Results",
 };
+
+const CAREERS_CRUMB = {
+  label: "Careers",
+  href: "https://www.taylor.com/careers",
+};
+
+function getBrowseJobsCrumb(isCurrent = false) {
+  return {
+    label: BREADCRUMB_ROUTE_LABELS["/"],
+    ...(isCurrent ? {} : { href: "/" }),
+  };
+}
 
 function normalizePath(path = "") {
   if (!path || path === "/") return "/";
@@ -15,43 +27,41 @@ export function getBreadcrumbsForPath(path) {
 
   if (!label) return [];
 
-  if (normalizedPath === "/") {
-    return [{ label }];
-  }
-
   return [
+    CAREERS_CRUMB,
+    getBrowseJobsCrumb(normalizedPath === "/"),
+    ...(normalizedPath === "/" ? [] : [{ label }]),
+  ];
+}
+
+export function getJobPageBreadcrumbs(job) {
+  return [
+    CAREERS_CRUMB,
+    getBrowseJobsCrumb(),
     {
-      label: BREADCRUMB_ROUTE_LABELS["/"],
-      href: "/",
+      label: BREADCRUMB_ROUTE_LABELS["/search-results"],
+      href: "/search-results",
     },
-    { label },
+    {
+      label: job?.title || "Job Detail",
+    },
   ];
 }
 
 export function getCategoryPageBreadcrumbs(categoryPage) {
   return [
-    {
-      label: BREADCRUMB_ROUTE_LABELS["/"],
-      href: "/",
-    },
+    CAREERS_CRUMB,
+    getBrowseJobsCrumb(),
     {
       label: BREADCRUMB_ROUTE_LABELS["/categories"],
       href: "/categories",
     },
     {
-      label: categoryPage.heading || categoryPage.category,
+      label: categoryPage.category,
     },
   ];
 }
 
 export function getHomePageBreadcrumbs() {
-  return [
-    {
-      label: BREADCRUMB_ROUTE_LABELS["/"],
-      href: "/",
-    },
-    {
-      label: "Browse Jobs",
-    },
-  ];
+  return getBreadcrumbsForPath("/");
 }

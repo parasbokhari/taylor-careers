@@ -134,7 +134,7 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* <Breadcrumbs items={getHomePageBreadcrumbs()} /> */}
+      <Breadcrumbs items={getHomePageBreadcrumbs()} />
       <section className="b__size-md b__u-careers__index-hero">
         <div className="container">
           <div className="b__u-careers__index-hero__content-wrapper">
@@ -301,7 +301,7 @@ export default async function HomePage() {
         <div className="container">
           <div className="c__heading-wrapper mb-4 text-center">
             <h2 className="c__heading u__h3 u__f-700 d-block u__heading-color--primary mb-0">
-              Browse by Job Category
+              Browse Jobs by Category
             </h2>
           </div>
         </div>
@@ -340,7 +340,7 @@ export default async function HomePage() {
             <Link className="c__button__anchor-element" href="/search-results">
               <span className="c__button c__button--primary c__button--size-xlarge c__button--type-squarish u__f-700">
                 <div className="c__button__content u__f-700">
-                  <span>Browse Open Jobs</span>
+                  <span>View All Jobs</span>
                 </div>
               </span>
             </Link>

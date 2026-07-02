@@ -12,6 +12,11 @@ const nextConfig = {
         destination: "/job/:path*",
         permanent: true,
       },
+      {
+        source: "/categories/technology-and-it",
+        destination: "/categories/technology",
+        permanent: true,
+      },
     ];
   },
   images: {
