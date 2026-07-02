@@ -68,9 +68,6 @@ export default async function CategoryPage({ params }) {
   const relatedCategories = getRelatedCategoryPages(categoryPage.slug, 4);
   const searchResultsPath = buildCategorySearchResultsPath(categoryPage);
   const hasCategoryJobs = categoryJobs.length > 0;
-  const viewAllJobsPath = hasCategoryJobs
-    ? searchResultsPath
-    : "/search-results";
   const categoryTitle = categoryPage.heading || categoryPage.category;
 
   return (
@@ -105,18 +102,20 @@ export default async function CategoryPage({ params }) {
                     <p className="mb-0 u__h6">{categoryPage.description}</p>
                   </div>
                 ) : null}
-                <div className="c__button-wrapper mt-4">
-                  <Link
-                    className="c__button__anchor-element"
-                    href={viewAllJobsPath}
-                  >
-                    <span className="c__button c__button--primary c__button--size-xlarge c__button--type-squarish u__f-700">
-                      <div className="c__button__content u__f-700">
-                        <span>View All Jobs</span>
-                      </div>
-                    </span>
-                  </Link>
-                </div>
+                {hasCategoryJobs ? (
+                  <div className="c__button-wrapper mt-4">
+                    <Link
+                      className="c__button__anchor-element"
+                      href={searchResultsPath}
+                    >
+                      <span className="c__button c__button--primary c__button--size-xlarge c__button--type-squarish u__f-700">
+                        <div className="c__button__content u__f-700">
+                          <span>View All Jobs</span>
+                        </div>
+                      </span>
+                    </Link>
+                  </div>
+                ) : null}
               </div>
               {categoryPage.featured_image ? (
                 <div className="col-lg-6">
