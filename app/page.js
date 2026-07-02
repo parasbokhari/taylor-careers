@@ -189,12 +189,9 @@ export default async function HomePage() {
                     type="text"
                   />
                 </div>
-              </form>
-              <div className="b__u-careers__index-hero__search-actions">
                 <span className="c__job-board-embed__search-form__button-wrapper">
                   <button
-                    className="c__job-board-embed__search-form__button c__button c__button--with-icon c__button--primary c__button--rounded u__f-700 d-flex justify-content-center"
-                    form="homepage-job-search-form"
+                    className="c__job-board-embed__search-form__button c__button c__button--with-icon c__button--primary c__button--rounded u__f-700"
                     type="submit"
                   >
                     <div className="c__button__content u__f-700">
@@ -222,17 +219,7 @@ export default async function HomePage() {
                     </div>
                   </button>
                 </span>
-                <Link
-                  className="c__button__anchor-element"
-                  href="/search-results"
-                >
-                  <span className="c__button c__button--ghost c__button--ghost--bg-blue-25 c__button--rounded u__f-700">
-                    <div className="c__button__content u__f-700">
-                      <span>Browse All Jobs</span>
-                    </div>
-                  </span>
-                </Link>
-              </div>
+              </form>
             </div>
           </div>
         </div>
