@@ -1,6 +1,7 @@
 import "./index.scss";
 import { Suspense } from "react";
 import HeadingTagDebugger from "@/app/components/HeadingTagDebugger";
+import OliviaChatLoader from "@/app/components/OliviaChatLoader";
 import PixelLoaders from "@/app/components/PixelLoaders";
 import SiteFooter from "@/app/components/SiteFooter";
 import SiteHeader from "@/app/components/SiteHeader";
@@ -39,6 +40,7 @@ export default function RootLayout({ children }) {
         <Suspense fallback={null}>
           <PixelLoaders />
         </Suspense>
+        <OliviaChatLoader />
       </body>
     </html>
   );

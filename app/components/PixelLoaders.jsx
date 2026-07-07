@@ -2,7 +2,6 @@
 
 import { GoogleTagManager } from "@next/third-parties/google";
 import { useSearchParams } from "next/navigation";
-import OliviaChatLoader from "@/app/components/OliviaChatLoader";
 
 const DISABLE_PIXELS_PARAM = "disable_pixels";
 const DISABLE_PIXELS_VALUE = "true";
@@ -20,7 +19,6 @@ export default function PixelLoaders() {
   return (
     <>
       <GoogleTagManager gtmId={GTM_ID} />
-      <OliviaChatLoader />
     </>
   );
 }
