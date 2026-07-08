@@ -202,7 +202,7 @@ export default async function JobDetailPage({ params, searchParams }) {
 
   return (
     <>
-      <Breadcrumbs items={getJobPageBreadcrumbs(job)} />
+      {/* <Breadcrumbs items={getJobPageBreadcrumbs(job)} /> */}
       <section className="b__u-careers__job-detail">
         <div className="container">
           <div className="b__u-careers__job-detail__shell">
