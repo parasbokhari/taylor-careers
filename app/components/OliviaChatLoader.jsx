@@ -8,7 +8,14 @@ const OLIVIA_KEY = "ntsdvrniivyclwbjiojx";
 const OLIVIA_WIDGET_SRC =
   "https://dokumfe7mps0i.cloudfront.net/static/site/js/widget-client.js";
 
-const interactionEvents = ["pointerdown", "keydown", "scroll", "touchstart"];
+const interactionEvents = [
+  "pointerdown",
+  "pointermove",
+  "mousemove",
+  "keydown",
+  "scroll",
+  "touchstart",
+];
 
 export default function OliviaChatLoader() {
   useEffect(() => {
