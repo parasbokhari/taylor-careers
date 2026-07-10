@@ -20,20 +20,17 @@ function escapeXml(value) {
 }
 
 function buildSitemapEntries(jobs) {
-  const now = new Date().toISOString();
   const siteUrl = getSiteUrl();
   const totalPages = getTotalPages(jobs.length);
 
   const homeEntry = {
     url: `${siteUrl}/`,
-    lastModified: now,
     changeFrequency: "daily",
     priority: 1,
   };
 
   const listingEntries = Array.from({ length: totalPages }, (_, index) => ({
     url: getListingUrl(index + 1),
-    lastModified: now,
     changeFrequency: "daily",
     priority: 0.8,
   }));
@@ -43,14 +40,12 @@ function buildSitemapEntries(jobs) {
     .filter(Boolean)
     .map((path) => ({
       url: `${siteUrl}${path}`,
-      lastModified: now,
       changeFrequency: "daily",
       priority: 0.8,
     }));
 
   const categoryIndexEntry = {
     url: `${siteUrl}/categories`,
-    lastModified: now,
     changeFrequency: "daily",
     priority: 0.8,
   };
@@ -59,7 +54,6 @@ function buildSitemapEntries(jobs) {
     .map((category) => `/categories/${category.slug}`)
     .map((path) => ({
       url: `${siteUrl}${path}`,
-      lastModified: now,
       changeFrequency: "daily",
       priority: 0.8,
     }));
@@ -78,7 +72,6 @@ function buildSitemapXml(entries) {
     .map(
       (entry) => `  <url>
     <loc>${escapeXml(entry.url)}</loc>
-    <lastmod>${escapeXml(entry.lastModified)}</lastmod>
     <changefreq>${escapeXml(entry.changeFrequency)}</changefreq>
     <priority>${entry.priority.toFixed(1)}</priority>
   </url>`,
