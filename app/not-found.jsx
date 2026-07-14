@@ -5,7 +5,7 @@ export const metadata = buildSeoMetadata({
   title: "Page Not Found | Taylor",
   description: "The requested Taylor Careers page could not be found.",
   path: "/404",
-  robots: { index: false, follow: false },
+  robots: { index: false },
 });
 
 export default function NotFound() {
