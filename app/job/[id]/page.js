@@ -7,6 +7,7 @@ import { Tooltip } from "@/app/components/ui/tooltip";
 import { getJobPageBreadcrumbs } from "@/app/lib/breadcrumbs";
 import {
   fetchJobs,
+  fetchOliviaApplyUrls,
   getJobBySlug,
   buildWorkdayUrl,
   parseLocation,
@@ -171,7 +172,10 @@ export default async function JobDetailPage({ params, searchParams }) {
     return <JobDetailLoadingSkeleton />;
   }
 
-  const allJobs = await fetchJobs();
+  const [allJobs, oliviaApplyUrls] = await Promise.all([
+    fetchJobs(),
+    fetchOliviaApplyUrls(),
+  ]);
   const job = getJobBySlug(allJobs, id);
 
   if (!job) notFound();
@@ -181,7 +185,9 @@ export default async function JobDetailPage({ params, searchParams }) {
     permanentRedirect(canonicalPath);
   }
 
-  const applyUrl = buildWorkdayUrl(job.externalPath);
+  const oliviaApplyUrl = oliviaApplyUrls.get(job.jobRequisitionId) || null;
+  const workdayUrl = buildWorkdayUrl(job.externalPath);
+  const applyUrl = oliviaApplyUrl || (workdayUrl ? `${workdayUrl}/apply` : null);
   const locations = getJobLocations(job);
   const primaryLocation = locations[0] || parseLocation(job);
   const location = cleanLocationLabel(primaryLocation);
@@ -260,14 +266,16 @@ export default async function JobDetailPage({ params, searchParams }) {
               <aside className="b__u-careers__job-detail__hero__aside">
                 {applyUrl && (
                   <a
-                    href={applyUrl + "/apply"}
+                    href={applyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="c__button__anchor-element b__u-careers__job-detail__apply-link"
                   >
                     <span className="c__button c__button--primary c__button--type-squarish u__f-700 w-100 text-center">
                       <div className="c__button__content u__f-700">
-                        <span>Apply</span>
+                        <span>
+                          {oliviaApplyUrl ? "Chat to Apply" : "Apply"}
+                        </span>
                       </div>
                     </span>
                   </a>

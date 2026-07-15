@@ -1,6 +1,8 @@
 import { cache } from "react";
 
 const API_URL = "https://taylor-workday-jobs.vercel.app/api/workday";
+const OLIVIA_FEED_URL =
+  "https://workday-jobs-v2.vercel.app/api/aws/aws-job-master-xml";
 const WORKDAY_BASE = "https://taylor.wd1.myworkdayjobs.com/en-US/External";
 const JOBS_PER_PAGE = 20;
 const LAST_BOARD_URL_STORAGE_KEY = "taylor-careers:last-board-url";
@@ -37,6 +39,53 @@ export async function fetchFreshJobs() {
   const data = await res.json();
   return Array.isArray(data) ? data : data.jobs ?? [];
 }
+
+function getXmlElementValue(xml = "", tagName) {
+  const match = xml.match(
+    new RegExp(`<${tagName}(?:\\s[^>]*)?>([\\s\\S]*?)</${tagName}>`, "i"),
+  );
+
+  return (match?.[1] || "")
+    .replace(/^<!\[CDATA\[/, "")
+    .replace(/\]\]>$/, "")
+    .replace(/&amp;/gi, "&")
+    .trim();
+}
+
+function validateOliviaUrl(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" && url.hostname === "olivia.paradox.ai"
+      ? url.toString()
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+export const fetchOliviaApplyUrls = cache(async function fetchOliviaApplyUrls() {
+  try {
+    const res = await fetch(OLIVIA_FEED_URL, { next: { revalidate: 300 } });
+    if (!res.ok) return new Map();
+
+    const xml = await res.text();
+    const applyUrls = new Map();
+    const jobBlocks = xml.match(/<job(?:\s[^>]*)?>[\s\S]*?<\/job>/gi) || [];
+
+    for (const jobBlock of jobBlocks) {
+      const requisitionId = getXmlElementValue(jobBlock, "requisition_id");
+      const applyUrl = validateOliviaUrl(
+        getXmlElementValue(jobBlock, "apply_url"),
+      );
+
+      if (requisitionId && applyUrl) applyUrls.set(requisitionId, applyUrl);
+    }
+
+    return applyUrls;
+  } catch {
+    return new Map();
+  }
+});
 
 export function getFirstBatch(jobs) {
   return jobs.slice(0, JOBS_PER_PAGE);
