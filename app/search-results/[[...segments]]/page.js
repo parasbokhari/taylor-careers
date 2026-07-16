@@ -16,16 +16,19 @@ import {
 } from "@/app/lib/jobs";
 import { buildSeoMetadata } from "@/app/lib/seo";
 
+const SEARCH_META_TITLE =
+  "Explore Open Positions with Taylor | Search Job Openings";
+const SEARCH_META_DESCRIPTION =
+  "Find openings in manufacturing and production, technology, sales, engineering, human resources, supply chain and logistics, marketing and creative, and more.";
+
 function getMetaTitle(pageNumber) {
   return pageNumber > 1
-    ? `Careers Search Results Page ${pageNumber} | Taylor`
-    : "Careers Search Results | Taylor";
+    ? `${SEARCH_META_TITLE} | Page ${pageNumber}`
+    : SEARCH_META_TITLE;
 }
 
-function getMetaDescription(pageNumber) {
-  return pageNumber > 1
-    ? `Explore open positions at Taylor, page ${pageNumber}.`
-    : "Explore open positions at Taylor.";
+function getMetaDescription() {
+  return SEARCH_META_DESCRIPTION;
 }
 
 function getPaginationLinks(pageNumber, totalPages) {
@@ -73,11 +76,11 @@ export async function generateMetadata({ params, searchParams }) {
   return {
     ...buildSeoMetadata({
       title: getMetaTitle(pageNumber),
-      description: getMetaDescription(pageNumber),
+      description: getMetaDescription(),
       path: canonicalPagePath,
     }),
     title: getMetaTitle(pageNumber),
-    description: getMetaDescription(pageNumber),
+    description: getMetaDescription(),
     pagination: {
       previous: pagination.prev || undefined,
       next: pagination.next || undefined,

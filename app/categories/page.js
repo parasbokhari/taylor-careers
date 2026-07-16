@@ -5,8 +5,9 @@ import { getCategoryPages } from "@/app/lib/categoryContent";
 import { buildSeoMetadata } from "@/app/lib/seo";
 
 export const metadata = buildSeoMetadata({
-  title: "Job Categories | Taylor Careers",
-  description: "Browse Taylor careers by job category.",
+  title: "Search Job Openings with Taylor | Browse Careers by Category",
+  description:
+    "Explore jobs in manufacturing and production, technology, sales, engineering, human resources, supply chain and logistics, marketing and creative, and more.",
   path: "/categories",
 });
 

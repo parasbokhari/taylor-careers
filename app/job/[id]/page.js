@@ -12,7 +12,6 @@ import {
   buildWorkdayUrl,
   parseLocation,
   buildJobPath,
-  excerptDescription,
 } from "@/app/lib/jobs";
 import { formatRichTextHtml } from "@/app/lib/richText";
 import { buildSeoMetadata } from "@/app/lib/seo";
@@ -149,16 +148,11 @@ export async function generateMetadata({ params }) {
     });
   }
   const canonicalPath = buildJobPath(job);
-  const location = parseLocation(job);
-  const fallbackDescription = `${job.jobFamilyGroup ?? "Open position"} at Taylor${
-    location ? ` - ${location}` : ""
-  }.`;
 
   return buildSeoMetadata({
-    title: `${job.title} | Taylor Careers`,
-    description: job.jobDescription
-      ? excerptDescription(job.jobDescription, 155)
-      : fallbackDescription,
+    title: `${job.title} | Jobs with Taylor`,
+    description:
+      "Apply with Taylor today. Taylor Corporation is a growing, dynamic company striving to create opportunity and security for every member of our team.",
     path: canonicalPath,
     type: "article",
   });
