@@ -1,3 +1,5 @@
+import { getSiteUrl } from "@/app/lib/jobs";
+
 export const BREADCRUMB_ROUTE_LABELS = {
   "/": "Browse Taylor Jobs",
   "/categories": "Browse Jobs by Category",
@@ -64,4 +66,22 @@ export function getCategoryPageBreadcrumbs(categoryPage) {
 
 export function getHomePageBreadcrumbs() {
   return getBreadcrumbsForPath("/");
+}
+
+export function getBreadcrumbJsonLd(items = [], currentPath = "/") {
+  if (!items.length) return null;
+
+  const siteUrl = `${getSiteUrl()}/`;
+  const currentUrl = new URL(currentPath, siteUrl).toString();
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.label,
+      item: new URL(item.href || currentUrl, siteUrl).toString(),
+    })),
+  };
 }

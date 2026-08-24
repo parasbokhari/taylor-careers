@@ -1,4 +1,6 @@
 import Link from "@/app/components/CustomLink";
+import BreadcrumbJsonLd from "@/app/components/BreadcrumbJsonLd";
+import { getBreadcrumbJsonLd } from "@/app/lib/breadcrumbs";
 
 function BreadcrumbSeparator({ id }) {
   const clipPathId = `breadcrumb-separator-clip-${id}`;
@@ -31,56 +33,62 @@ function BreadcrumbSeparator({ id }) {
   );
 }
 
-export default function Breadcrumbs({ items = [] }) {
+export default function Breadcrumbs({ items = [], currentPath = "/" }) {
   if (!items.length) return null;
 
-  return (
-    <div className="module_171642753114233 b__site-header__global-breadcrumbs b__site-header__global-site-header--compatible">
-      <div className="container b__site-header__global-site-header__container">
-        <nav
-          aria-label="Breadcrumb"
-          className="c__breadcrumbs c__breadcrumbs--var-header"
-        >
-          <ul className="c__breadcrumbs__list">
-            {items.map((item, index) => {
-              const isLast = index === items.length - 1;
+  const jsonLd = getBreadcrumbJsonLd(items, currentPath);
+  const json = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
 
-              return (
-                <li
-                  className={`c__breadcrumbs__item${
-                    isLast ? " c__breadcrumbs__item--active" : ""
-                  }`}
-                  key={`${item.href || item.label}-${index}`}
-                >
-                  <div className="c__breadcrumbs__item__row">
-                    <div className="c__breadcrumbs__item__column c__breadcrumbs__item__column-left">
-                      <div
-                        className={`c__breadcrumbs__item__text-content${
-                          isLast ? " u__truncate" : ""
-                        }`}
-                      >
-                        {item.href && !isLast ? (
-                          <Link
-                            className="u__inherited-anchor"
-                            href={item.href}
-                          >
-                            {item.label}
-                          </Link>
-                        ) : (
-                          <span className="u__inherited-anchor">
-                            {item.label}
-                          </span>
-                        )}
+  return (
+    <>
+      <BreadcrumbJsonLd json={json} />
+      <div className="module_171642753114233 b__site-header__global-breadcrumbs b__site-header__global-site-header--compatible">
+        <div className="container b__site-header__global-site-header__container">
+          <nav
+            aria-label="Breadcrumb"
+            className="c__breadcrumbs c__breadcrumbs--var-header"
+          >
+            <ul className="c__breadcrumbs__list">
+              {items.map((item, index) => {
+                const isLast = index === items.length - 1;
+
+                return (
+                  <li
+                    className={`c__breadcrumbs__item${
+                      isLast ? " c__breadcrumbs__item--active" : ""
+                    }`}
+                    key={`${item.href || item.label}-${index}`}
+                  >
+                    <div className="c__breadcrumbs__item__row">
+                      <div className="c__breadcrumbs__item__column c__breadcrumbs__item__column-left">
+                        <div
+                          className={`c__breadcrumbs__item__text-content${
+                            isLast ? " u__truncate" : ""
+                          }`}
+                        >
+                          {item.href && !isLast ? (
+                            <Link
+                              className="u__inherited-anchor"
+                              href={item.href}
+                            >
+                              {item.label}
+                            </Link>
+                          ) : (
+                            <span className="u__inherited-anchor">
+                              {item.label}
+                            </span>
+                          )}
+                        </div>
                       </div>
+                      {!isLast ? <BreadcrumbSeparator id={index} /> : null}
                     </div>
-                    {!isLast ? <BreadcrumbSeparator id={index} /> : null}
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

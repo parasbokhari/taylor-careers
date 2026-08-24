@@ -118,7 +118,10 @@ export default async function ListingPage({ params, searchParams }) {
 
   return (
     <>
-      <Breadcrumbs items={getBreadcrumbsForPath("/search-results")} />
+      <Breadcrumbs
+        items={getBreadcrumbsForPath("/search-results")}
+        currentPath={getListingPath(pageNumber)}
+      />
       <JobBoard
         initialJobs={jobs}
         initialFilters={initialFilters}

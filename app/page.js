@@ -134,7 +134,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <Breadcrumbs items={getHomePageBreadcrumbs()} />
+      <Breadcrumbs items={getHomePageBreadcrumbs()} currentPath="/" />
       <section className="b__size-md b__u-careers__index-hero">
         <div className="container">
           <div className="b__u-careers__index-hero__content-wrapper">

@@ -72,7 +72,10 @@ export default async function CategoryPage({ params }) {
 
   return (
     <>
-      <Breadcrumbs items={getCategoryPageBreadcrumbs(categoryPage)} />
+      <Breadcrumbs
+        items={getCategoryPageBreadcrumbs(categoryPage)}
+        currentPath={`/categories/${categoryPage.slug}`}
+      />
       <section className="b__size-md b__u-careers__category-hero">
         <div className="container">
           <div className="b__u-careers__category-hero__content-wrapper">

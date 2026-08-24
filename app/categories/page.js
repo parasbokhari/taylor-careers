@@ -16,7 +16,10 @@ export default function CategoriesPage() {
 
   return (
     <>
-      <Breadcrumbs items={getBreadcrumbsForPath("/categories")} />
+      <Breadcrumbs
+        items={getBreadcrumbsForPath("/categories")}
+        currentPath="/categories"
+      />
       <section className="b__size-md b__u-careers__category-list">
         <div className="container">
           <div className="c__heading-wrapper mb-4 text-center">
