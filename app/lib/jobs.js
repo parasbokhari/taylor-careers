@@ -1,8 +1,9 @@
 import { cache } from "react";
 
-const API_URL = "https://taylor-workday-jobs.vercel.app/api/workday";
+const API_URL =
+  "https://workday-jobs-v3.vercel.app/api/workday/workday-job-master-json";
 const OLIVIA_FEED_URL =
-  "https://workday-jobs-v2.vercel.app/api/aws/aws-job-master-xml";
+  "https://workday-jobs-v3.vercel.app/api/aws/aws-job-master-xml";
 const WORKDAY_BASE = "https://taylor.wd1.myworkdayjobs.com/en-US/External";
 const JOBS_PER_PAGE = 20;
 const LAST_BOARD_URL_STORAGE_KEY = "taylor-careers:last-board-url";
@@ -27,11 +28,20 @@ const EMPTY_FILTERS = {
 };
 
 export const fetchJobs = cache(async function fetchJobs() {
-  const res = await fetch(API_URL, { next: { revalidate: 900 } });
+  const res = await fetch(API_URL, {
+    headers: { "x-api-key": getJobsApiKey() },
+    next: { revalidate: 900 },
+  });
   if (!res.ok) throw new Error("Failed to fetch jobs");
   const data = await res.json();
   return Array.isArray(data) ? data : data.jobs ?? [];
 });
+
+function getJobsApiKey() {
+  const apiKey = process.env.WORKDAY_JOBS_API_KEY;
+  if (!apiKey) throw new Error("WORKDAY_JOBS_API_KEY is not configured");
+  return apiKey;
+}
 
 function getXmlElementValue(xml = "", tagName) {
   const match = xml.match(
@@ -58,7 +68,10 @@ function validateOliviaUrl(value) {
 
 export const fetchOliviaApplyUrls = cache(async function fetchOliviaApplyUrls() {
   try {
-    const res = await fetch(OLIVIA_FEED_URL, { next: { revalidate: 300 } });
+    const res = await fetch(OLIVIA_FEED_URL, {
+      headers: { "x-api-key": getJobsApiKey() },
+      next: { revalidate: 300 },
+    });
     if (!res.ok) return new Map();
 
     const xml = await res.text();
