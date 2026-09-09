@@ -1,14 +1,14 @@
 import { getCategoryPages } from "@/app/lib/categoryContent";
 import {
   buildJobPath,
-  fetchFreshJobs,
+  fetchJobs,
   getListingUrl,
   getSiteUrl,
   getTotalPages,
 } from "@/app/lib/jobs";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const dynamic = "force-static";
+export const revalidate = 900;
 
 function escapeXml(value) {
   return String(value)
@@ -87,14 +87,13 @@ ${rows}
 }
 
 export async function GET() {
-  const jobs = await fetchFreshJobs();
+  const jobs = await fetchJobs();
   const entries = buildSitemapEntries(jobs);
   const xml = buildSitemapXml(entries);
 
   return new Response(xml, {
     headers: {
       "Content-Type": "application/xml; charset=utf-8",
-      "Cache-Control": "no-store, max-age=0",
     },
   });
 }

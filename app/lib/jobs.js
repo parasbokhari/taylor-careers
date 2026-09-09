@@ -27,18 +27,11 @@ const EMPTY_FILTERS = {
 };
 
 export const fetchJobs = cache(async function fetchJobs() {
-  const res = await fetch(API_URL, { next: { revalidate: 300 } });
+  const res = await fetch(API_URL, { next: { revalidate: 900 } });
   if (!res.ok) throw new Error("Failed to fetch jobs");
   const data = await res.json();
   return Array.isArray(data) ? data : data.jobs ?? [];
 });
-
-export async function fetchFreshJobs() {
-  const res = await fetch(API_URL, { cache: "no-store" });
-  if (!res.ok) throw new Error("Failed to fetch jobs");
-  const data = await res.json();
-  return Array.isArray(data) ? data : data.jobs ?? [];
-}
 
 function getXmlElementValue(xml = "", tagName) {
   const match = xml.match(
