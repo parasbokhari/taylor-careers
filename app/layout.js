@@ -1,6 +1,7 @@
 import "./index.scss";
 import { Suspense } from "react";
 import HeadingTagDebugger from "@/app/components/HeadingTagDebugger";
+import KeyboardNavigationTracker from "@/app/components/KeyboardNavigationTracker";
 import PixelLoaders from "@/app/components/PixelLoaders";
 import SiteFooter from "@/app/components/SiteFooter";
 import SiteHeader from "@/app/components/SiteHeader";
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={lato.variable}>
       <body>
+        <KeyboardNavigationTracker />
         <Suspense fallback={null}>
           <HeadingTagDebugger />
         </Suspense>

@@ -1953,3 +1953,38 @@
     box-shadow: 0 0 0 2px var(--t-cp-base-white, #ffffff);
   }
 }
+
+.b__site-header__global-breadcrumbs .u__inherited-anchor:focus-visible {
+  border-radius: 2px;
+  outline: 3px solid var(--t-cp-primary-blue, #2458f1);
+  outline-offset: -1px;
+  box-shadow: none;
+}
+
+[data-keyboard-navigation="true"]
+  .c__job-board-embed__search-form__input-wrapper:has(
+    .c__job-board-embed__search-form__input:focus
+  ) {
+  outline: 3px solid var(--t-cp-primary-blue, #2458f1);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 2px var(--t-cp-base-white, #ffffff);
+}
+
+.c__job-board-embed__search-form__input:focus-visible {
+  outline: none;
+}
+
+.b__site-footer__global-site-footer
+  .c__post__social-share__col
+  > a {
+  display: inline-flex;
+  border-radius: 50%;
+}
+
+.b__site-footer__global-site-footer
+  .c__post__social-share__col
+  > a:focus-visible {
+  outline: 3px solid var(--t-cp-primary-blue, #2458f1);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 2px var(--t-cp-base-white, #ffffff);
+}
