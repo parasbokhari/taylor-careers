@@ -1988,3 +1988,56 @@
   outline-offset: 4px;
   box-shadow: 0 0 0 2px var(--t-cp-base-white, #ffffff);
 }
+
+#hs-banner-parent #hs-eu-cookie-confirmation:not(.hs-hidden) {
+  position: fixed !important;
+  opacity: 0;
+}
+
+#hs-eu-cookie-confirmation {
+  --hs-banner-button-corners: 100px;
+
+  p {
+    margin-bottom: 1rem;
+
+    strong {
+      display: inline;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  #hs-eu-cookie-confirmation-buttons-area {
+    margin-top: 0.5rem;
+
+    #hs-eu-confirmation-button,
+    #hs-eu-decline-button {
+      font-weight: 700;
+    }
+
+    #hs-eu-confirmation-button:hover {
+      background-color: #6708ca;
+      border-color: #6708ca;
+    }
+  }
+
+  #hs-eu-policy-wording a {
+    color: inherit;
+
+    &:hover {
+      color: #5781ff;
+    }
+  }
+}
+
+#hs-eu-cookie-confirmation-buttons-area #hs-eu-decline-button:hover {
+  background-color: #f9f3ff;
+}
+
+@media (max-width: 576px) {
+  div#hs-banner-parent #hs-eu-cookie-confirmation {
+    max-width: calc(100% - 28px) !important;
+  }
+}
