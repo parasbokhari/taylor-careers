@@ -29,7 +29,10 @@ const ESSENTIAL_COOKIE_NAMES = [
 ];
 const ESSENTIAL_COOKIE_PATTERNS = [/^\d+_key$/];
 const ESSENTIAL_LOCAL_STORAGE_KEYS = [DECLINE_KEY, "pod_cart"];
-const ESSENTIAL_LOCAL_STORAGE_PATTERNS = [/^hs\.superstore\.laboratory\./];
+const ESSENTIAL_LOCAL_STORAGE_PATTERNS = [
+  /^hs\.superstore\.laboratory\./,
+  /^pod_breadcrumb_exists:/,
+];
 const ESSENTIAL_SESSION_STORAGE_KEYS = [];
 const ESSENTIAL_SESSION_STORAGE_PATTERNS = [/^hs\.superstore\.laboratory\./];
 
