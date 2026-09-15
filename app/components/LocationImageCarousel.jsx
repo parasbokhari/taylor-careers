@@ -42,7 +42,8 @@ export default function LocationImageCarousel({ images = [], label }) {
             <div className={`location-gallery__slide${selectedIndex === slide ? " location-gallery__slide--selected" : ""}`}
               aria-hidden={selectedIndex !== slide} key={`${slide}-${photo.src}`}>
               <Image className="location-gallery__photo" src={photo.src} alt={photo.alt || `${label} location`} fill
-                sizes="(min-width: 992px) 450px, (min-width: 576px) 540px, 100vw" loading={slide === 0 ? "eager" : "lazy"} draggable={false} />
+                sizes="(min-width: 992px) 450px, (min-width: 576px) 540px, 100vw" unoptimized
+                loading={slide === 0 ? "eager" : "lazy"} draggable={false} />
             </div>
           )) : (
             <div className="location-gallery__slide location-gallery__slide--selected">
