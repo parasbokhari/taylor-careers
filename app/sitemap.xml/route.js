@@ -1,4 +1,5 @@
 import { getCategoryPages } from "@/app/lib/categoryContent";
+import { getLocationPages, getLocationStates } from "@/app/lib/locationContent";
 import {
   buildJobPath,
   fetchJobs,
@@ -63,6 +64,11 @@ function buildSitemapEntries(jobs) {
     ...listingEntries,
     categoryIndexEntry,
     ...categoryEntries,
+    ...["", ...getLocationStates().map(({ slug }) => `/${slug}`), ...getLocationPages().map(({ slug }) => `/${slug}`)].map((suffix) => ({
+      url: `${siteUrl}/locations${suffix}`,
+      changeFrequency: "daily",
+      priority: 0.8,
+    })),
     ...jobEntries,
   ];
 }

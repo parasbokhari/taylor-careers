@@ -2,9 +2,11 @@ import Image from "next/image";
 import Link from "@/app/components/CustomLink";
 import Breadcrumbs from "@/app/components/Breadcrumbs";
 import CategoryBadge from "@/app/components/CategoryBadge";
+import FeaturedLocationCard from "@/app/components/FeaturedLocationCard";
 import JobCard from "@/app/components/JobCard";
 import { getHomePageBreadcrumbs } from "@/app/lib/breadcrumbs";
 import { getCategoryPages } from "@/app/lib/categoryContent";
+import { getFeaturedLocations } from "@/app/lib/locationContent";
 import { fetchJobs, sortJobsByNewest } from "@/app/lib/jobs";
 import { buildSeoMetadata } from "@/app/lib/seo";
 
@@ -131,6 +133,7 @@ export default async function HomePage() {
   const categories = getCategoryPages();
   const jobs = await fetchJobs();
   const featuredJobs = getFeaturedJobs(jobs);
+  const featuredLocations = getFeaturedLocations(jobs);
 
   return (
     <>
@@ -307,7 +310,37 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="b__size-md b__u-careers__index-featured-jobs">
+      <section className="b__size-md location-featured">
+        <div className="container">
+          <div className="location-featured__content">
+            <div className="c__heading-wrapper mb-4 pb-4 text-center">
+              <h2 className="c__heading u__h3 u__f-700 d-block u__heading-color--primary mb-0">
+                Browse by Job Location
+              </h2>
+            </div>
+            <div className="location-featured__grid">
+              {featuredLocations.map(({ location, count }) => (
+                <FeaturedLocationCard
+                  location={location}
+                  count={count}
+                  key={location.slug}
+                />
+              ))}
+            </div>
+            <div className="c__button-wrapper mt-4 pt-4 text-center">
+              <Link className="c__button__anchor-element" href="/locations">
+                <span className="c__button c__button--primary c__button--size-xlarge c__button--type-squarish u__f-700">
+                  <span className="c__button__content u__f-700">
+                    View All Locations
+                  </span>
+                </span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="b__size-md b__u-careers__index-featured-jobs pt-0">
         <div className="container">
           <div className="c__heading-wrapper mb-4 text-center">
             <h2 className="c__heading u__h3 u__f-700 d-block u__heading-color--primary mb-0">

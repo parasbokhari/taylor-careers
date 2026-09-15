@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { Drawer } from "vaul";
 import FilterDropdown from "./FilterDropdown";
 import JobCard from "./JobCard";
+import { jobMatchesLocationFilter } from "@/app/lib/jobLocation";
 import {
   EMPTY_FILTERS,
   LAST_BOARD_URL_STORAGE_KEY,
@@ -425,7 +426,7 @@ export default function JobBoard({
           !filters.jobType.includes(job.workerSubType)
         )
           return false;
-        if (filters.location.length && !filters.location.includes(jobLocation))
+        if (filters.location.length && !filters.location.some((filter) => jobMatchesLocationFilter(job, filter)))
           return false;
         if (filters.status.length && !filters.status.includes(job.timeType))
           return false;
