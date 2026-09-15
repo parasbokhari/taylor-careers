@@ -5,7 +5,7 @@ export function GET() {
   const siteUrl = getSiteUrl();
 
   return new Response(
-    isPreviewSite() ? "User-agent: *\nAllow: /\n" : `User-agent: *
+    isPreviewSite() ? "User-agent: *\nDisallow: /\n" : `User-agent: *
 Allow: /
 
 Sitemap: ${siteUrl}/sitemap.xml
