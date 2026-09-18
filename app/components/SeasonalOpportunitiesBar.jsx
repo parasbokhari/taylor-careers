@@ -13,7 +13,7 @@ export default function SeasonalOpportunitiesBar() {
     >
       <div className="seasonal-opportunities-bar__content">
         <p className="seasonal-opportunities-bar__title u__p m-0 u__f-700">
-          View Seasonal Opportunities at Taylor
+          Browse Seasonal Opportunities at Taylor
         </p>
         <a
           className="seasonal-opportunities-bar__link u__small u__f-700"
