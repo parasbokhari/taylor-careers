@@ -56,9 +56,9 @@ test("View All city filter matches every facility and secondary location without
 test("photo catalog maps Taylor image URLs to their matching cities and supports multiple facilities", () => {
   const pages = getLocationPages();
   const images = pages.flatMap((page) => page.images);
-  assert.equal(images.length, 65);
-  assert.equal(pages.filter((page) => page.images.length).length, 44);
-  assert.deepEqual(pages.filter((page) => !page.images.length).map((page) => page.slug), ["lakeland-fl", "radcliff-ky"]);
+  assert.equal(images.length, 66);
+  assert.equal(pages.filter((page) => page.images.length).length, 45);
+  assert.deepEqual(pages.filter((page) => !page.images.length).map((page) => page.slug), ["lakeland-fl"]);
   assert.equal(getLocationBySlug("north-mankato-mn").images.length, 11);
   assert.ok(getLocationBySlug("north-mankato-mn").images[0].src.endsWith("North-Mankato-MN-1725-Roe-Crest-Drive.webp"));
   assert.equal(getLocationBySlug("bloomington-il").images.length, 2);
@@ -67,12 +67,14 @@ test("photo catalog maps Taylor image URLs to their matching cities and supports
       const url = new URL(image.src);
       assert.equal(url.hostname, "www.taylor.com");
       assert.ok(url.pathname.includes("/Location%20Featured%20Image/"));
-      assert.ok(url.pathname.toLowerCase().includes(`/${page.city.replaceAll(" ", "-").toLowerCase()}-${page.state.toLowerCase()}`));
+      const expectedImageLocation = page.slug === "radcliff-ky" ? "jeffersonville-ky" : page.slug;
+      assert.ok(url.pathname.toLowerCase().includes(`/${expectedImageLocation}`));
       assert.ok(image.alt.includes(page.city));
     }
   }
   assert.ok(getLocationBySlug("minneapolis-mn").images.some((image) => image.src.includes("%20copy.webp")));
   assert.ok(getLocationBySlug("minneapolis-mn").images.some((image) => image.src.includes("%23100.webp")));
+  assert.ok(getLocationBySlug("radcliff-ky").images[0].src.endsWith("Jeffersonville-KY.webp"));
 });
 
 test("featured locations rank by live job counts and carousel reveals the next dot", () => {

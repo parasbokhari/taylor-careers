@@ -53,7 +53,6 @@ export default function LocationImageCarousel({ images = [], label }) {
                   <circle cx="35" cy="34" r="8" fill="currentColor" />
                   <path d="M15 70L38 49L53 62L68 45L82 56V70Q82 82 70 82H26Q15 82 15 70" fill="currentColor" />
                 </svg>
-                <span>Location photos coming soon</span>
               </div>
             </div>
           )}
