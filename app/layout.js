@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import HeadingTagDebugger from "@/app/components/HeadingTagDebugger";
 import KeyboardNavigationTracker from "@/app/components/KeyboardNavigationTracker";
 import PixelLoaders from "@/app/components/PixelLoaders";
+import SeasonalOpportunitiesBar from "@/app/components/SeasonalOpportunitiesBar";
 import SiteFooter from "@/app/components/SiteFooter";
 import SiteHeader from "@/app/components/SiteHeader";
 import { getSiteUrl } from "@/app/lib/jobs";
@@ -33,6 +34,7 @@ export default function RootLayout({ children }) {
         <Suspense fallback={null}>
           <HeadingTagDebugger />
         </Suspense>
+        <SeasonalOpportunitiesBar />
         <SiteHeader />
         <main id="main-content" className="overflow-hidden">
           {children}

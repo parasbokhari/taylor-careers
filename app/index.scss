@@ -1,5 +1,61 @@
 @import "./styles/compatibility";
 
+.seasonal-opportunities-bar {
+  display: block;
+  min-height: 58px;
+  background: linear-gradient(151deg, #129eff 6.4%, #7c00ff 86.47%);
+  color: var(--t-cp-base-white);
+  padding: 16px;
+  position: relative;
+  z-index: 9999;
+  @media (min-width: 576px) {
+    padding: 7px 24px;
+  }
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    max-width: 1400px;
+    margin: 0 auto;
+    flex-direction: column;
+    gap: 16px;
+    @media (min-width: 576px) {
+      gap: 24px;
+      flex-direction: row;
+    }
+  }
+
+  &__link {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 0.25rem 1.5rem;
+    border-radius: 100px;
+    background: var(--t-cp-base-white);
+    color: var(--t-cp-primary-blue);
+    text-decoration: none !important;
+
+    &:hover {
+      background-color: var(--t-cp-base-gray-100);
+      text-decoration: none;
+      color: var(--t-cp-primary-blue);
+    }
+
+    &:focus-visible {
+      outline: 3px solid #ffffff;
+      outline-offset: 3px;
+      box-shadow: 0 0 0 2px #2458f1;
+    }
+  }
+
+  &__icon {
+    flex: 0 0 auto;
+  }
+}
+
 // // Rollback: uncomment the remote Taylor stylesheet below and remove/comment the manual import.
 // @import url("https://www.taylor.com/hubfs/hub_generated/template_assets/1/114924056500/1761336383764/template_index.min.css");
 // // @import "./styles/taylor-index-manual.css";
