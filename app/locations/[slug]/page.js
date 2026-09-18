@@ -5,7 +5,16 @@ import FaqAccordion from "@/app/components/FaqAccordion";
 import JobCard from "@/app/components/JobCard";
 import LocationDirectory from "@/app/components/LocationDirectory";
 import LocationImageCarousel from "@/app/components/LocationImageCarousel";
-import { getLocationPages, getLocationStates, getLocationBySlug, getStateBySlug, getCitiesWithJobCounts, getLocationBreadcrumbs, jobMatchesLocation, buildLocationSearchResultsPath } from "@/app/lib/locationContent";
+import {
+  getLocationPages,
+  getLocationStates,
+  getLocationBySlug,
+  getStateBySlug,
+  getCitiesWithJobCounts,
+  getLocationBreadcrumbs,
+  jobMatchesLocation,
+  buildLocationSearchResultsPath,
+} from "@/app/lib/locationContent";
 import { fetchJobs, sortJobsByNewest } from "@/app/lib/jobs";
 import { buildSeoMetadata } from "@/app/lib/seo";
 
@@ -13,7 +22,9 @@ export const dynamicParams = false;
 export const revalidate = 900;
 
 export function generateStaticParams() {
-  return [...getLocationStates(), ...getLocationPages()].map(({ slug }) => ({ slug }));
+  return [...getLocationStates(), ...getLocationPages()].map(({ slug }) => ({
+    slug,
+  }));
 }
 
 export async function generateMetadata({ params }) {
@@ -22,8 +33,12 @@ export async function generateMetadata({ params }) {
   const location = getLocationBySlug(slug);
   if (!state && !location) notFound();
   return buildSeoMetadata({
-    title: location?.meta_title || `Browse Jobs by Location: ${state.name} | Taylor Careers`,
-    description: location?.meta_description || `Explore Taylor jobs in ${state.name}. Browse our locations by city and find open positions.`,
+    title:
+      location?.meta_title ||
+      `Browse Jobs by Location: ${state.name} | Taylor Careers`,
+    description:
+      location?.meta_description ||
+      `Explore Taylor jobs in ${state.name}. Browse our locations by city and find open positions.`,
     path: `/locations/${slug}`,
     image: location?.images[0]?.src,
   });
@@ -35,9 +50,19 @@ export default async function LocationPage({ params }) {
   const locationPage = getLocationBySlug(slug);
   if (!directoryState && !locationPage) notFound();
   const jobs = await fetchJobs();
-  if (directoryState) return <LocationDirectory state={directoryState} entries={getCitiesWithJobCounts(jobs, directoryState.code)} />;
-  const state = getLocationStates().find((state) => state.code === locationPage.state);
-  const locationJobs = sortJobsByNewest(jobs.filter((job) => jobMatchesLocation(job, locationPage)));
+  if (directoryState)
+    return (
+      <LocationDirectory
+        state={directoryState}
+        entries={getCitiesWithJobCounts(jobs, directoryState.code)}
+      />
+    );
+  const state = getLocationStates().find(
+    (state) => state.code === locationPage.state,
+  );
+  const locationJobs = sortJobsByNewest(
+    jobs.filter((job) => jobMatchesLocation(job, locationPage)),
+  );
   const featuredJobs = locationJobs.slice(0, 3);
   const hasLocationJobs = locationJobs.length > 0;
   const searchResultsPath = buildLocationSearchResultsPath(locationPage);
@@ -54,7 +79,7 @@ export default async function LocationPage({ params }) {
             <div className="row b__u-careers__category-hero__grid-row align-items-center">
               <div className="col-lg-6">
                 <div className="c__heading-wrapper mb-3">
-                  <h1 className="c__heading u__h2 u__f-700 d-block u__heading-color--primary mb-0">
+                  <h1 className="c__heading u__h1 u__f-700 d-block u__heading-color--primary mb-0">
                     {locationPage.heading}
                   </h1>
                 </div>
@@ -79,7 +104,10 @@ export default async function LocationPage({ params }) {
                 ) : null}
               </div>
               <div className="col-lg-6">
-                <LocationImageCarousel images={locationPage.images} label={`${locationPage.city}, ${locationPage.state}`} />
+                <LocationImageCarousel
+                  images={locationPage.images}
+                  label={`${locationPage.city}, ${locationPage.state}`}
+                />
               </div>
             </div>
           </div>
