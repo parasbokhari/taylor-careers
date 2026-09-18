@@ -12,12 +12,14 @@ export default function SeasonalOpportunitiesBar() {
       aria-label="Seasonal opportunities"
     >
       <div className="seasonal-opportunities-bar__content">
-        <p className="seasonal-opportunities-bar__title">
+        <p className="seasonal-opportunities-bar__title u__p m-0 u__f-700">
           View Seasonal Opportunities at Taylor
         </p>
         <a
-          className="seasonal-opportunities-bar__link"
+          className="seasonal-opportunities-bar__link u__small u__f-700"
           href={SEASONAL_OPPORTUNITIES_URL}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <span>View Jobs</span>
           <svg
