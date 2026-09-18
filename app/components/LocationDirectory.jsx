@@ -17,7 +17,12 @@ export default function LocationDirectory({ state, entries }) {
           <div className="location-directory__grid">
             {entries.map((entry) => (
               <Link className="c__u-careers__category-badge" href={`/locations/${entry.slug}`} key={entry.slug}>
-                <h2 className="c__u-careers__category-badge__label u__h6 u__f-700 mb-0">{entry.city || entry.name}</h2>
+                <span className="location-directory__card-text">
+                  <h2 className="c__u-careers__category-badge__label u__h6 u__f-700 mb-0">{entry.city || entry.name}</h2>
+                  <span className="u__small">
+                    {entry.count} {entry.count === 1 ? "Job" : "Jobs"}
+                  </span>
+                </span>
                 <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none">
                   <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>

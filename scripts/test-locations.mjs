@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { getLocationPages, getLocationStates, getLocationBySlug, getStateBySlug, getCitiesForState, getFeaturedLocations, getLocationBreadcrumbs, jobMatchesLocation, buildLocationSearchResultsPath } from "../app/lib/locationContent.js";
+import { getLocationPages, getLocationStates, getLocationBySlug, getStateBySlug, getCitiesForState, getCitiesWithJobCounts, getStatesWithJobCounts, getFeaturedLocations, getLocationBreadcrumbs, jobMatchesLocation, buildLocationSearchResultsPath } from "../app/lib/locationContent.js";
 import { jobMatchesLocationFilter } from "../app/lib/jobLocation.js";
 import { getVisiblePhotoIndexes } from "../app/lib/carouselPagination.js";
 
@@ -85,6 +85,18 @@ test("featured locations rank by live job counts and carousel reveals the next d
   ];
   assert.deepEqual(getFeaturedLocations(jobs, 3).map(({ location, count }) => [location.slug, count]),
     [["fridley-mn", 2], ["north-mankato-mn", 2], ["dallas-tx", 1]]);
+  assert.deepEqual(
+    getCitiesWithJobCounts(jobs, "MN")
+      .filter(({ count }) => count > 0)
+      .map(({ slug, count }) => [slug, count]),
+    [["fridley-mn", 2], ["north-mankato-mn", 2]],
+  );
+  assert.deepEqual(
+    getStatesWithJobCounts(jobs)
+      .filter(({ count }) => count > 0)
+      .map(({ code, count }) => [code, count]),
+    [["MN", 3], ["TX", 1]],
+  );
   assert.deepEqual(getVisiblePhotoIndexes(11, 0), [0, 1, 2]);
   assert.deepEqual(getVisiblePhotoIndexes(11, 1), [1, 2, 3]);
   assert.deepEqual(getVisiblePhotoIndexes(11, 5), [5, 6, 7]);

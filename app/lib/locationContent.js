@@ -31,6 +31,25 @@ export function getCitiesForState(code) {
     .sort((a, b) => a.city.localeCompare(b.city));
 }
 
+export function getCitiesWithJobCounts(jobs, code) {
+  return getCitiesForState(code).map((location) => ({
+    ...location,
+    count: jobs.filter((job) => jobMatchesLocation(job, location)).length,
+  }));
+}
+
+export function getStatesWithJobCounts(jobs) {
+  return getLocationStates().map((state) => {
+    const locations = getCitiesForState(state.code);
+    return {
+      ...state,
+      count: jobs.filter((job) =>
+        locations.some((location) => jobMatchesLocation(job, location)),
+      ).length,
+    };
+  });
+}
+
 export function getFeaturedLocations(jobs, limit = 6) {
   return locationPages
     .map((location) => ({ location, count: jobs.filter((job) => jobMatchesLocation(job, location)).length }))

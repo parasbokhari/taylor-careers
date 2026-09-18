@@ -7,9 +7,9 @@ import { getVisiblePhotoIndexes } from "@/app/lib/carouselPagination";
 
 export default function LocationImageCarousel({ images = [], label }) {
   const multiple = images.length > 1;
-  const [viewportRef, emblaApi] = useEmblaCarousel({ loop: false, duration: 20, watchDrag: multiple });
+  const [viewportRef, emblaApi] = useEmblaCarousel({ loop: multiple, duration: 20, watchDrag: multiple });
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollPrev, setCanScrollPrev] = useState(multiple);
   const [canScrollNext, setCanScrollNext] = useState(multiple);
   const visibleDots = getVisiblePhotoIndexes(images.length, selectedIndex);
   const dotStart = visibleDots[0] ?? 0;

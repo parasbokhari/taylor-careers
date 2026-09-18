@@ -93,6 +93,12 @@
     .c__u-careers__category-badge {
       gap: 12px;
     }
+    .location-directory__card-text {
+      display: flex;
+      flex: 1 1 auto;
+      min-width: 0;
+      flex-direction: column;
+    }
     svg {
       flex-shrink: 0;
     }
@@ -170,7 +176,7 @@
   &__viewport {
     border-radius: 20px;
     overflow: hidden;
-    background: #e9eeff;
+    background: linear-gradient(135deg, #e9efff 0%, #ffffff 100%);
     user-select: none;
   }
   &__slides {

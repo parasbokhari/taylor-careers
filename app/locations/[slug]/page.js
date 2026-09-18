@@ -5,7 +5,7 @@ import FaqAccordion from "@/app/components/FaqAccordion";
 import JobCard from "@/app/components/JobCard";
 import LocationDirectory from "@/app/components/LocationDirectory";
 import LocationImageCarousel from "@/app/components/LocationImageCarousel";
-import { getLocationPages, getLocationStates, getLocationBySlug, getStateBySlug, getCitiesForState, getLocationBreadcrumbs, jobMatchesLocation, buildLocationSearchResultsPath } from "@/app/lib/locationContent";
+import { getLocationPages, getLocationStates, getLocationBySlug, getStateBySlug, getCitiesWithJobCounts, getLocationBreadcrumbs, jobMatchesLocation, buildLocationSearchResultsPath } from "@/app/lib/locationContent";
 import { fetchJobs, sortJobsByNewest } from "@/app/lib/jobs";
 import { buildSeoMetadata } from "@/app/lib/seo";
 
@@ -32,11 +32,11 @@ export async function generateMetadata({ params }) {
 export default async function LocationPage({ params }) {
   const { slug } = await params;
   const directoryState = getStateBySlug(slug);
-  if (directoryState) return <LocationDirectory state={directoryState} entries={getCitiesForState(directoryState.code)} />;
   const locationPage = getLocationBySlug(slug);
-  if (!locationPage) notFound();
-  const state = getLocationStates().find((state) => state.code === locationPage.state);
+  if (!directoryState && !locationPage) notFound();
   const jobs = await fetchJobs();
+  if (directoryState) return <LocationDirectory state={directoryState} entries={getCitiesWithJobCounts(jobs, directoryState.code)} />;
+  const state = getLocationStates().find((state) => state.code === locationPage.state);
   const locationJobs = sortJobsByNewest(jobs.filter((job) => jobMatchesLocation(job, locationPage)));
   const featuredJobs = locationJobs.slice(0, 3);
   const hasLocationJobs = locationJobs.length > 0;

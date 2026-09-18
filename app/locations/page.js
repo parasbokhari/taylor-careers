@@ -1,6 +1,9 @@
 import LocationDirectory from "@/app/components/LocationDirectory";
-import { getLocationStates } from "@/app/lib/locationContent";
+import { getStatesWithJobCounts } from "@/app/lib/locationContent";
+import { fetchJobs } from "@/app/lib/jobs";
 import { buildSeoMetadata } from "@/app/lib/seo";
+
+export const revalidate = 900;
 
 export const metadata = buildSeoMetadata({
   title: "Browse Jobs by Location | Taylor Careers",
@@ -9,6 +12,7 @@ export const metadata = buildSeoMetadata({
   path: "/locations",
 });
 
-export default function LocationsPage() {
-  return <LocationDirectory entries={getLocationStates()} />;
+export default async function LocationsPage() {
+  const jobs = await fetchJobs();
+  return <LocationDirectory entries={getStatesWithJobCounts(jobs)} />;
 }
