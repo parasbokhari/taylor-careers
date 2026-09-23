@@ -1,9 +1,9 @@
 import { cache } from "react";
 
 const API_URL =
-  "https://workday-jobs-v3.vercel.app/api/workday/workday-job-master-json";
+  "https://workday-jobs.vercel.app/api/workday/workday-job-master-json";
 const OLIVIA_FEED_URL =
-  "https://workday-jobs-v3.vercel.app/api/aws/aws-job-master-xml";
+  "https://workday-jobs.vercel.app/api/aws/aws-job-master-xml";
 const WORKDAY_BASE = "https://taylor.wd1.myworkdayjobs.com/en-US/External";
 const JOBS_PER_PAGE = 20;
 const LAST_BOARD_URL_STORAGE_KEY = "taylor-careers:last-board-url";
