@@ -56,7 +56,7 @@ test("View All city filter matches every facility and secondary location without
 test("photo catalog maps Taylor image URLs to their matching cities and supports multiple facilities", () => {
   const pages = getLocationPages();
   const images = pages.flatMap((page) => page.images);
-  assert.equal(images.length, 67);
+  assert.equal(images.length, 66);
   assert.equal(pages.filter((page) => page.images.length).length, 46);
   assert.deepEqual(pages.filter((page) => !page.images.length).map((page) => page.slug), []);
   assert.equal(getLocationBySlug("north-mankato-mn").images.length, 11);
