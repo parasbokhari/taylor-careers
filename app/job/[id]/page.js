@@ -1,4 +1,4 @@
-import { notFound, permanentRedirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 import BackToPositionsButton from "@/app/components/BackToPositionsButton";
 import Breadcrumbs from "@/app/components/Breadcrumbs";
 import { JobDetailLoadingSkeleton } from "@/app/components/LoadingSkeletons";
@@ -172,7 +172,7 @@ export default async function JobDetailPage({ params, searchParams }) {
   ]);
   const job = getJobBySlug(allJobs, id);
 
-  if (!job) notFound();
+  if (!job) permanentRedirect("/search-results");
 
   const canonicalPath = buildJobPath(job);
   if (canonicalPath && canonicalPath !== `/job/${id}`) {
