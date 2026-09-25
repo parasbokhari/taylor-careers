@@ -7,7 +7,7 @@ const OLIVIA_FEED_URL =
 const WORKDAY_BASE = "https://taylor.wd1.myworkdayjobs.com/en-US/External";
 const JOBS_PER_PAGE = 20;
 const LAST_BOARD_URL_STORAGE_KEY = "taylor-careers:last-board-url";
-const DEFAULT_SITE_URL = "https://careers.taylor.com";
+const DEFAULT_SITE_URL = "https://jobs.taylor.com";
 const URL_KEYS = {
   category: "tcb_category",
   state: "tcb_state",
