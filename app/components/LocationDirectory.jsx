@@ -16,7 +16,7 @@ export default function LocationDirectory({ state, entries }) {
         <div className="container mt-4 pt-4">
           <div className="location-directory__grid">
             {entries.map((entry) => (
-              <Link className="c__u-careers__category-badge" href={`/locations/${entry.slug}`} key={entry.slug}>
+              <Link className="c__u-careers__category-badge" href={entry.href || `/locations/${entry.slug}`} key={entry.slug}>
                 <span className="location-directory__card-text">
                   <h2 className="c__u-careers__category-badge__label u__h6 u__f-700 mb-0">{entry.city || entry.name}</h2>
                   <span className="u__small">

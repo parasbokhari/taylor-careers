@@ -23,6 +23,16 @@ test("fixed catalog contains 46 unique cities and 22 states with navigable paren
   assert.equal(getStateBySlug("not-a-state"), undefined);
 });
 
+test("state cards link directly to a city only when the state has one location", () => {
+  const states = getStatesWithJobCounts([]);
+  for (const state of states) {
+    const cities = getCitiesForState(state.code);
+    assert.equal(state.href, `/locations/${cities.length === 1 ? cities[0].slug : state.slug}`);
+  }
+  assert.equal(getStateBySlug("massachusetts").slug, "massachusetts");
+  assert.equal(getLocationBreadcrumbs(getStateBySlug("massachusetts"), getLocationBySlug("avon-ma")).at(-2).href, "/locations/massachusetts");
+});
+
 test("location matching includes facility suffixes but excludes other cities/states and remote roles", () => {
   const city = getLocationBySlug("north-mankato-mn");
   for (const label of ["North Mankato, MN", "North Mankato, MN - Taylor", " North Mankato, Minnesota ", "MN-North Mankato-1825 Commerce Drive"]) {

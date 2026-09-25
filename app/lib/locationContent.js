@@ -43,6 +43,7 @@ export function getStatesWithJobCounts(jobs) {
     const locations = getCitiesForState(state.code);
     return {
       ...state,
+      href: `/locations/${locations.length === 1 ? locations[0].slug : state.slug}`,
       count: jobs.filter((job) =>
         locations.some((location) => jobMatchesLocation(job, location)),
       ).length,
