@@ -2048,6 +2048,10 @@
   opacity: 0;
 }
 
+#hs-banner-parent #hs-eu-policy-wording br {
+  display: none;
+}
+
 #hs-eu-cookie-confirmation {
   --hs-banner-button-corners: 100px;
 
@@ -2088,6 +2092,17 @@
 
 #hs-eu-cookie-confirmation-buttons-area #hs-eu-decline-button:hover {
   background-color: #f9f3ff;
+}
+
+@media (min-width: 768px) {
+  #hs-banner-parent #hs-eu-cookie-confirmation {
+    max-width: 500px !important;
+    margin-right: 1.5rem !important;
+  }
+
+  #hs-eu-cookie-confirmation #hs-eu-cookie-confirmation-buttons-area {
+    justify-content: flex-start !important;
+  }
 }
 
 @media (max-width: 576px) {
