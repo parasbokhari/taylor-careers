@@ -1593,6 +1593,10 @@ html {
   }
   &.search-board--active {
     overflow: hidden;
+    // Lift the search board's ancestor stacking contexts above page overlays.
+    .u__sticky-header {
+      z-index: 1000000 !important;
+    }
     .b__site-header__global-site-header__search-board {
       display: block;
       &__tint {
