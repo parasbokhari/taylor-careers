@@ -10,7 +10,7 @@ function getFocusableElements(element) {
   ).filter((item) => !item.hasAttribute("disabled"));
 }
 
-function trapFocus(element, previousElement = document.activeElement) {
+function trapFocus(element, previousElement = document.activeElement, initialFocus) {
   const focusableElements = getFocusableElements(element);
   const firstFocusableElement = focusableElements[0];
   const lastFocusableElement = focusableElements[focusableElements.length - 1];
@@ -19,7 +19,7 @@ function trapFocus(element, previousElement = document.activeElement) {
     return { onClose: () => previousElement?.focus?.() };
   }
 
-  firstFocusableElement.focus();
+  (initialFocus || firstFocusableElement).focus();
 
   function handleKeydown(event) {
     if (event.key !== "Tab") {
@@ -186,7 +186,11 @@ export default function SiteHeaderClient() {
 
       window.setTimeout(() => {
         if (searchBoard) {
-          trappedSearchFocus = trapFocus(searchBoard, trigger);
+          trappedSearchFocus = trapFocus(
+            searchBoard,
+            trigger,
+            searchBoard.querySelector('input[type="search"], input[type="text"]'),
+          );
         }
       }, 300);
     }
