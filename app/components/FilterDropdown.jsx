@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useId } from "react";
 
 const SEE_MORE_THRESHOLD = 5;
 
@@ -14,6 +14,17 @@ export default function FilterDropdown({
 }) {
   const [expanded, setExpanded] = useState(false);
   const wrapperRef = useRef(null);
+  const triggerRef = useRef(null);
+  const firstNewOptionRef = useRef(null);
+  const focusExpandedOptionsRef = useRef(false);
+  const optionsId = useId();
+
+  useEffect(() => {
+    if (expanded && focusExpandedOptionsRef.current) {
+      firstNewOptionRef.current?.focus();
+    }
+    focusExpandedOptionsRef.current = false;
+  }, [expanded]);
 
   const handleOpen = useCallback(() => {
     if (isOpen) {
@@ -42,7 +53,10 @@ export default function FilterDropdown({
   useEffect(() => {
     if (!isOpen) return;
     const handler = (e) => {
-      if (e.key === "Escape") handleClose();
+      if (e.key === "Escape") {
+        handleClose();
+        triggerRef.current?.focus();
+      }
     };
     document.addEventListener("keydown", handler);
     return () => document.removeEventListener("keydown", handler);
@@ -58,6 +72,7 @@ export default function FilterDropdown({
   return (
     <div ref={wrapperRef} style={{ position: "relative" }}>
       <button
+        ref={triggerRef}
         type="button"
         className={`c__filter-item${hasActive ? " c__filter-item--active" : ""}`}
         onClick={handleOpen}
@@ -118,12 +133,13 @@ export default function FilterDropdown({
           aria-multiselectable="true"
           style={{ position: "absolute", top: "calc(100% + 6px)", left: 0, zIndex: 150 }}
         >
-          <div className="c__dropdown__wrapper">
-            {visibleOpts.map((opt) => {
+          <div id={optionsId} className="c__dropdown__wrapper">
+            {visibleOpts.map((opt, index) => {
               const isChecked = selected.includes(opt.value);
               return (
                 <div
                   key={opt.value}
+                  ref={index === SEE_MORE_THRESHOLD ? firstNewOptionRef : null}
                   role="option"
                   aria-selected={isChecked}
                   className={`c__dropdown__list-item c__dropdown__list-item--type-checkbox c__dropdown__list-item--type-checkbox--${
@@ -131,9 +147,12 @@ export default function FilterDropdown({
                   } c__tab-button`}
                   tabIndex={0}
                   onClick={() => onToggle(opt.value)}
-                  onKeyDown={(e) =>
-                    (e.key === "Enter" || e.key === " ") && onToggle(opt.value)
-                  }
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      onToggle(opt.value);
+                    }
+                  }}
                 >
                   <div className="c__dropdown__list-item__checkbox-wrapper">
                     <figure className={`m-0 c__dropdown__list-item__checkbox--inactive${isChecked ? " d-none" : ""}`}>
@@ -165,8 +184,11 @@ export default function FilterDropdown({
               <button
                 type="button"
                 className="c__dropdown__see-more-btn"
+                aria-expanded={expanded}
+                aria-controls={optionsId}
                 onClick={(e) => {
                   e.stopPropagation();
+                  focusExpandedOptionsRef.current = !expanded && e.detail === 0;
                   setExpanded((v) => !v);
                 }}
               >

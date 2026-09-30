@@ -236,6 +236,18 @@ export default function JobBoard({
   const sortRef = useRef(null);
   const sortButtonRef = useRef(null);
   const debounceTimer = useRef(null);
+  const selectedFiltersRef = useRef(null);
+  const removedFilterIndexRef = useRef(null);
+  const searchInputRef = useRef(null);
+
+  useEffect(() => {
+    const index = removedFilterIndexRef.current;
+    if (index === null || loading || filtering) return;
+    const remainingButtons = selectedFiltersRef.current?.querySelectorAll("button");
+    const nextButton = remainingButtons?.[Math.min(index, remainingButtons.length - 1)];
+    (nextButton || searchInputRef.current)?.focus();
+    removedFilterIndexRef.current = null;
+  }, [filters, loading, filtering]);
 
   useEffect(() => {
     if (!startsFiltered) return;
@@ -737,6 +749,7 @@ export default function JobBoard({
                         </figure>
                       </div>
                       <input
+                        ref={searchInputRef}
                         type="text"
                         placeholder="Job Title, Skill or Keyword"
                         aria-label="Job Title, Skill or Keyword"
@@ -944,8 +957,8 @@ export default function JobBoard({
 
               {!loading && !filtering && activeFilterTags.length > 0 && (
                 <div className="c__job-board-embed__selected-filters-list mt-4 pt-1 pt-sm-2 pt-md-3 pt-lg-4">
-                  <div className="c__job-board-embed__selected-filters-list__row">
-                    {activeFilterTags.map((tag) => (
+                  <div ref={selectedFiltersRef} className="c__job-board-embed__selected-filters-list__row">
+                    {activeFilterTags.map((tag, index) => (
                       <div
                         key={`${tag.key}-${tag.value}`}
                         className="c__selected-filters__list-item"
@@ -956,12 +969,17 @@ export default function JobBoard({
                           </span>
                         </div>
                         <div className="c__selected-filters__list-item__figure-wrapper">
-                          <figure
+                          <button
+                            type="button"
                             className="c__selected-filters__list-item__figure c__selected-filters__list-item--clear-handler"
-                            onClick={() => removeFilter(tag.key, tag.value)}
-                            style={{ cursor: "pointer" }}
+                            aria-label={`Remove ${tag.key === "search" ? `search: ${tag.value}` : tag.label} filter`}
+                            onClick={(event) => {
+                              removedFilterIndexRef.current = event.detail === 0 ? index : null;
+                              removeFilter(tag.key, tag.value);
+                            }}
                           >
                             <svg
+                              aria-hidden="true"
                               width={14}
                               height={14}
                               viewBox="0 0 14 14"
@@ -980,7 +998,7 @@ export default function JobBoard({
                                 strokeLinejoin="round"
                               />
                             </svg>
-                          </figure>
+                          </button>
                         </div>
                       </div>
                     ))}
