@@ -1203,6 +1203,13 @@
       border: none;
       padding: 6px 14px;
       flex-direction: row-reverse;
+      &__figure {
+        background: transparent;
+        padding: 0;
+        @media (max-width: 576px) {
+          padding: 6px 4px;
+        }
+      }
       &__label-wrapper {
         padding-right: 0;
         @media (min-width: 768px) {
