@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Breadcrumbs from "@/app/components/Breadcrumbs";
 import JobBoard from "@/app/components/JobBoard";
+import JobUnavailableToast from "@/app/components/JobUnavailableToast";
 import { JobBoardLoadingSkeleton } from "@/app/components/LoadingSkeletons";
 import { getBreadcrumbsForPath } from "@/app/lib/breadcrumbs";
 import {
@@ -118,6 +119,9 @@ export default async function ListingPage({ params, searchParams }) {
 
   return (
     <>
+      {resolvedSearchParams?.job_unavailable === "true" && (
+        <JobUnavailableToast />
+      )}
       <Breadcrumbs
         items={getBreadcrumbsForPath("/search-results")}
         currentPath={getListingPath(pageNumber)}

@@ -172,7 +172,7 @@ export default async function JobDetailPage({ params, searchParams }) {
   ]);
   const job = getJobBySlug(allJobs, id);
 
-  if (!job) permanentRedirect("/search-results");
+  if (!job) permanentRedirect("/search-results?job_unavailable=true");
 
   const canonicalPath = buildJobPath(job);
   if (canonicalPath && canonicalPath !== `/job/${id}`) {
