@@ -115,7 +115,11 @@ export default function SimilarJobs({ jobs = [], currentJob }) {
                     </span>
                   )}
                 </div>
-                <Link href={jobPath} className="c__similar-jobs__link">
+                <Link
+                  href={jobPath}
+                  className="c__similar-jobs__link"
+                  aria-label={`View Job: ${job.title}`}
+                >
                   <span>View Job</span>
                   <ArrowIcon />
                 </Link>

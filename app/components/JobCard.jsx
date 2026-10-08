@@ -72,6 +72,7 @@ export default function JobCard({ job, headingTag: HeadingTag = "h3" }) {
               <Link
                 href={jobUrl}
                 className="c__job-card__view-link"
+                aria-label={`View Job: ${job.title}`}
                 onClick={rememberBoardUrl}
                 style={{
                   display: "inline-flex",
@@ -84,7 +85,13 @@ export default function JobCard({ job, headingTag: HeadingTag = "h3" }) {
                 }}
               >
                 <span>View Job</span>
-                <svg width={20} height={20} viewBox="0 0 20 20" fill="none">
+                <svg
+                  width={20}
+                  height={20}
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
                   <path
                     d="M5.83337 14.1666L14.1667 5.83331M14.1667 5.83331H5.83337M14.1667 5.83331V14.1666"
                     stroke="#2458F1"
