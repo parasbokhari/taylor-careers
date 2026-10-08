@@ -1,5 +1,18 @@
 @import "./styles/compatibility";
 
+@media (max-width: 1199.98px) {
+  html.ham-navigation-board--active {
+    .u__sticky-header {
+      // Raise the menu's ancestor stacking contexts above the recruiting chat.
+      z-index: 1000000 !important;
+    }
+
+    .seasonal-opportunities-bar {
+      z-index: 1000001;
+    }
+  }
+}
+
 .seasonal-opportunities-bar {
   display: block;
   min-height: 58px;
@@ -2004,6 +2017,17 @@
   outline: 3px solid var(--t-cp-primary-blue, #2458f1);
   outline-offset: 4px;
   box-shadow: 0 0 0 2px var(--t-cp-base-white, #ffffff);
+}
+
+.b__site-header__global-site-header__navigation-wrapper--small
+  .b__site-header__global-site-header__anchor-wrapper__chev-handler {
+  // Keep imported arrow positioning while using a native disclosure button.
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
 }
 
 .c__button__anchor-element:focus-visible {
