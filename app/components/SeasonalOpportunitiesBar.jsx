@@ -11,7 +11,7 @@ export default function SeasonalOpportunitiesBar() {
       className="seasonal-opportunities-bar"
       aria-label="Seasonal opportunities"
     >
-      <div className="seasonal-opportunities-bar__content">
+      <div className="seasonal-opportunities-bar__content text-center">
         <p className="seasonal-opportunities-bar__title u__p m-0 u__f-700">
           Browse Seasonal Opportunities at Taylor
         </p>
