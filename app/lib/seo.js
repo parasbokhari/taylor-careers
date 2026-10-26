@@ -1,3 +1,5 @@
+import { isPreviewSite } from "./preview";
+
 const SITE_NAME = "Taylor Careers";
 const DEFAULT_TITLE = "Taylor Careers";
 const DEFAULT_DESCRIPTION = "Explore careers and open positions at Taylor.";
@@ -51,6 +53,6 @@ export function buildSeoMetadata({
       description,
       images: image ? [image] : undefined,
     },
-    robots: robots ?? DEFAULT_ROBOTS,
+    robots: isPreviewSite() ? { index: false, follow: false } : robots ?? DEFAULT_ROBOTS,
   };
 }
