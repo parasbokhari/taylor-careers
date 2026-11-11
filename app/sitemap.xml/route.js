@@ -1,3 +1,4 @@
+import { connection } from "next/server";
 import { getCategoryPages } from "@/app/lib/categoryContent";
 import { getLocationPages, getLocationStates } from "@/app/lib/locationContent";
 import {
@@ -7,9 +8,6 @@ import {
   getSiteUrl,
   getTotalPages,
 } from "@/app/lib/jobs";
-
-export const dynamic = "force-static";
-export const revalidate = 900;
 
 function escapeXml(value) {
   return String(value)
@@ -93,6 +91,7 @@ ${rows}
 }
 
 export async function GET() {
+  await connection();
   const jobs = await fetchJobs();
   const entries = buildSitemapEntries(jobs);
   const xml = buildSitemapXml(entries);
@@ -100,6 +99,8 @@ export async function GET() {
   return new Response(xml, {
     headers: {
       "Content-Type": "application/xml; charset=utf-8",
+      "Cache-Control": "public, max-age=0, must-revalidate",
+      "Vercel-CDN-Cache-Control": "max-age=1800",
     },
   });
 }
