@@ -5,6 +5,7 @@ import { Drawer } from "vaul";
 import FilterDropdown from "./FilterDropdown";
 import JobCard from "./JobCard";
 import { jobMatchesLocationFilter } from "@/app/lib/jobLocation";
+import { extractState, US_STATES } from "@/app/lib/jobState";
 import {
   EMPTY_FILTERS,
   LAST_BOARD_URL_STORAGE_KEY,
@@ -12,60 +13,6 @@ import {
   hasActiveFilters,
   postedOnToDays,
 } from "@/app/lib/jobs";
-
-const US_STATES = {
-  AL: "Alabama",
-  AK: "Alaska",
-  AZ: "Arizona",
-  AR: "Arkansas",
-  CA: "California",
-  CO: "Colorado",
-  CT: "Connecticut",
-  DE: "Delaware",
-  FL: "Florida",
-  GA: "Georgia",
-  HI: "Hawaii",
-  ID: "Idaho",
-  IL: "Illinois",
-  IN: "Indiana",
-  IA: "Iowa",
-  KS: "Kansas",
-  KY: "Kentucky",
-  LA: "Louisiana",
-  ME: "Maine",
-  MD: "Maryland",
-  MA: "Massachusetts",
-  MI: "Michigan",
-  MN: "Minnesota",
-  MS: "Mississippi",
-  MO: "Missouri",
-  MT: "Montana",
-  NE: "Nebraska",
-  NV: "Nevada",
-  NH: "New Hampshire",
-  NJ: "New Jersey",
-  NM: "New Mexico",
-  NY: "New York",
-  NC: "North Carolina",
-  ND: "North Dakota",
-  OH: "Ohio",
-  OK: "Oklahoma",
-  OR: "Oregon",
-  PA: "Pennsylvania",
-  RI: "Rhode Island",
-  SC: "South Carolina",
-  SD: "South Dakota",
-  TN: "Tennessee",
-  TX: "Texas",
-  UT: "Utah",
-  VT: "Vermont",
-  VA: "Virginia",
-  WA: "Washington",
-  WV: "West Virginia",
-  WI: "Wisconsin",
-  WY: "Wyoming",
-  DC: "District of Columbia",
-};
 
 const SEARCH_DEBOUNCE_MS = 400;
 const FILTER_SPINNER_MS = 700;
@@ -138,14 +85,6 @@ function buildFiltersUrl(filters, urlFilterDefaults) {
     p.set(URL_KEYS.sort, syncedFilters.sort);
   const qs = p.toString();
   return qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
-}
-
-function extractState(str = "") {
-  const m1 = str.match(/,\s*([A-Z]{2})\s*[-–]/);
-  if (m1 && US_STATES[m1[1]]) return m1[1];
-  const m2 = str.match(/,\s*([A-Z]{2})\s*$/);
-  if (m2 && US_STATES[m2[1]]) return m2[1];
-  return null;
 }
 
 function stripHtml(html = "") {
