@@ -48,6 +48,23 @@ test("location matching includes facility suffixes but excludes other cities/sta
   assert.equal(jobMatchesLocation({ locations: "KY-Radcliff-2142 South Dixie Blvd" }, getLocationBySlug("radcliff-ky")), true);
 });
 
+test("Jon Michael Design's exact Workday label matches New York without accepting other malformed or remote labels", () => {
+  const city = getLocationBySlug("new-york-ny");
+  const label = "New York, NY -Jon Michael Design, Inc.";
+  for (const job of [{ locations: label }, { locationsText: label }, { locations: `MN-Remote; ${label}` }]) {
+    assert.equal(jobMatchesLocation(job, city), true);
+    assert.equal(jobMatchesLocationFilter(job, "New York, NY"), true);
+    assert.equal(jobMatchesLocation(job, getLocationBySlug("amsterdam-ny")), false);
+    assert.equal(getStatesWithJobCounts([job]).find((state) => state.code === "NY").count, 1);
+  }
+  assert.equal(jobMatchesLocationFilter({ locations: label }, label), true);
+  for (const locations of ["NY-Remote", "New York, NY-Remote", "New York, NY -Remote", "New York, NY -Other Company", "New York, NY-Jon Michael Design, Inc.", "New York, NJ -Jon Michael Design, Inc."]) {
+    assert.equal(jobMatchesLocation({ locations }, city), false, locations);
+    assert.equal(jobMatchesLocationFilter({ locations }, "New York, NY"), false, locations);
+  }
+  assert.equal(jobMatchesLocation({ locations: "New York, NY - Jon Michael Design, Inc." }, city), true);
+});
+
 test("View All city filter matches every facility and secondary location without broadening to other cities", () => {
   const city = getLocationBySlug("north-mankato-mn");
   const url = new URL(buildLocationSearchResultsPath(city), "https://example.com");

@@ -18,7 +18,13 @@ function cityAliases(city, state) {
 }
 
 function matchesLabel(label, city, state) {
-  const clean = label.trim();
+  const trimmed = label.trim();
+  // Workday's Jon Michael Design label omits the space after the separator.
+  // Keep this exception exact so other malformed labels and remote roles
+  // continue to follow the existing matching rules.
+  const clean = trimmed === "New York, NY -Jon Michael Design, Inc."
+    ? "New York, NY"
+    : trimmed;
   const aliases = cityAliases(city, state).map(normalize);
   const address = clean.match(/^([A-Z]{2})-([^-]+)-.+$/);
   if (address) {
