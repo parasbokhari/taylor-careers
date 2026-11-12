@@ -393,6 +393,7 @@ export default function JobBoard({
             job.workerSubType,
             job.timeType,
             jobLocation,
+            job.locations || "",
             cityPart,
             fullStateName,
             jobState,

@@ -15,33 +15,12 @@ import {
 } from "@/app/lib/jobs";
 import { formatRichTextHtml } from "@/app/lib/richText";
 import { buildSeoMetadata } from "@/app/lib/seo";
+import { cleanLocationLabel, getJobLocations } from "@/app/lib/jobDetailLocation";
 
 const ABOUT_TAYLOR_URL = "https://www.taylor.com/about-us";
 
 function shouldLoadSkeleton(searchParams) {
   return searchParams?.load_skeleton === "true";
-}
-
-function cleanLocationLabel(value = "") {
-  return value
-    .replace(/\s*,?\s*More(?:\.{1,3}|…)?$/i, "")
-    .split(" - ")[0]
-    .trim();
-}
-
-function getJobLocations(job) {
-  const fullLocations = (job.locations || "")
-    .split(";")
-    .map((location) => location.trim())
-    .filter(Boolean);
-  const primaryFullLocation =
-    fullLocations[0] ||
-    cleanLocationLabel(job.locationsText || "") ||
-    job.Job_Requisition_Primary_Location ||
-    "";
-  const locations = [primaryFullLocation, ...fullLocations].filter(Boolean);
-
-  return [...new Set(locations)];
 }
 
 function MetaIcon({ type }) {
